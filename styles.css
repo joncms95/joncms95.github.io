@@ -95,6 +95,26 @@ small {
     margin: 0;
 }
 
+/* Links */
+.links a {
+    text-decoration: none;
+    display: inline-block;
+}
+
+.links a::after {
+    content: '';
+    width: 0%;
+    height: 2px;
+    background: #052a5f;
+    display: block;
+    margin: auto;
+    transition: 0.5s;
+}
+
+.links a:hover::after {
+    width: 100%
+}
+
 /* Achievements */
 .noliststyle {
     list-style: none;
@@ -104,7 +124,6 @@ small {
 
 .achievements {
     text-align: right;
-    text-decoration: none;
 }
 
 .achievements a {
@@ -163,67 +182,6 @@ small {
     width: 100%
 }
 
-/* Face */
-.face {
-    position: relative;
-    width: 300px;
-    height: 300px;
-    border-radius: 50%;
-    background: #ffcd00;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.face::before {
-    content: '';
-    position: absolute;
-    top: 180px;
-    width: 150px;
-    height: 70px;
-    background: #b57700;
-    border-bottom-left-radius: 70px;
-    border-bottom-right-radius: 70px;
-    transition: 0.5s;
-}
-
-.face:hover::before {
-    top: 210px;
-    width: 150px;
-    height: 20px;
-    background: #b57700;
-    border-bottom-left-radius: 0px;
-    border-bottom-right-radius: 0px;
-}
-
-.eyes {
-    position: relative;
-    top: -40px;
-    display: flex;
-}
-
-.eyes .eye {
-    position: relative;
-    width: 80px;
-    height: 80px;
-    display: block;
-    background: #fff;
-    margin: 0 15px;
-    border-radius: 50%;
-}
-
-.eyes .eye::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 25px;
-    transform: translate(-50%, -50%);
-    width: 40px;
-    height: 40px;
-    background: #333;
-    border-radius: 50%;
-}
-
 /* Media Compatibility */
 @media (max-width: 767px) {
     .rounded-circle {
@@ -241,66 +199,5 @@ small {
     .name,
     .phone-center {
         text-align: center;
-    }
-
-    /* Face */
-    .face {
-        position: relative;
-        width: 255px;
-        height: 255px;
-        border-radius: 50%;
-        background: #ffcd00;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .face::before {
-        content: '';
-        position: absolute;
-        top: 150px;
-        width: 130px;
-        height: 70px;
-        background: #b57700;
-        border-bottom-left-radius: 70px;
-        border-bottom-right-radius: 70px;
-        transition: 0.5s;
-    }
-
-    .face:hover::before {
-        top: 180px;
-        width: 130px;
-        height: 20px;
-        background: #b57700;
-        border-bottom-left-radius: 0px;
-        border-bottom-right-radius: 0px;
-    }
-
-    .eyes {
-        position: relative;
-        top: -40px;
-        display: flex;
-    }
-
-    .eyes .eye {
-        position: relative;
-        width: 65px;
-        height: 65px;
-        display: block;
-        background: #fff;
-        margin: 0 15px;
-        border-radius: 50%;
-    }
-
-    .eyes .eye::before {
-        content: '';
-        position: absolute;
-        top: 50%;
-        left: 20px;
-        transform: translate(-50%, -50%);
-        width: 35px;
-        height: 35px;
-        background: #333;
-        border-radius: 50%;
     }
 }
