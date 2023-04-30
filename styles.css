@@ -142,44 +142,22 @@ small {
 }
 
 .achievements a:hover::after {
-    width: 100%
+    width: 100%;
 }
 
 /* Nav Tabs */
+.nav {
+    margin-bottom: 10px;
+}
+
 .nav-link {
-    margin-bottom: 0;
-    padding: 0rem 1rem;
+    margin: 1px;
+    color: black;
 }
 
-.nav-link ul {
-    margin: 0;
-    padding: 0;
-}
-
-.nav-link ul li {
-    list-style: none;
-    display: inline-block;
-    margin-right: .5rem;
-    padding: .5rem 1rem;
-}
-
-.nav-link ul li a {
-    text-decoration: none;
-    color: black
-}
-
-.nav-link ul li::after {
-    content: '';
-    width: 0%;
-    height: 2px;
-    background: #052a5f;
-    display: block;
-    margin: auto;
-    transition: 0.5s;
-}
-
-.nav-link ul li:hover::after {
-    width: 100%
+.nav-tabs .nav-link:hover {
+    background-color: #eee;
+    transition: 0.25s;
 }
 
 /* Media Compatibility */

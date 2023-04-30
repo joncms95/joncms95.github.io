@@ -4,11 +4,14 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale = 1.0" />
-    <link rel="icon" type="image/png" href="images/education.png" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+    <link rel="icon" type="image/png" href="images/favicon.png" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
         crossorigin="anonymous"></script>
     <!-- Font Awesome -->
     <script src="https://kit.fontawesome.com/f96acd4846.js" crossorigin="anonymous"></script>
@@ -20,7 +23,7 @@
         rel="stylesheet">
     <!-- style.css -->
     <link href="styles.css" rel="stylesheet">
-    <title>Education - Jonathan Chan Mun Shum</title>
+    <title>Jonathan Chan Mun Shum</title>
 </head>
 
 <body>
@@ -50,96 +53,491 @@
     </div>
     <!-- Nav Tabs -->
     <div class="card container">
-        <nav class="nav-link">
-            <ul>
-                <li>
-                    <a href="index.html">Education</a>
-                </li>
-                <li>
-                    <a href="experience.html">Experience</a>
-                </li>
-                <li>
-                    <a href="keyskills.html">Key Skills & Strengths</a>
-                </li>
-                <li>
-                    <a href="project.html">Project</a>
-                </li>
-            </ul>
-        </nav>
-        <hr />
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="education-tab" data-toggle="tab" href="#education" role="tab"
+                    aria-controls="education" aria-selected="true">Education</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="experience-tab" data-toggle="tab" href="#experience" role="tab"
+                    aria-controls="experience" aria-selected="false">Experience</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="keyskills-tab" data-toggle="tab" href="#keyskills" role="tab"
+                    aria-controls="keyskills" aria-selected="false">Key Skills & Strengths</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="project-tab" data-toggle="tab" href="#project" role="tab"
+                    aria-controls="project" aria-selected="false">Project</a>
+            </li>
+        </ul>
         <!-- Nav panes -->
-        <div class="row">
-            <div class="col-sm-12 col-md-9 col-lg-10">
-                <h4>CS50 Introduction to Computer Science
-                    <small style="display:inline-block">HarvardX</small>
-                </h4>
-            </div>
-            <div class="col-sm-12 col-md-3 col-lg-2 col order-md-first col order-lg-first">
-                <h6>Dec 2022 &ndash; Apr 2023</h6>
-            </div>
-            <div class="col-sm-12 col-md-9 offset-md-3 col-lg-10 offset-lg-2">
+        <div class="tab-content" id="myTabContent">
+            <!-- Education -->
+            <div class="tab-pane fade show active" id="education" role="tabpanel" aria-labelledby="education-tab">
+                <div class="row">
+                    <div class="col-sm-12 col-md-9 col-lg-10">
+                        <h4>CS50 Introduction to Computer Science
+                            <small style="display:inline-block">HarvardX</small>
+                        </h4>
+                    </div>
+                    <div class="col-sm-12 col-md-3 col-lg-2 col order-md-first col order-lg-first">
+                        <h6>Dec 2022 &ndash; Apr 2023</h6>
+                    </div>
+                    <div class="col-sm-12 col-md-9 offset-md-3 col-lg-10 offset-lg-2">
+                        <hr />
+                        <ul>
+                            <li>Harvard University's introduction to the intellectual enterprises of computer science
+                                and
+                                the
+                                art of programming</li>
+                        </ul>
+                    </div>
+                </div>
                 <hr />
-                <ul>
-                    <li>Harvard University's introduction to the intellectual enterprises of computer science and the
-                        art of programming</li>
-                </ul>
-            </div>
-        </div>
-        <hr />
-        <div class="row">
-            <div class="col-sm-12 col-md-9 col-lg-10">
-                <h4>Bachelor of Commerce (Hons) Accounting
-                    <small style="display:inline-block">Universiti Tunku Abdul Rahman</small>
-                </h4>
-                <h5>CGPA: 3.1368/ Honours Degree with Merit</h5>
-            </div>
-            <div class="col-sm-12 col-md-3 col-lg-2 col order-md-first col order-lg-first">
-                <h6>May 2014 &ndash; May 2017</h6>
-            </div>
-            <div class="col-sm-12 col-md-9 offset-md-3 col-lg-10 offset-lg-2">
+                <div class="row">
+                    <div class="col-sm-12 col-md-9 col-lg-10">
+                        <h4>Bachelor of Commerce (Hons) Accounting
+                            <small style="display:inline-block">Universiti Tunku Abdul Rahman</small>
+                        </h4>
+                        <h5>CGPA: 3.1368/ Honours Degree with Merit</h5>
+                    </div>
+                    <div class="col-sm-12 col-md-3 col-lg-2 col order-md-first col order-lg-first">
+                        <h6>May 2014 &ndash; May 2017</h6>
+                    </div>
+                    <div class="col-sm-12 col-md-9 offset-md-3 col-lg-10 offset-lg-2">
+                        <hr />
+                        <ul>
+                            <li>Academic Honours - Dean's List</li>
+                            <li>Excellence Performance</li>
+                            <li>Final Year Project Conference - Participant and Presenter</li>
+                            <li>Malaysian University English Test (MUET)<br>Score: Band 5</li>
+                        </ul>
+                    </div>
+                </div>
                 <hr />
-                <ul>
-                    <li>Academic Honours - Dean's List</li>
-                    <li>Excellence Performance</li>
-                    <li>Final Year Project Conference - Participant and Presenter</li>
-                    <li>Malaysian University English Test (MUET)<br>Score: Band 5</li>
-                </ul>
-            </div>
-        </div>
-        <hr />
-        <div class="row">
-            <div class="col-sm-12 col-md-9 col-lg-10">
-                <h4>Foundation in Arts (Management and Accountancy)
-                    <small style="display:inline-block">Universiti Tunku Abdul Rahman</small>
-                </h4>
-                <h5>CGPA: 3.7340</h5>
-            </div>
-            <div class="col-sm-12 col-md-3 col-lg-2 col order-md-first col order-lg-first">
-                <h6>May 2013 &ndash; May 2014</h6>
-            </div>
-        </div>
-        <hr />
-        <div class="row">
-            <div class="col-sm-12 col-md-9 col-lg-10">
-                <h4>Sijil Pelajaran Malaysia, Science (SPM)
-                    <small style="display:inline-block">SMK Bercham</small>
-                </h4>
-                <h5>Grades: 8As 2Bs</h5>
-            </div>
-            <div class="col-sm-12 col-md-3 col-lg-2 col order-md-first col order-lg-first">
-                <h6>Jan 2008 &ndash; Dec 2012</h6>
-            </div>
-            <div class="col-sm-12 col-md-9 offset-md-3 col-lg-10 offset-lg-2">
+                <div class="row">
+                    <div class="col-sm-12 col-md-9 col-lg-10">
+                        <h4>Foundation in Arts (Management and Accountancy)
+                            <small style="display:inline-block">Universiti Tunku Abdul Rahman</small>
+                        </h4>
+                        <h5>CGPA: 3.7340</h5>
+                    </div>
+                    <div class="col-sm-12 col-md-3 col-lg-2 col order-md-first col order-lg-first">
+                        <h6>May 2013 &ndash; May 2014</h6>
+                    </div>
+                </div>
                 <hr />
-                <ul>
-                    <li>Librarian - President</li>
-                    <li>Basketball Club - Vice-President, School Representative</li>
-                    <li>Wushu Club - Treasurer, Competition Participant</li>
-                    <li>Chinese Society - Committee Member, Camp Organiser</li>
-                </ul>
+                <div class="row">
+                    <div class="col-sm-12 col-md-9 col-lg-10">
+                        <h4>Sijil Pelajaran Malaysia, Science (SPM)
+                            <small style="display:inline-block">SMK Bercham</small>
+                        </h4>
+                        <h5>Grades: 8As 2Bs</h5>
+                    </div>
+                    <div class="col-sm-12 col-md-3 col-lg-2 col order-md-first col order-lg-first">
+                        <h6>Jan 2008 &ndash; Dec 2012</h6>
+                    </div>
+                    <div class="col-sm-12 col-md-9 offset-md-3 col-lg-10 offset-lg-2">
+                        <hr />
+                        <ul>
+                            <li>Librarian - President</li>
+                            <li>Basketball Club - Vice-President, School Representative</li>
+                            <li>Wushu Club - Treasurer, Competition Participant</li>
+                            <li>Chinese Society - Committee Member, Camp Organiser</li>
+                        </ul>
+                    </div>
+                </div>
+                <hr />
+            </div>
+            <!-- Experience -->
+            <div class="tab-pane fade" id="experience" role="tabpanel" aria-labelledby="experience-tab">
+                <!-- SEM9 -->
+                <div class="row">
+                    <div class="col-sm-12 col-md-9 col-lg-10">
+                        <h4>SEM9 Holding Sdn Bhd
+                            <small style="display:inline-block">SEM9</small>
+                        </h4>
+                        <h5>Selangor, Malaysia</h5>
+                    </div>
+                    <div class="col-sm-12 col-md-3 col-lg-2 col order-md-first col order-lg-first">
+                        <h6>Nov 2021 &ndash; Apr 2023<br>(1 year 6 months)</h6>
+                    </div>
+                    <div class="col-sm-12 col-md-9 offset-md-3 col-lg-10 offset-lg-2">
+                        <hr />
+                        <h3>Administrative Executive</h3>
+                        <h6>Jan 2023 &ndash; Apr 2023 (4 months)</h6>
+                        <ul>
+                            <li>Set up email automation for improved work efficiency</li>
+                            <li>Organised files and database for easy access to important information</li>
+                            <li>Created delivery orders (DOs) for inventory tracking</li>
+                            <li>Assisted in generating contracts with Autocrat for streamlined contract creation
+                            </li>
+                            <li>Requested utility payments for timely payment</li>
+                            <li>Set up Trello to track payments for better organisation and monitoring</li>
+                            <li>Recorded meeting minutes for decision documentation and alignment</li>
+                            <li>Managed selling platforms by responding to inquiries and creating chat templates
+                            </li>
+                            <li>Liaised communication for PMSL Discord Channel for effective internal communication
+                            </li>
+                            <li>Assisted in selling merchandise at PMSL watch party booth</li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-12 col-md-9 offset-md-3 col-lg-10 offset-lg-2">
+                        <hr />
+                        <h3>Professional Player (League of Legends: Wild Rift)</h3>
+                        <h6>Nov 2021 &ndash; Dec 2022 (1 year 2 months)</h6>
+                        <p>League of Legends: Wild Rift professional player under SEM9</p>
+                        <ul>
+                            <li>Player Coach</li>
+                            <li>Planning on effective ways to improve team's performance</li>
+                            <li>Strategise, create and execute plans for team daily operations</li>
+                            <li>Managing day-to-day trainings and goal settings</li>
+                            <li>Monitoring players' performance and providing valuable feedback</li>
+                            <li>Spearheading meetings to measure and reevaluate performances</li>
+                            <li>Involved in the Company's content creations/ marketing events</li>
+                        </ul>
+                        <p>- Notable Achievements - </p>
+                        <ul class="noliststyle">
+                            <li>Champions in MYSG Region</li>
+                            <li>Multiple Regional Tournament Participant</li>
+                            <li>4th place in SEA Games 2021 Hanoi</li>
+                        </ul>
+                        <p class="achievements"><a href="https://liquipedia.net/wildrift/Chilly"
+                                target="_blank">Complete
+                                Achievements <i class="fa fa-external-link fa-fw"></i></a></p>
+                    </div>
+                </div>
+                <hr />
+                <!-- Berjaya Dragons -->
+                <div class="row">
+                    <div class="col-sm-12 col-md-9 col-lg-10">
+                        <h4>Berjaya Esports Sdn Bhd
+                            <small style="display:inline-block">Berjaya Dragons</small>
+                        </h4>
+                        <h5>Selangor, Malaysia</h5>
+                    </div>
+                    <div class="col-sm-12 col-md-3 col-lg-2 col order-md-first col order-lg-first">
+                        <h6>Jan 2020 &ndash; Oct 2021<br>(1 year 10 months)</h6>
+                    </div>
+                    <div class="col-sm-12 col-md-9 offset-md-3 col-lg-10 offset-lg-2">
+                        <hr />
+                        <h3>Professional Player (League of Legends: Wild Rift)</h3>
+                        <h6>May 2021 &ndash; Oct 2021 (6 months)</h6>
+                        <p>League of Legends: Wild Rift professional player under Berjaya Dragons</p>
+                        <ul class="ulnomargin">
+                            <li>Team Captain and shotcaller</li>
+                            <li>Player Coach</li>
+                            <li>Icon Series Malaysia Champions</li>
+                            <li>Participate in the official tournament circuit by Riot Games for the Southeast Asia
+                                Region
+                                namely the SEA Icon Series and SEA Championship 2021</li>
+                            <li>Monitoring players' performance and providing valuable feedback</li>
+                            <li>Spearheading meetings to measure and reevaluate performances</li>
+                            <li>Involved in the Company's content creations/ marketing events</li>
+                        </ul>
+                        <p class="achievements"><a href="https://liquipedia.net/wildrift/Chilly"
+                                target="_blank">Complete
+                                Achievements <i class="fa fa-external-link fa-fw"></i></a></p>
+                    </div>
+                    <div class="col-sm-12 col-md-9 offset-md-3 col-lg-10 offset-lg-2">
+                        <hr />
+                        <h3>Assistant Manager/ Esports Coach</h3>
+                        <h6>Jan 2021 &ndash; Apr 2021 (4 months)</h6>
+                        <p>Works with Berjaya Dragons - Esports Team back by Malaysian conglomerate, Berjaya
+                            Corporation
+                            Berhad
+                        </p>
+                        <ul>
+                            <li>Managing various Esports Team under Berjaya Dragons</li>
+                            <li>Esports Coach for the Berjaya Dragons Wild Rift Team</li>
+                            <li>Assists in various operations to ensure the day-to-day runnings of the organisation
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-12 col-md-9 offset-md-3 col-lg-10 offset-lg-2">
+                        <hr />
+                        <h3>Professional Player (League of Legends PC)</h3>
+                        <h6>Jan 2020 &ndash; Dec 2020 (1 year)</h6>
+                        <p>League of Legends professional player under Berjaya Dragons</p>
+                        <ul class="ulnomargin">
+                            <li>Participate in international league tournament namely Pacific Championship Series
+                                (PCS)
+                                which
+                                include teams in Taiwan, Hong Kong, Macao and Southeast Asia</li>
+                        </ul>
+                        <p class="achievements"><a href="https://lol.fandom.com/wiki/Chilly" target="_blank">Complete
+                                Achievements <i class="fa fa-external-link fa-fw"></i></a></p>
+                    </div>
+                </div>
+                <hr />
+                <!-- JB Lau & Khoo -->
+                <div class="row">
+                    <div class="col-sm-12 col-md-9 col-lg-10">
+                        <h4>Audit Associate
+                            <small style="display:inline-block">JB Lau & Khoo</small>
+                        </h4>
+                        <h5>Petaling Jaya, Malaysia</h5>
+                    </div>
+                    <div class="col-sm-12 col-md-3 col-lg-2 col order-md-first col order-lg-first">
+                        <h6>June 2018 &ndash; June 2019<br>(1 year 1 month)</h6>
+                    </div>
+                    <div class="col-sm-12 col-md-9 offset-md-3 col-lg-10 offset-lg-2">
+                        <hr />
+                        <ul>
+                            <li>Involved in complete audit assignments from pre-engagement to finalization of
+                                reports
+                                for
+                                dormant companies and SME</li>
+                            <li>Assisting in audit fieldwork in corporate groups, SME of various industries</li>
+                            <li>Perform pre-engagement activities and statutory audits</li>
+                            <li>Involved in the draft and final reports of consolidated accounts</li>
+                            <li>Involved in ad hoc and non-audit tasks, i.e. billing and issuance of invoice,
+                                liaising
+                                with
+                                client for various audit engagements, follow-up actions</li>
+                        </ul>
+                        <p>Technology used: Audit Express</p>
+                    </div>
+                </div>
+                <hr />
+                <!-- Fire Dragoon -->
+                <div class="row">
+                    <div class="col-sm-12 col-md-9 col-lg-10">
+                        <h4>Professional Player (League of Legends PC)
+                            <small style="display:inline-block">Fire Dragoon Esports Sdn Bhd</small>
+                        </h4>
+                        <h5>Petaling Jaya, Malaysia</h5>
+                    </div>
+                    <div class="col-sm-12 col-md-3 col-lg-2 col order-md-first col order-lg-first">
+                        <h6>June 2017 &ndash; May 2018<br>(1 year)</h6>
+                    </div>
+                    <div class="col-sm-12 col-md-9 offset-md-3 col-lg-10 offset-lg-2">
+                        <hr />
+                        <p>League of Legends professional player under Fire Dragoon</p>
+                        <ul class="ulnomargin">
+                            <li>Team Captain</li>
+                            <li>Participate in national league namely LCM in Malaysia, as well as international
+                                tournaments such
+                                as LOC held in Bangkok</li>
+                        </ul>
+                        <p class="achievements"><a href="https://lol.fandom.com/wiki/Chilly" target="_blank">Complete
+                                Achievements <i class="fa fa-external-link fa-fw"></i></a></p>
+                    </div>
+                </div>
+                <hr />
+                <!-- KPMG -->
+                <div class="row">
+                    <div class="col-sm-12 col-md-9 col-lg-10">
+                        <h4>Audit Trainee
+                            <small style="display:inline-block">KPMG</small>
+                        </h4>
+                        <h5>Perak, Malaysia</h5>
+                    </div>
+                    <div class="col-sm-12 col-md-3 col-lg-2 col order-md-first col order-lg-first">
+                        <h6>Oct 2016 &ndash; Jan 2017<br>(4 months)</h6>
+                    </div>
+                    <div class="col-sm-12 col-md-9 offset-md-3 col-lg-10 offset-lg-2">
+                        <hr />
+                        <ul>
+                            <li>Conducting audit fieldwork</li>
+                            <li>Preparing audit working papers</li>
+                            <li>Amendment of financial statements</li>
+                            <li>Filing</li>
+                            <li>Carrying out various audit procedures:</li>
+                        </ul>
+                        <p>Vouching, casting, audit sampling, walk-through test, inspection of assets, bank
+                            reconciliation,
+                            journal entries review, ticking, calling over, stock-take, performing test of controls
+                            and
+                            test of
+                            details on various accounts</p>
+                    </div>
+                </div>
+                <hr />
+            </div>
+            <!-- Key Skills & Strengths -->
+            <div class="tab-pane fade" id="keyskills" role="tabpanel" aria-labelledby="keyskills-tab">
+                <div class="row">
+                    <div class="col-sm-12 col-md-3">
+                        <h4>Technical Skills</h4>
+                    </div>
+                    <div class="col-sm-12 col-md-9">
+                        <p>Knowledgeable in multiple programming languages and frameworks.</p>
+                        <ul>
+                            <li>C, Python, HTML, CSS, JavaScript</li>
+                            <li>Bootstrap, Django, Flask</li>
+                        </ul>
+                        <p>Familiar with various software tools.</p>
+                        <ul>
+                            <li>Git, Github, SQL, MongoDB, Nginx, Gunicorn, Digital Ocean</li>
+                            <li>Microsoft Office: Word, Excel, PowerPoint</li>
+                            <li>Google Softwares: Gmail, Google Docs, Google Sheets</li>
+                            <li>Trello, Canva</li>
+                        </ul>
+                    </div>
+                </div>
+                <hr />
+                <div class="row">
+                    <div class="col-sm-12 col-md-3">
+                        <h4>Communication & Teamwork</h4>
+                    </div>
+                    <div class="col-sm-12 col-md-9">
+                        <p>Comfortable in communicating with people and have good interpersonal skills.</p>
+                        <ul>
+                            <li>Can speak English, Mandarin, Cantonese and Malay</li>
+                            <li>Leader in various team activities</li>
+                            <li>Capable of working independently and as part of a team</li>
+                        </ul>
+                    </div>
+                </div>
+                <hr />
+                <div class="row">
+                    <div class="col-sm-12 col-md-3">
+                        <h4>Analytical</h4>
+                    </div>
+                    <div class="col-sm-12 col-md-9">
+                        <p>Possess critical thinking, problem solving and analytical skills.</p>
+                        <ul>
+                            <li>Quick learner and problem solver</li>
+                            <li>Attention to details</li>
+                            <li>Able to work under-pressure</li>
+                        </ul>
+                    </div>
+                </div>
+                <hr />
+            </div>
+            <!-- Project -->
+            <div class="tab-pane fade" id="project" role="tabpanel" aria-labelledby="project-tab">
+                <!-- MLBB Ban Pick Tool -->
+                <div class="row">
+                    <div class="col-sm-12 col-md-9 col-lg-10">
+                        <h4 class="links"><a href="https://draftmlbb.xyz" target="_blank"><i
+                                    class="fa fa-external-link fa-fw"></i>MLBB Ban Pick Tool</a>
+                            <small style="display:inline-block">Web Application Development</small>
+                        </h4>
+                        <h6><i>Final project for the HarvardX CS50's Introduction to Computer Science course.</i>
+                            <h6>
+                                <h5>Ban pick tool which simulates the Mobile Legends Draft Pick selection phase, similar
+                                    to
+                                    those seen in Ranked Game, Custom Draft Pick, or competitive tournaments.</h5>
+                    </div>
+                    <div class="col-sm-12 col-md-3 col-lg-2 col order-md-first col order-lg-first">
+                        <h6>Jan 2023 &ndash; Apr 2023<br>(4 months)</h6>
+                    </div>
+                    <div class="col-sm-12 col-md-9 offset-md-3 col-lg-10 offset-lg-2">
+                        <hr />
+                        <p>
+                            Built With 🛠️
+                            <br>
+                            <img src="https://img.shields.io/badge/HTML5-E34F26.svg?style=for-the-badge&logo=HTML5&logoColor=white"
+                                alt="html">
+                            <img src="https://img.shields.io/badge/CSS3-1572B6.svg?style=for-the-badge&logo=CSS3&logoColor=white"
+                                alt="css">
+                            <img src="https://img.shields.io/badge/JavaScript-F7DF1E.svg?style=for-the-badge&logo=JavaScript&logoColor=black"
+                                alt="javascript">
+                            <img src="https://img.shields.io/badge/Python-3776AB.svg?style=for-the-badge&logo=Python&logoColor=white"
+                                alt="python">
+                            <img src="https://img.shields.io/badge/Flask-000000.svg?style=for-the-badge&logo=Flask&logoColor=white"
+                                alt="flask">
+                            <img src="https://img.shields.io/badge/MongoDB-47A248.svg?style=for-the-badge&logo=MongoDB&logoColor=white"
+                                alt="mongodb">
+                            <img src="https://img.shields.io/badge/Gunicorn-499848.svg?style=for-the-badge&logo=Gunicorn&logoColor=white"
+                                alt="gunicorn">
+                            <img src="https://img.shields.io/badge/NGINX-009639.svg?style=for-the-badge&logo=NGINX&logoColor=white"
+                                alt="nginx">
+                            <br>
+                            <br>
+                            Features
+                            <br>
+                            1. Create
+                        <ul>
+                            <details>
+                                <summary>Click to see Create page</summary>
+                                <img src="https://user-images.githubusercontent.com/77521992/231419672-865a00d5-f04b-4cc2-a2ae-dd886d04f605.png"
+                                    alt="create" width="75%">
+                            </details>
+
+                            <li>Upon visiting the website, users will land on the draft creation page, where they can
+                                enter
+                                their
+                                team
+                                names into two input fields: Blue Team and Red Team.</li>
+                            <li>If users decide not to input anything into these fields, the page will automatically
+                                assign
+                                default
+                                values of "Team 1" for Blue Team and "Team 2" for Red Team.</li>
+                            <li>Once the input fields have been filled, users can click on the "create" button to be
+                                directed to
+                                the
+                                links page.</li>
+                        </ul>
+                        <br>
+                        2. Links
+                        <ul>
+                            <details>
+                                <summary>Click to see Links page</summary>
+                                <img src="https://user-images.githubusercontent.com/77521992/231419751-30a06829-fc6c-4d90-bbc7-1a8ab4dcfafb.png"
+                                    alt="links" width="75%">
+                            </details>
+                            <li>On the links page, users will encounter a similar layout to that of the draft creation
+                                page.
+                                Users
+                                will see three links: one for the blue team's ban pick, one for the red team's ban pick,
+                                and
+                                one
+                                for the
+                                spectator link.</li>
+                            <li>Each link has its own authority: the blue team's link allows them to do their own ban
+                                pick,
+                                the
+                                red
+                                team's link allows them to do their own ban pick, and the spectator link only allows
+                                users
+                                to
+                                watch the
+                                ban picking process.</li>
+                            <li>Users can either click the links to open them in a new window or click the "copy" button
+                                to
+                                copy
+                                the
+                                links to their clipboard. These links will then lead users to the draft page.</li>
+                        </ul>
+                        3. Draft
+                        <br>
+                        <ul>
+                            <details>
+                                <summary>Click to see Draft page</summary>
+                                <img src="https://user-images.githubusercontent.com/77521992/231419866-e11dc03b-7089-4930-b059-1226d3b67ae7.png"
+                                    alt="draft" width="75%">
+                            </details>
+
+                            <li>After clicking the links on the links page, users will be directed to the draft page.
+                                Here,
+                                users will
+                                have a simulation of the Mobile Legends Draft Pick selection phase, similar to those
+                                seen in
+                                Ranked
+                                Game, Custom Draft Pick, or competitive tournaments.</li>
+                            <li>The header of the page will display the team names and timer, while the bans and picks
+                                from
+                                each
+                                team
+                                will be shown below it.</li>
+                            <li>Further down the page, users will find the search and select button, and the heroes
+                                selection
+                                list.
+                            <li>Users from both teams (Blue and Red) will need to click the ready check button to start
+                                the
+                                ban
+                                pick.</li>
+                        </ul>
+                        </p>
+                    </div>
+                </div>
+                <hr />
             </div>
         </div>
-        <hr />
     </div>
 </body>
 <footer class="list-inline text-center">
