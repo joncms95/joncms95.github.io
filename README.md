@@ -1,2 +1,2 @@
 # joncms95.github.io
-My Github Page
+My GitHub Page
