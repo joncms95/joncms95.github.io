@@ -18,6 +18,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet" />
     <!-- style.css -->
     <link href="styles.css" rel="stylesheet" />
+    <!-- script.js -->
+    <script src="script.js" defer></script>
     <title>Jonathan Chan Mun Shum</title>
 </head>
 
@@ -29,17 +31,18 @@
             </div>
             <div class="col-sm-12 col-md-10">
                 <p class="name">Jonathan Chan Mun Shum</p>
-                <ul class="phone-center list-inline">
-                    <li><i class="fa-solid fa-location-arrow fa-fw"></i> Malaysia</li>
-                    <li><i class="fa-solid fa-phone fa-fw"></i> 016-5105019</li>
+                <ul class="list-inline contact-info">
+                    <li><i class="fa fa-map-marker fa-fw"></i> Malaysia</li>
+                    <li> <a href="tel:+60165105019" style="text-decoration: none; color: black"><i
+                                class="fa-solid fa-phone fa-fw"></i>+60 16-5105019</i></a>
                     <li>
                         <a href="mailto:joncms95@gmail.com" style="text-decoration: none; color: black"><i
-                                class="fa-solid fa-envelope fa-fw"></i>
+                                class="fa fa-envelope fa-fw"></i>
                             joncms95@hotmail.com</a>
                     </li>
                     <li>
-                        <a href="resume_2024.pdf" target="_blank" style="text-decoration: none; color: black"><i
-                                class="fa-solid fa-file fa-fw"></i>Resume</a>
+                        <a href="resume.pdf" target="_blank" style="text-decoration: none; color: black"><i
+                                class="fa fa-file fa-fw"></i>Resume</a>
                     </li>
                 </ul>
                 <hr />
@@ -56,16 +59,16 @@
     <div class="card container">
         <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item" role="presentation">
-                <button class="nav-link active" id="education-tab" data-bs-toggle="tab"
-                    data-bs-target="#education-tab-pane" type="button" role="tab" aria-controls="education-tab-pane"
-                    aria-selected="true">
-                    Education
+                <button class="nav-link active" id="experience-tab" data-bs-toggle="tab"
+                    data-bs-target="#experience-tab-pane" type="button" role="tab" aria-controls="experience-tab-pane"
+                    aria-selected="false">
+                    Experience
                 </button>
             </li>
             <li class="nav-item" role="presentation">
-                <button class="nav-link" id="experience-tab" data-bs-toggle="tab" data-bs-target="#experience-tab-pane"
-                    type="button" role="tab" aria-controls="experience-tab-pane" aria-selected="false">
-                    Experience
+                <button class="nav-link" id="education-tab" data-bs-toggle="tab" data-bs-target="#education-tab-pane"
+                    type="button" role="tab" aria-controls="education-tab-pane" aria-selected="true">
+                    Education
                 </button>
             </li>
             <li class="nav-item" role="presentation">
@@ -83,87 +86,14 @@
         </ul>
         <!-- Nav panes -->
         <div class="tab-content" id="myTabContent">
-            <!-- Education -->
-            <div class="tab-pane fade show active" id="education-tab-pane" role="tabpanel"
-                aria-labelledby="education-tab" tabindex="0">
-                <div class="row">
-                    <div class="col-sm-12 col-md-9 col-lg-10">
-                        <h4>
-                            CS50 Introduction to Computer Science
-                            <small style="display: inline-block">HarvardX</small>
-                        </h4>
-                    </div>
-                    <div class="col-sm-12 col-md-3 col-lg-2 col order-md-first col order-lg-first">
-                        <h6>Dec 2022 &ndash; Apr 2023</h6>
-                    </div>
-                    <div class="col-sm-12 col-md-9 offset-md-3 col-lg-10 offset-lg-2">
-                        Harvard University's introduction to the intellectual enterprises of computer science and the
-                        art of programming
-                        <p class="achievements">
-                            <a href="https://cs50.harvard.edu/certificates/ddcd40ec-a2a7-4c48-b3a5-8fd3ae58a3b4"
-                                target="_blank">View Certificate <i class="fa fa-external-link fa-fw"></i></a>
-                        </p>
-                    </div>
-                </div>
-                <hr />
-                <div class="row">
-                    <div class="col-sm-12 col-md-9 col-lg-10">
-                        <h4>
-                            Bachelor of Commerce (Hons) Accounting
-                            <small style="display: inline-block">Universiti Tunku Abdul Rahman</small>
-                        </h4>
-                        <h5>CGPA: 3.1368/ Honours Degree with Merit</h5>
-                    </div>
-                    <div class="col-sm-12 col-md-3 col-lg-2 col order-md-first col order-lg-first">
-                        <h6>May 2014 &ndash; May 2017</h6>
-                    </div>
-                    <div class="col-sm-12 col-md-9 offset-md-3 col-lg-10 offset-lg-2">
-                        <hr />
-                        <ul>
-                            <li>Academic Honours - Dean's List</li>
-                            <li>Excellence Performance</li>
-                            <li>Final Year Project Conference - Participant and Presenter </li>
-                            <li>Malaysian University English Test (MUET)<br />Score: Band 5 </li>
-                        </ul>
-                    </div>
-                </div>
-                <hr />
-                <div class="row">
-                    <div class="col-sm-12 col-md-9 col-lg-10">
-                        <h4>
-                            Foundation in Arts (Management and Accountancy)
-                            <small style="display: inline-block">Universiti Tunku Abdul Rahman</small>
-                        </h4>
-                        <h5>CGPA: 3.7340</h5>
-                    </div>
-                    <div class="col-sm-12 col-md-3 col-lg-2 col order-md-first col order-lg-first">
-                        <h6>May 2013 &ndash; May 2014</h6>
-                    </div>
-                </div>
-                <hr />
-                <div class="row">
-                    <div class="col-sm-12 col-md-9 col-lg-10">
-                        <h4>
-                            Sijil Pelajaran Malaysia, Science (SPM)
-                            <small style="display: inline-block">SMK Bercham</small>
-                        </h4>
-                        <h5>Grades: 8As 2Bs</h5>
-                    </div>
-                    <div class="col-sm-12 col-md-3 col-lg-2 col order-md-first col order-lg-first">
-                        <h6>Jan 2008 &ndash; Dec 2012</h6>
-                    </div>
-                </div>
-                <hr />
-            </div>
             <!-- Experience -->
-            <div class="tab-pane fade" id="experience-tab-pane" role="tabpanel" aria-labelledby="experience-tab"
-                tabindex="0">
+            <div class="tab-pane fade show active" id="experience-tab-pane" role="tabpanel"
+                aria-labelledby="experience-tab" tabindex="0">
                 <!-- Dynamite Games -->
                 <div class="row">
                     <div class="col-sm-12 col-md-9 col-lg-10">
                         <h4>
-                            Software Engineer
-                            <small style="display: inline-block">Dynamite Games Sdn Bhd</small>
+                            Dynamite Games Sdn Bhd
                         </h4>
                         <h5>Kuala Lumpur, Malaysia</h5>
                     </div>
@@ -172,6 +102,8 @@
                     </div>
                     <div class="col-sm-12 col-md-9 offset-md-3 col-lg-10 offset-lg-2">
                         <hr />
+                        <h3>Senior Software Engineer</h3>
+                        <h6>July 2025 &ndash; Present</h6>
                         <p>
                             Worked with the backend team in web game development, collaborating with operations, QA and
                             game design teams to optimize gameplay and address technical hurdles
@@ -194,6 +126,11 @@
                             Tools and technologies:<br />Ruby on Rails, Haml, Sidekiq, React, MongoDB, Redis, GitLab,
                             Sourcetree, Postman, Jenkins, Docker, Kubernetes, Lens, Rancher, AWS, Jira
                         </p>
+                    </div>
+                    <div class="col-sm-12 col-md-9 offset-md-3 col-lg-10 offset-lg-2">
+                        <hr />
+                        <h3>Software Engineer</h3>
+                        <h6>June 2023 &ndash; June 2025 (2 years 1 month)</h6>
                     </div>
                 </div>
                 <hr />
@@ -411,6 +348,78 @@
                 </div>
                 <hr />
             </div>
+            <!-- Education -->
+            <div class="tab-pane fade" id="education-tab-pane" role="tabpanel" aria-labelledby="education-tab"
+                tabindex="0">
+                <div class="row">
+                    <div class="col-sm-12 col-md-9 col-lg-10">
+                        <h4>
+                            CS50 Introduction to Computer Science
+                            <small style="display: inline-block">HarvardX</small>
+                        </h4>
+                    </div>
+                    <div class="col-sm-12 col-md-3 col-lg-2 col order-md-first col order-lg-first">
+                        <h6>Dec 2022 &ndash; Apr 2023</h6>
+                    </div>
+                    <div class="col-sm-12 col-md-9 offset-md-3 col-lg-10 offset-lg-2">
+                        Harvard University's introduction to the intellectual enterprises of computer science and the
+                        art of programming
+                        <p class="achievements">
+                            <a href="https://cs50.harvard.edu/certificates/ddcd40ec-a2a7-4c48-b3a5-8fd3ae58a3b4"
+                                target="_blank">View Certificate <i class="fa fa-external-link fa-fw"></i></a>
+                        </p>
+                    </div>
+                </div>
+                <hr />
+                <div class="row">
+                    <div class="col-sm-12 col-md-9 col-lg-10">
+                        <h4>
+                            Bachelor of Commerce (Hons) Accounting
+                            <small style="display: inline-block">Universiti Tunku Abdul Rahman</small>
+                        </h4>
+                        <h5>CGPA: 3.1368/ Honours Degree with Merit</h5>
+                    </div>
+                    <div class="col-sm-12 col-md-3 col-lg-2 col order-md-first col order-lg-first">
+                        <h6>May 2014 &ndash; May 2017</h6>
+                    </div>
+                    <div class="col-sm-12 col-md-9 offset-md-3 col-lg-10 offset-lg-2">
+                        <hr />
+                        <ul>
+                            <li>Academic Honours - Dean's List</li>
+                            <li>Excellence Performance</li>
+                            <li>Final Year Project Conference - Participant and Presenter </li>
+                            <li>Malaysian University English Test (MUET)<br />Score: Band 5 </li>
+                        </ul>
+                    </div>
+                </div>
+                <hr />
+                <div class="row">
+                    <div class="col-sm-12 col-md-9 col-lg-10">
+                        <h4>
+                            Foundation in Arts (Management and Accountancy)
+                            <small style="display: inline-block">Universiti Tunku Abdul Rahman</small>
+                        </h4>
+                        <h5>CGPA: 3.7340</h5>
+                    </div>
+                    <div class="col-sm-12 col-md-3 col-lg-2 col order-md-first col order-lg-first">
+                        <h6>May 2013 &ndash; May 2014</h6>
+                    </div>
+                </div>
+                <hr />
+                <div class="row">
+                    <div class="col-sm-12 col-md-9 col-lg-10">
+                        <h4>
+                            Sijil Pelajaran Malaysia, Science (SPM)
+                            <small style="display: inline-block">SMK Bercham</small>
+                        </h4>
+                        <h5>Grades: 8As 2Bs</h5>
+                    </div>
+                    <div class="col-sm-12 col-md-3 col-lg-2 col order-md-first col order-lg-first">
+                        <h6>Jan 2008 &ndash; Dec 2012</h6>
+                    </div>
+                </div>
+                <hr />
+            </div>
             <!-- Key Skills & Strengths -->
             <div class="tab-pane fade" id="keyskills-tab-pane" role="tabpanel" aria-labelledby="keyskills-tab"
                 tabindex="0">
@@ -421,9 +430,9 @@
                     <div class="col-sm-12 col-md-9">
                         <p>Knowledgeable in multiple programming languages, software tools and frameworks.</p>
                         <ul>
-                            <li>Ruby, Haml, C, Python, HTML, CSS, JavaScript</li>
-                            <li>Ruby on Rails, Sidekiq, Socket.IO, React, Django, Flask, Bootstrap</li>
-                            <li>MongoDB, Redis, SQLite</li>
+                            <li>Ruby, Haml, HTML, CSS, JavaScript</li>
+                            <li>Ruby on Rails, Sidekiq, Socket.IO, Flask, Bootstrap</li>
+                            <li>MongoDB, Redis</li>
                         </ul>
                         <p>Familiar with various project workflows and software engineering practices</p>
                         <ul>
@@ -629,6 +638,11 @@
             </div>
         </div>
     </div>
+
+    <!-- Scroll to Top Button -->
+    <button id="scrollToTopBtn" class="scroll-to-top-btn" title="Scroll to top">
+        <i class="fa fa-arrow-up"></i>
+    </button>
 </body>
 <footer class="list-inline text-center">
     <ul class="ulnomargin">

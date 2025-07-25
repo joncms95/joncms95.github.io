@@ -62,6 +62,23 @@ small {
   margin-bottom: 1px;
 }
 
+/* Contact Items Hover Animation */
+.contact-info li {
+  transition: transform 0.3s ease;
+}
+
+.contact-info li:hover {
+  transform: translateY(-2px);
+}
+
+.contact-info li:hover i {
+  transform: scale(1.1);
+}
+
+.contact-info li:hover a {
+  color: #114794 !important;
+}
+
 .container {
   background-color: #ffffff;
   padding-top: 12px;
@@ -160,6 +177,37 @@ small {
   transition: 0.25s;
 }
 
+/* Scroll to Top Button */
+.scroll-to-top-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  background-color: #052a5f;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  z-index: 1000;
+}
+
+.scroll-to-top-btn:hover {
+  background-color: #031a3f;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+}
+
+.scroll-to-top-btn.show {
+  display: flex;
+}
+
 /* Media Compatibility */
 @media (max-width: 767px) {
   .rounded-circle {
@@ -175,7 +223,7 @@ small {
   }
 
   .name,
-  .phone-center {
+  .contact-info {
     text-align: center;
   }
 }
