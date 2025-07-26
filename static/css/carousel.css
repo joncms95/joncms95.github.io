@@ -1,5 +1,5 @@
-/* Experience Entry Hover Effect */
-.experience-entry {
+/* Entry Hover Effect (Unified for Experience & Project) */
+.entry {
   position: relative;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -8,13 +8,13 @@
   margin: 5px 0;
 }
 
-.experience-entry:hover {
+.entry:hover {
   background-color: #f8f9fa;
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-.experience-entry::before {
+.entry::before {
   content: "🖼️ Hover to view gallery";
   position: absolute;
   top: 10px;
@@ -30,43 +30,7 @@
   z-index: 10;
 }
 
-.experience-entry:hover::before {
-  opacity: 1;
-}
-
-/* Project Entry Hover Effect */
-.project-entry {
-  position: relative;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  border-radius: 8px;
-  padding: 10px;
-  margin: 5px 0;
-}
-
-.project-entry:hover {
-  background-color: #f8f9fa;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-.project-entry::before {
-  content: "🖼️ Hover to view gallery";
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  background-color: #052a5f;
-  color: white;
-  padding: 4px 8px;
-  border-radius: 4px;
-  font-size: 11px;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  pointer-events: none;
-  z-index: 10;
-}
-
-.project-entry:hover::before {
+.entry:hover::before {
   opacity: 1;
 }
 

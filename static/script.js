@@ -645,7 +645,6 @@ function setupEntryInteractions(entry, entryConfig, type) {
  * @param {string} type - Entry type
  */
 function removeEntryInteractions(entry, type) {
-    entry.classList.remove(`${type}-entry`);
     entry.style.cursor = 'default';
     entry.removeAttribute('tabindex');
     entry.removeAttribute('role');
@@ -839,10 +838,10 @@ function initializePortfolio() {
     setupScrollToTop();
 
     // Setup experience entries
-    setupEntryHover('.experience-entry', EXPERIENCE_CONFIG, 'experience');
+    setupEntryHover('.entry[data-company]', EXPERIENCE_CONFIG, 'experience');
 
     // Setup project entries
-    setupEntryHover('.project-entry', PROJECT_CONFIG, 'project');
+    setupEntryHover('.entry[data-project]', PROJECT_CONFIG, 'project');
 
     // Setup gallery functionality
     setupGalleryFiltering();
