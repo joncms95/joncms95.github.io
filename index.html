@@ -83,6 +83,12 @@
                     Projects
                 </button>
             </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="gallery-tab" data-bs-toggle="tab" data-bs-target="#gallery-tab-pane"
+                    type="button" role="tab" aria-controls="gallery-tab-pane" aria-selected="false">
+                    Gallery
+                </button>
+            </li>
         </ul>
         <!-- Nav panes -->
         <div class="tab-content" id="myTabContent">
@@ -90,7 +96,7 @@
             <div class="tab-pane fade show active" id="experience-tab-pane" role="tabpanel"
                 aria-labelledby="experience-tab" tabindex="0">
                 <!-- Dynamite Games -->
-                <div class="row">
+                <div class="row experience-entry" data-company="dynamite">
                     <div class="col-sm-12 col-md-9 col-lg-10">
                         <h4>
                             Dynamite Games Sdn Bhd
@@ -147,7 +153,7 @@
                 </div>
                 <hr />
                 <!-- SEM9 -->
-                <div class="row">
+                <div class="row experience-entry" data-company="sem9">
                     <div class="col-sm-12 col-md-9 col-lg-10">
                         <h4>
                             SEM9 Holding Sdn Bhd
@@ -200,7 +206,7 @@
                 </div>
                 <hr />
                 <!-- Berjaya Dragons -->
-                <div class="row">
+                <div class="row experience-entry" data-company="bjd">
                     <div class="col-sm-12 col-md-9 col-lg-10">
                         <h4>
                             Berjaya Esports Sdn Bhd
@@ -268,7 +274,7 @@
                 </div>
                 <hr />
                 <!-- JB Lau & Khoo -->
-                <div class="row">
+                <div class="row experience-entry" data-company="jblau">
                     <div class="col-sm-12 col-md-9 col-lg-10">
                         <h4>
                             Audit Associate
@@ -298,7 +304,7 @@
                 </div>
                 <hr />
                 <!-- Fire Dragoon -->
-                <div class="row">
+                <div class="row experience-entry" data-company="fdg">
                     <div class="col-sm-12 col-md-9 col-lg-10">
                         <h4>
                             Professional Player (League of Legends PC)
@@ -327,7 +333,7 @@
                 </div>
                 <hr />
                 <!-- KPMG -->
-                <div class="row">
+                <div class="row experience-entry" data-company="kpmg">
                     <div class="col-sm-12 col-md-9 col-lg-10">
                         <h4>
                             Audit Trainee
@@ -356,6 +362,164 @@
                 </div>
                 <hr />
             </div>
+            <!-- Gallery -->
+            <div class="tab-pane fade" id="gallery-tab-pane" role="tabpanel" aria-labelledby="gallery-tab" tabindex="0">
+                <!-- Gallery Filters -->
+                <div class="gallery-filters">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="experience">Experience</button>
+                    <button class="filter-btn" data-filter="projects">Projects</button>
+                </div>
+                
+                <div class="gallery-container">
+                    <!-- Experience Section -->
+                    <div class="gallery-section">
+                        <h3 class="gallery-section-title">
+                            <i class="fa fa-briefcase"></i> Experience
+                        </h3>
+                        <div class="gallery-grid">
+                            <!-- SEM9 Images -->
+                            <div class="gallery-item" data-category="experience" data-company="SEM9">
+                                <img src="static/assets/experience/sem9_1.jpg" alt="SEM9 Experience 1" loading="lazy">
+                                <div class="gallery-item-overlay">
+                                    <h5>SEM9 Holding Sdn Bhd</h5>
+                                    <p>Professional Player & Administrative Executive</p>
+                                </div>
+                            </div>
+                            <div class="gallery-item" data-category="experience" data-company="SEM9">
+                                <img src="static/assets/experience/sem9_2.jpg" alt="SEM9 Experience 2" loading="lazy">
+                                <div class="gallery-item-overlay">
+                                    <h5>SEM9 Holding Sdn Bhd</h5>
+                                    <p>Professional Player & Administrative Executive</p>
+                                </div>
+                            </div>
+                            <div class="gallery-item" data-category="experience" data-company="SEM9">
+                                <img src="static/assets/experience/sem9_3.jpg" alt="SEM9 Experience 3" loading="lazy">
+                                <div class="gallery-item-overlay">
+                                    <h5>SEM9 Holding Sdn Bhd</h5>
+                                    <p>Professional Player & Administrative Executive</p>
+                                </div>
+                            </div>
+                            <div class="gallery-item" data-category="experience" data-company="SEM9">
+                                <img src="static/assets/experience/sem9_4.jpg" alt="SEM9 Experience 4" loading="lazy">
+                                <div class="gallery-item-overlay">
+                                    <h5>SEM9 Holding Sdn Bhd</h5>
+                                    <p>Professional Player & Administrative Executive</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Berjaya Dragons Images -->
+                            <div class="gallery-item" data-category="experience" data-company="Berjaya Dragons">
+                                <img src="static/assets/experience/bjd_1.png" alt="Berjaya Dragons 1" loading="lazy">
+                                <div class="gallery-item-overlay">
+                                    <h5>Berjaya Dragons</h5>
+                                    <p>Professional Player & Esports Coach</p>
+                                </div>
+                            </div>
+                            <div class="gallery-item" data-category="experience" data-company="Berjaya Dragons">
+                                <img src="static/assets/experience/bjd_2.jpg" alt="Berjaya Dragons 2" loading="lazy">
+                                <div class="gallery-item-overlay">
+                                    <h5>Berjaya Dragons</h5>
+                                    <p>Professional Player & Esports Coach</p>
+                                </div>
+                            </div>
+                            <div class="gallery-item" data-category="experience" data-company="Berjaya Dragons">
+                                <img src="static/assets/experience/bjd_3.png" alt="Berjaya Dragons 3" loading="lazy">
+                                <div class="gallery-item-overlay">
+                                    <h5>Berjaya Dragons</h5>
+                                    <p>Professional Player & Esports Coach</p>
+                                </div>
+                            </div>
+                            <div class="gallery-item" data-category="experience" data-company="Berjaya Dragons">
+                                <img src="static/assets/experience/bjd_4.png" alt="Berjaya Dragons 4" loading="lazy">
+                                <div class="gallery-item-overlay">
+                                    <h5>Berjaya Dragons</h5>
+                                    <p>Professional Player & Esports Coach</p>
+                                </div>
+                            </div>
+                            <div class="gallery-item" data-category="experience" data-company="Berjaya Dragons">
+                                <img src="static/assets/experience/bjd_5.jpg" alt="Berjaya Dragons 5" loading="lazy">
+                                <div class="gallery-item-overlay">
+                                    <h5>Berjaya Dragons</h5>
+                                    <p>Professional Player & Esports Coach</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Fire Dragoon Images -->
+                            <div class="gallery-item" data-category="experience" data-company="Fire Dragoon">
+                                <img src="static/assets/experience/fdg_1.jpg" alt="Fire Dragoon 1" loading="lazy">
+                                <div class="gallery-item-overlay">
+                                    <h5>Fire Dragoon Esports</h5>
+                                    <p>Professional Player</p>
+                                </div>
+                            </div>
+                            <div class="gallery-item" data-category="experience" data-company="Fire Dragoon">
+                                <img src="static/assets/experience/fdg_2.jpg" alt="Fire Dragoon 2" loading="lazy">
+                                <div class="gallery-item-overlay">
+                                    <h5>Fire Dragoon Esports</h5>
+                                    <p>Professional Player</p>
+                                </div>
+                            </div>
+                            <div class="gallery-item" data-category="experience" data-company="Fire Dragoon">
+                                <img src="static/assets/experience/fdg_3.jpg" alt="Fire Dragoon 3" loading="lazy">
+                                <div class="gallery-item-overlay">
+                                    <h5>Fire Dragoon Esports</h5>
+                                    <p>Professional Player</p>
+                                </div>
+                            </div>
+                            
+                            <!-- KPMG Image -->
+                            <div class="gallery-item" data-category="experience" data-company="KPMG">
+                                <img src="static/assets/experience/kpmg.jpg" alt="KPMG" loading="lazy">
+                                <div class="gallery-item-overlay">
+                                    <h5>KPMG</h5>
+                                    <p>Audit Trainee</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Projects Section -->
+                    <div class="gallery-section">
+                        <h3 class="gallery-section-title">
+                            <i class="fa fa-code"></i> Projects
+                        </h3>
+                        <div class="gallery-grid">
+                            <!-- MLBB Ban Pick Tool Images -->
+                            <div class="gallery-item" data-category="projects" data-project="MLBB Ban Pick Tool">
+                                <img src="static/assets/projects/mlbb_ban_pick/create.png" alt="MLBB Ban Pick Tool - Create" loading="lazy">
+                                <div class="gallery-item-overlay">
+                                    <h5>MLBB Ban Pick Tool</h5>
+                                    <p>Create Page</p>
+                                </div>
+                            </div>
+                            <div class="gallery-item" data-category="projects" data-project="MLBB Ban Pick Tool">
+                                <img src="static/assets/projects/mlbb_ban_pick/draft.png" alt="MLBB Ban Pick Tool - Draft" loading="lazy">
+                                <div class="gallery-item-overlay">
+                                    <h5>MLBB Ban Pick Tool</h5>
+                                    <p>Draft Interface</p>
+                                </div>
+                            </div>
+                            <div class="gallery-item" data-category="projects" data-project="MLBB Ban Pick Tool">
+                                <img src="static/assets/projects/mlbb_ban_pick/links.png" alt="MLBB Ban Pick Tool - Links" loading="lazy">
+                                <div class="gallery-item-overlay">
+                                    <h5>MLBB Ban Pick Tool</h5>
+                                    <p>Links Page</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Mortgage Calculator -->
+                            <div class="gallery-item" data-category="projects" data-project="Mortgage Calculator">
+                                <img src="static/assets/projects/mortgage_calculator/preview.gif" alt="Mortgage Calculator Preview" loading="lazy">
+                                <div class="gallery-item-overlay">
+                                    <h5>Mortgage Calculator</h5>
+                                    <p>Streamlit App Preview</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <!-- Education -->
             <div class="tab-pane fade" id="education-tab-pane" role="tabpanel" aria-labelledby="education-tab"
                 tabindex="0">
@@ -373,8 +537,7 @@
                         Harvard University's introduction to the intellectual enterprises of computer science and the
                         art of programming
                         <p class="achievements">
-                            <a href="https://cs50.harvard.edu/certificates/ddcd40ec-a2a7-4c48-b3a5-8fd3ae58a3b4"
-                                target="_blank">View Certificate <i class="fa fa-external-link fa-fw"></i></a>
+                            <a href="#" onclick="openCertificateModal(); return false;">View Certificate <i class="fa fa-external-link fa-fw"></i></a>
                         </p>
                     </div>
                 </div>
@@ -483,7 +646,7 @@
             <!-- Projects -->
             <div class="tab-pane fade" id="project-tab-pane" role="tabpanel" aria-labelledby="project-tab" tabindex="0">
                 <!-- Mortgage Calculator -->
-                <div class="row">
+                <div class="row project-entry" data-project="mortgage_calculator">
                     <div class="col-sm-12 col-md-9 col-lg-10">
                         <h4 class="links">
                             <a href="https://my-mortgage-calculator.streamlit.app/" target="_blank"><i
@@ -512,17 +675,12 @@
                             <li>Monthly Mortgage Estimation</li>
                             <li>Home Affordability Estimation</li>
                             <li>Upfront Costs Estimation</li>
-                            <details>
-                                <summary>Click to see Preview</summary>
-                                <img src="static/assets/mortgage_calculator/preview.gif" alt="mortgage_calculator"
-                                    width="75%" />
-                            </details>
                         </ol>
                     </div>
                 </div>
                 <hr />
                 <!-- Ban Pick Tool -->
-                <div class="row">
+                <div class="row project-entry" data-project="mlbb_ban_pick">
                     <div class="col-sm-12 col-md-9 col-lg-10">
                         <h4 class="links">
                             <a href="https://www.mlbbdraft.xyz" target="_blank"><i
@@ -564,10 +722,6 @@
                         <ol>
                             <li>
                                 Create
-                                <details>
-                                    <summary>Click to see Create page</summary>
-                                    <img src="static/assets/mlbb_ban_pick/create.png" alt="create" width="75%" />
-                                </details>
                                 <ul>
                                     <li>Upon visiting the website, users arrive at the draft creation page.</li>
                                     <li>Two input fields are provided for Blue Team and Red Team names.</li>
@@ -578,10 +732,6 @@
                             <br />
                             <li>
                                 Links
-                                <details>
-                                    <summary>Click to see Links page</summary>
-                                    <img src="static/assets/mlbb_ban_pick/links.png" alt="links" width="75%" />
-                                </details>
                                 <ul>
                                     <li>The links page shares a similar layout with the draft creation page.</li>
                                     <li>It displays three links: Blue Team, Red Team, and Spectator.</li>
@@ -597,10 +747,6 @@
                             <br />
                             <li>
                                 Draft
-                                <details>
-                                    <summary>Click to see Draft page</summary>
-                                    <img src="static/assets/mlbb_ban_pick/draft.png" alt="draft" width="75%" />
-                                </details>
                                 <ul>
                                     <li>Clicking a link leads to the draft page, simulating the Mobile Legends Draft
                                         Pick phase.</li>
@@ -614,6 +760,36 @@
                     </div>
                 </div>
                 <hr />
+            </div>
+        </div>
+    </div>
+
+    <!-- Image Carousel Modal -->
+    <div class="modal fade" id="imageCarouselModal" tabindex="-1" aria-labelledby="imageCarouselModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="imageCarouselModalLabel">Experience Gallery</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="imageCarousel" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-indicators" id="carouselIndicators">
+                            <!-- Indicators will be dynamically generated -->
+                        </div>
+                        <div class="carousel-inner" id="carouselInner">
+                            <!-- Images will be dynamically loaded here -->
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#imageCarousel" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#imageCarousel" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
