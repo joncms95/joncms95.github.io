@@ -153,7 +153,7 @@ function createCarouselModal(modalId, title, images, startIndex = 0) {
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <div id="${modalId}Carousel" class="carousel slide" data-bs-ride="false">
+                        <div id="${modalId}Carousel" class="carousel slide" data-bs-ride="false" data-bs-interval="false">
                             <div class="carousel-indicators" id="${modalId}Indicators">
                                 <!-- Indicators will be dynamically generated -->
                             </div>
@@ -161,7 +161,7 @@ function createCarouselModal(modalId, title, images, startIndex = 0) {
                                 <!-- Images will be dynamically loaded here -->
                             </div>
                             <div class="carousel-index" id="${modalId}Index">
-                                ${createElegantDotPattern(images.length, 0)}
+                                ${createElegantDotPattern(images.length, startIndex)}
                             </div>
                             <button class="carousel-control-prev" type="button" data-bs-target="#${modalId}Carousel" data-bs-slide="prev">
                                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -231,6 +231,17 @@ function createCarouselModal(modalId, title, images, startIndex = 0) {
     const carouselElement = document.getElementById(`${modalId}Carousel`);
     const indexElement = document.getElementById(`${modalId}Index`);
     
+    // Ensure carousel starts at the correct index
+    // Use setTimeout to ensure the modal is fully rendered before setting the slide
+    setTimeout(() => {
+        const carousel = new bootstrap.Carousel(carouselElement, {
+            interval: false
+        });
+        if (startIndex > 0) {
+            carousel.to(startIndex);
+        }
+    }, 100);
+    
     carouselElement.addEventListener('slide.bs.carousel', function(event) {
         const currentIndex = event.to;
         updateElegantDotPattern(indexElement, images.length, currentIndex);
@@ -271,38 +282,59 @@ function createElegantDotPattern(totalImages, currentIndex) {
         return dots + numbering;
     }
     
-    // For more than 5 images, use LINE's smart pagination approach
+    // For more than 5 images, implement the sliding 5-dot pattern
     let dots = [];
     
-    // Always show first dot
-    dots.push(`<div class="carousel-index-dot ${currentIndex === 0 ? 'active' : 'far'}" data-index="0"></div>`);
+    // Calculate the range of dots to show based on current position
+    let startIndex, endIndex;
     
-    // Show middle dots based on current position
     if (currentIndex <= 1) {
-        // Near start: show dots 1, 2, 3
-        for (let i = 1; i <= Math.min(3, totalImages - 2); i++) {
-            const className = i === currentIndex ? 'active' : (Math.abs(i - currentIndex) === 1 ? 'adjacent' : 'far');
-            dots.push(`<div class="carousel-index-dot ${className}" data-index="${i}"></div>`);
-        }
+        // Near start: show first 5 dots
+        startIndex = 0;
+        endIndex = Math.min(4, totalImages - 1);
     } else if (currentIndex >= totalImages - 2) {
-        // Near end: show dots near the end
-        const start = Math.max(1, totalImages - 4);
-        for (let i = start; i < totalImages - 1; i++) {
-            const className = i === currentIndex ? 'active' : (Math.abs(i - currentIndex) === 1 ? 'adjacent' : 'far');
-            dots.push(`<div class="carousel-index-dot ${className}" data-index="${i}"></div>`);
-        }
+        // Near end: show last 5 dots
+        startIndex = Math.max(0, totalImages - 5);
+        endIndex = totalImages - 1;
     } else {
-        // In middle: show current and adjacent
-        for (let i = currentIndex - 1; i <= currentIndex + 1; i++) {
-            if (i > 0 && i < totalImages - 1) {
-                const className = i === currentIndex ? 'active' : 'adjacent';
-                dots.push(`<div class="carousel-index-dot ${className}" data-index="${i}"></div>`);
-            }
-        }
+        // In middle: show 2 dots before current, current, and 2 dots after
+        startIndex = Math.max(0, currentIndex - 2);
+        endIndex = Math.min(totalImages - 1, currentIndex + 2);
     }
     
-    // Always show last dot
-    dots.push(`<div class="carousel-index-dot ${currentIndex === totalImages - 1 ? 'active' : 'far'}" data-index="${totalImages - 1}"></div>`);
+    // Create the 5-dot pattern
+    for (let i = startIndex; i <= endIndex; i++) {
+        let className = 'carousel-index-dot';
+        
+        if (i === currentIndex) {
+            className += ' active';
+        } else if (Math.abs(i - currentIndex) === 1) {
+            className += ' adjacent';
+        } else {
+            className += ' far';
+        }
+        
+        dots.push(`<div class="${className}" data-index="${i}"></div>`);
+    }
+    
+    // Ensure we have exactly 5 dots
+    while (dots.length < 5 && totalImages >= 5) {
+        if (startIndex > 0) {
+            // Add dots from the beginning
+            startIndex--;
+            const className = startIndex === currentIndex ? 'active' : 
+                            (Math.abs(startIndex - currentIndex) === 1 ? 'adjacent' : 'far');
+            dots.unshift(`<div class="carousel-index-dot ${className}" data-index="${startIndex}"></div>`);
+        } else if (endIndex < totalImages - 1) {
+            // Add dots from the end
+            endIndex++;
+            const className = endIndex === currentIndex ? 'active' : 
+                            (Math.abs(endIndex - currentIndex) === 1 ? 'adjacent' : 'far');
+            dots.push(`<div class="carousel-index-dot ${className}" data-index="${endIndex}"></div>`);
+        } else {
+            break;
+        }
+    }
     
     // Add LINE-style numbering
     const numbering = `<div class="carousel-index-number">${currentIndex + 1}/${totalImages}</div>`;
