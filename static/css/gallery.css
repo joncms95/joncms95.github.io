@@ -79,7 +79,7 @@
 
 .gallery-item-overlay h5 {
   margin: 0 0 5px 0;
-  font-size: 14px;
+font-size: 14px;
   font-weight: bold;
   color: white;
 }
@@ -95,7 +95,6 @@
   display: flex;
   justify-content: center;
   gap: 15px;
-  margin-bottom: 30px;
   flex-wrap: wrap;
 }
 
@@ -177,11 +176,6 @@
 
   .gallery-item img {
     height: 200px;
-  }
-
-  .gallery-filters {
-    flex-direction: column;
-    align-items: center;
   }
 
   .filter-btn {
