@@ -623,7 +623,6 @@ function createGalleryItem(image, entryConfig, type, key, index) {
     const img = createElement('img', {
         src: image.src,
         alt: image.title || `${entryConfig.name} - ${index + 1}`,
-        loading: 'lazy'
     });
 
     const overlay = createElement('div', {
