@@ -268,7 +268,7 @@ function createCarouselModal(modalId, title, images, startIndex = 0) {
 function createModalHTML(modalId, title, images, startIndex) {
     // Only show navigation arrows if there's more than one image
     const showNavigation = images.length > 1;
-    
+
     return `
         <div class="modal fade" id="${modalId}" tabindex="-1" aria-labelledby="${modalId}Label" aria-hidden="true">
             <div class="modal-dialog modal-lg modal-dialog-centered">
@@ -774,7 +774,7 @@ function handleSectionHeadersVisibility(filter) {
     // Check if experience section has visible items
     if (experienceSection) {
         const experienceItems = experienceSection.querySelectorAll('.gallery-item');
-        const hasVisibleExperienceItems = Array.from(experienceItems).some(item => 
+        const hasVisibleExperienceItems = Array.from(experienceItems).some(item =>
             !item.classList.contains('hidden')
         );
         experienceSection.style.display = hasVisibleExperienceItems ? 'block' : 'none';
@@ -783,7 +783,7 @@ function handleSectionHeadersVisibility(filter) {
     // Check if projects section has visible items
     if (projectsSection) {
         const projectsItems = projectsSection.querySelectorAll('.gallery-item');
-        const hasVisibleProjectsItems = Array.from(projectsItems).some(item => 
+        const hasVisibleProjectsItems = Array.from(projectsItems).some(item =>
             !item.classList.contains('hidden')
         );
         projectsSection.style.display = hasVisibleProjectsItems ? 'block' : 'none';
