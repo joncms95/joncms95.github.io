@@ -637,6 +637,14 @@ function setupEntryInteractions(entry, entryConfig, type) {
     entry.setAttribute('tabindex', '0');
     entry.setAttribute('role', 'button');
     entry.setAttribute('aria-label', `View gallery for ${entryConfig.name}`);
+
+    // Prevent carousel trigger on external links and achievement links
+    const externalLinks = entry.querySelectorAll('a[target="_blank"], .achievements a');
+    externalLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.stopPropagation();
+        });
+    });
 }
 
 /**
