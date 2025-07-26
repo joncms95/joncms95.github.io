@@ -1,4 +1,6 @@
-/* Entry Hover Effect */
+/* ============================================================================
+   VIEW GALLERY HOVER EFFECT
+   ============================================================================ */
 .entry {
   position: relative;
   cursor: pointer;
@@ -35,8 +37,6 @@
 /* ============================================================================
    CAROUSEL STYLES
    ============================================================================ */
-
-/* Unified Carousel Modal Styles */
 .modal-content {
   border-radius: 12px;
   border: none;
@@ -125,9 +125,8 @@
 }
 
 /* ============================================================================
-   LINE DESIGN SYSTEM INSPIRED CAROUSEL INDEX INDICATOR
+   CAROUSEL INDEX INDICATOR
    ============================================================================ */
-
 .carousel-index {
   position: absolute;
   top: 15px;
@@ -203,29 +202,6 @@
 /* ============================================================================
    CERTIFICATE MODAL STYLES
    ============================================================================ */
-
-#certificateModal .modal-content {
-  border-radius: 12px;
-  border: none;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-}
-
-#certificateModal .modal-header {
-  background-color: #052a5f;
-  color: white;
-  border-bottom: none;
-  border-radius: 12px 12px 0 0;
-}
-
-#certificateModal .modal-header .btn-close {
-  filter: invert(1);
-}
-
-#certificateModal .modal-body img {
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-}
-
 #certificateModal .btn-primary {
   background-color: #052a5f;
   border-color: #052a5f;

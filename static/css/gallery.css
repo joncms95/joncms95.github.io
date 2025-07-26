@@ -1,7 +1,6 @@
 /* ============================================================================
    GALLERY STYLES
    ============================================================================ */
-
 /* Gallery Container */
 .gallery-container {
   margin-bottom: 30px;
@@ -79,7 +78,7 @@
 
 .gallery-item-overlay h5 {
   margin: 0 0 5px 0;
-font-size: 14px;
+  font-size: 14px;
   font-weight: bold;
   color: white;
 }
@@ -147,7 +146,6 @@ font-size: 14px;
 /* ============================================================================
    RESPONSIVE GALLERY
    ============================================================================ */
-
 @media (max-width: 768px) {
   .gallery-grid {
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
