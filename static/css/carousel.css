@@ -25,10 +25,8 @@
 
 /* Responsive gallery button */
 @media (max-width: 768px) {
-  .entry::before {
-    content: "🖼️";
-    padding: 5px;
-    opacity: 1;
+  .entry:hover::before {
+    opacity: 0;
   }
 }
 
@@ -125,6 +123,39 @@ body.modal-open {
   font-size: 14px;
   opacity: 0.9;
   color: white;
+}
+
+/* Responsive carousel caption */
+@media (max-width: 768px) {
+  .carousel-caption {
+    padding: 10px;
+    bottom: 10px;
+  }
+
+  .carousel-caption h5 {
+    font-size: 14px;
+    margin: 0 0 3px 0;
+  }
+
+  .carousel-caption p {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .carousel-caption {
+    padding: 8px;
+    bottom: 5px;
+  }
+
+  .carousel-caption h5 {
+    font-size: 12px;
+    margin: 0 0 2px 0;
+  }
+
+  .carousel-caption p {
+    font-size: 10px;
+  }
 }
 
 /* ============================================================================

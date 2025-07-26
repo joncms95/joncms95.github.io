@@ -300,7 +300,7 @@ function createCarouselItem(image, index, startIndex) {
     // Add caption if title or description exists
     if (image.title || image.description) {
         const caption = createElement('div', {
-            className: 'carousel-caption d-none d-md-block'
+            className: 'carousel-caption'
         });
 
         caption.innerHTML = `
