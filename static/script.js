@@ -16,13 +16,7 @@ const CONFIG = {
         maxDots: 5,
         carouselInterval: 5000,
         carouselRide: true,
-        modalSize: 'modal-lg'
     },
-
-    // Scroll settings
-    scroll: {
-        threshold: 300
-    }
 };
 
 // ============================================================================
@@ -35,23 +29,23 @@ const EXPERIENCE_CONFIG = {
         images: [
             {
                 src: 'static/assets/experience/sem9_1.jpg',
-                title: 'SEM9 Experience',
-                description: 'Professional Player & Administrative Executive'
+                title: 'SEM9',
+                description: 'SEA Games Hanoi'
             },
             {
                 src: 'static/assets/experience/sem9_2.jpg',
-                title: 'SEM9 Experience',
-                description: 'Professional Player & Administrative Executive'
+                title: 'SEM9',
+                description: 'Group Stage game win against Team Phillipines'
             },
             {
                 src: 'static/assets/experience/sem9_3.jpg',
-                title: 'SEM9 Experience',
-                description: 'Professional Player & Administrative Executive'
+                title: 'SEM9',
+                description: 'Departure to Hanoi for SEA Games'
             },
             {
                 src: 'static/assets/experience/sem9_4.jpg',
-                title: 'SEM9 Experience',
-                description: 'Professional Player & Administrative Executive'
+                title: 'SEM9',
+                description: 'SEM9 Office in Petaling Jaya'
             }
         ]
     },
@@ -61,47 +55,47 @@ const EXPERIENCE_CONFIG = {
             {
                 src: 'static/assets/experience/bjd_1.png',
                 title: 'Berjaya Dragons',
-                description: 'Professional Player & Esports Coach'
+                description: 'Berjaya Dragons at the Pacific Championship Series (PCS)'
             },
             {
                 src: 'static/assets/experience/bjd_2.jpg',
                 title: 'Berjaya Dragons',
-                description: 'Professional Player & Esports Coach'
+                description: 'BJD Training facilities in Taiwan'
             },
             {
                 src: 'static/assets/experience/bjd_3.png',
                 title: 'Berjaya Dragons',
-                description: 'Professional Player & Esports Coach'
+                description: 'Ready to soar — The Sun Malaysia'
             },
             {
                 src: 'static/assets/experience/bjd_4.png',
                 title: 'Berjaya Dragons',
-                description: 'Professional Player & Esports Coach'
+                description: 'Berjaya Dragons Wild Rift'
             },
             {
                 src: 'static/assets/experience/bjd_5.jpg',
                 title: 'Berjaya Dragons',
-                description: 'Professional Player & Esports Coach'
+                description: 'Icon Series Malaysia Champions'
             }
         ]
     },
     'fdg': {
-        name: 'Fire Dragoon Esports',
+        name: 'Fire Dragoon',
         images: [
             {
                 src: 'static/assets/experience/fdg_1.jpg',
-                title: 'Fire Dragoon Esports',
-                description: 'Professional Player'
+                title: 'Fire Dragoon',
+                description: 'Fire Dragoon takes flight — The Star Newspaper'
             },
             {
                 src: 'static/assets/experience/fdg_2.jpg',
-                title: 'Fire Dragoon Esports',
-                description: 'Professional Player'
+                title: 'Fire Dragoon',
+                description: 'Invited as a colorcaster for the Garena All-Stars Playoffs'
             },
             {
                 src: 'static/assets/experience/fdg_3.jpg',
-                title: 'Fire Dragoon Esports',
-                description: 'Professional Player'
+                title: 'Fire Dragoon',
+                description: 'Champions of LoC Malaysia'
             }
         ]
     },
@@ -111,7 +105,7 @@ const EXPERIENCE_CONFIG = {
             {
                 src: 'static/assets/experience/kpmg.jpg',
                 title: 'KPMG',
-                description: 'Audit Trainee'
+                description: 'Internship at KPMG'
             }
         ]
     }
@@ -119,7 +113,7 @@ const EXPERIENCE_CONFIG = {
 
 const PROJECT_CONFIG = {
     'mlbb_ban_pick': {
-        name: 'MLBB Ban Pick Tool',
+        name: 'Mobile Legends Draft Simulator',
         images: [
             {
                 src: 'static/assets/projects/mlbb_ban_pick/create.png',
@@ -274,7 +268,7 @@ function createCarouselModal(modalId, title, images, startIndex = 0) {
 function createModalHTML(modalId, title, images, startIndex) {
     return `
         <div class="modal fade" id="${modalId}" tabindex="-1" aria-labelledby="${modalId}Label" aria-hidden="true">
-            <div class="modal-dialog ${CONFIG.gallery.modalSize} modal-dialog-centered">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="${modalId}Label">${title}</h5>
@@ -636,6 +630,73 @@ function removeEntryInteractions(entry, type) {
 // ============================================================================
 
 /**
+ * Generates gallery items from configuration
+ * @param {Object} config - Configuration object (EXPERIENCE_CONFIG or PROJECT_CONFIG)
+ * @param {string} type - Gallery type ('experience' or 'projects')
+ */
+function generateGalleryItems(config, type) {
+    const galleryGrid = getElement(`${type}-gallery-grid`);
+
+    if (!galleryGrid) {
+        console.error(`Gallery grid not found: ${type}-gallery-grid`);
+        return;
+    }
+
+    // Clear existing content
+    galleryGrid.innerHTML = '';
+
+    // Generate gallery items for each entry in config
+    Object.entries(config).forEach(([key, entryConfig]) => {
+        if (entryConfig.images && entryConfig.images.length > 0) {
+            entryConfig.images.forEach((image, index) => {
+                const galleryItem = createGalleryItem(image, entryConfig, type, key, index);
+                galleryGrid.appendChild(galleryItem);
+            });
+        }
+    });
+}
+
+/**
+ * Creates a gallery item element
+ * @param {Object} image - Image configuration
+ * @param {Object} entryConfig - Entry configuration
+ * @param {string} type - Gallery type
+ * @param {string} key - Entry key
+ * @param {number} index - Image index
+ * @returns {HTMLElement} - Gallery item element
+ */
+function createGalleryItem(image, entryConfig, type, key, index) {
+    const galleryItem = createElement('div', {
+        className: 'gallery-item visible',
+        'data-category': type === 'experience' ? 'experience' : 'projects',
+        'data-company': type === 'experience' ? key : undefined,
+        'data-project': type === 'projects' ? key : undefined,
+        tabindex: '0',
+        role: 'button'
+    });
+
+    const img = createElement('img', {
+        src: image.src,
+        alt: image.title || `${entryConfig.name} - ${index + 1}`,
+        loading: 'lazy'
+    });
+
+    const overlay = createElement('div', {
+        className: 'gallery-item-overlay'
+    });
+
+    const title = createElement('h5', {}, entryConfig.name);
+    const description = createElement('p', {}, image.description || entryConfig.name);
+
+    overlay.appendChild(title);
+    overlay.appendChild(description);
+    galleryItem.appendChild(img);
+    galleryItem.appendChild(overlay);
+
+    return galleryItem;
+}
+
+/**
  * Sets up gallery filtering functionality
  */
 function setupGalleryFiltering() {
@@ -695,10 +756,6 @@ function setupGalleryItemInteractions() {
             }
         });
 
-        // Make items focusable
-        item.setAttribute('tabindex', '0');
-        item.setAttribute('role', 'button');
-
         // Initialize as visible
         item.classList.add('visible');
     });
@@ -740,7 +797,7 @@ function setupScrollToTop() {
 
     // Debounced scroll handler for performance
     const debouncedScrollHandler = debounce(() => {
-        if (window.pageYOffset > CONFIG.scroll.threshold) {
+        if (window.pageYOffset > 300) {
             scrollToTopBtn.classList.add('show');
         } else {
             scrollToTopBtn.classList.remove('show');
@@ -822,6 +879,10 @@ function initializePortfolio() {
 
     // Setup project entries
     setupEntryHover('.entry[data-project]', PROJECT_CONFIG, 'project');
+
+    // Generate and populate galleries
+    generateGalleryItems(EXPERIENCE_CONFIG, 'experience');
+    generateGalleryItems(PROJECT_CONFIG, 'projects');
 
     // Setup gallery functionality
     setupGalleryFiltering();
