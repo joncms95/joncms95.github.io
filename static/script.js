@@ -1,9 +1,8 @@
 /**
- * Portfolio Website JavaScript
- * Jonathan Chan Mun Shum - Personal Portfolio
+ * Portfolio Website
  * 
- * This file contains all interactive functionality for the portfolio website
- * including gallery modals, carousel navigation, and UI interactions.
+ * This file contains all interactive functionality for the portfolio website.
+ * 
  */
 
 // ============================================================================
@@ -11,11 +10,9 @@
 // ============================================================================
 
 const CONFIG = {
-    // Gallery settings
     gallery: {
         maxDots: 5,
         carouselInterval: 5000,
-        carouselRide: true,
     },
 };
 
@@ -149,24 +146,6 @@ const PROJECT_CONFIG = {
 // ============================================================================
 
 /**
- * Safely get element by ID
- * @param {string} id - Element ID
- * @returns {HTMLElement|null} - Element or null if not found
- */
-function getElement(id) {
-    return document.getElementById(id);
-}
-
-/**
- * Safely get elements by selector
- * @param {string} selector - CSS selector
- * @returns {NodeList} - Elements matching selector
- */
-function getElements(selector) {
-    return document.querySelectorAll(selector);
-}
-
-/**
  * Create element with attributes
  * @param {string} tag - HTML tag name
  * @param {Object} attributes - Element attributes
@@ -180,7 +159,7 @@ function createElement(tag, attributes = {}, content = '') {
     Object.entries(attributes).forEach(([key, value]) => {
         if (key === 'className') {
             element.className = value;
-        } else {
+        } else if (value !== undefined) {
             element.setAttribute(key, value);
         }
     });
@@ -191,24 +170,6 @@ function createElement(tag, attributes = {}, content = '') {
     }
 
     return element;
-}
-
-/**
- * Debounce function for performance optimization
- * @param {Function} func - Function to debounce
- * @param {number} wait - Wait time in ms
- * @returns {Function} - Debounced function
- */
-function debounce(func, wait) {
-    let timeout;
-    return function executedFunction(...args) {
-        const later = () => {
-            clearTimeout(timeout);
-            func(...args);
-        };
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-    };
 }
 
 // ============================================================================
@@ -223,14 +184,8 @@ function debounce(func, wait) {
  * @param {number} startIndex - Starting image index (default: 0)
  */
 function createCarouselModal(modalId, title, images, startIndex = 0) {
-    // Validate inputs
-    if (!modalId || !title || !Array.isArray(images) || images.length === 0) {
-        console.error('Invalid parameters for createCarouselModal');
-        return;
-    }
-
     // Remove existing modal if any
-    const existingModal = getElement(modalId);
+    const existingModal = document.getElementById(modalId);
     if (existingModal) {
         existingModal.remove();
     }
@@ -245,14 +200,14 @@ function createCarouselModal(modalId, title, images, startIndex = 0) {
     populateCarousel(modalId, images, startIndex);
 
     // Show modal
-    const modal = new bootstrap.Modal(getElement(modalId));
+    const modal = new bootstrap.Modal(document.getElementById(modalId));
     modal.show();
 
     // Setup carousel functionality
     setupCarouselFunctionality(modalId, images);
 
     // Clean up modal after it's hidden
-    getElement(modalId).addEventListener('hidden.bs.modal', function () {
+    document.getElementById(modalId).addEventListener('hidden.bs.modal', function () {
         this.remove();
     });
 }
@@ -266,7 +221,6 @@ function createCarouselModal(modalId, title, images, startIndex = 0) {
  * @returns {string} - Modal HTML
  */
 function createModalHTML(modalId, title, images, startIndex) {
-    // Only show navigation arrows if there's more than one image
     const showNavigation = images.length > 1;
 
     return `
@@ -278,13 +232,9 @@ function createModalHTML(modalId, title, images, startIndex) {
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <div id="${modalId}Carousel" class="carousel slide" data-bs-ride="${CONFIG.gallery.carouselRide ? 'carousel' : 'false'}" data-bs-interval="${CONFIG.gallery.carouselInterval}">
-                            ${showNavigation ? `<div class="carousel-indicators" id="${modalId}Indicators">
-                                <!-- Indicators will be dynamically generated -->
-                            </div>` : ''}
-                            <div class="carousel-inner" id="${modalId}Inner">
-                                <!-- Images will be dynamically loaded here -->
-                            </div>
+                        <div id="${modalId}Carousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="${CONFIG.gallery.carouselInterval}">
+                            ${showNavigation ? `<div class="carousel-indicators" id="${modalId}Indicators"></div>` : ''}
+                            <div class="carousel-inner" id="${modalId}Inner"></div>
                             ${showNavigation ? `<div class="carousel-index" id="${modalId}Index">
                                 ${createElegantDotPattern(images.length, startIndex)}
                             </div>` : ''}
@@ -311,20 +261,15 @@ function createModalHTML(modalId, title, images, startIndex) {
  * @param {number} startIndex - Starting index
  */
 function populateCarousel(modalId, images, startIndex) {
-    const carouselInner = getElement(`${modalId}Inner`);
-    const carouselIndicators = getElement(`${modalId}Indicators`);
-
-    if (!carouselInner) {
-        console.error('Carousel inner element not found');
-        return;
-    }
+    const carouselInner = document.getElementById(`${modalId}Inner`);
+    const carouselIndicators = document.getElementById(`${modalId}Indicators`);
 
     images.forEach((image, index) => {
         // Create carousel item
         const carouselItem = createCarouselItem(image, index, startIndex);
         carouselInner.appendChild(carouselItem);
 
-        // Create indicator only if there's more than one image and indicators element exists
+        // Create indicator only if there's more than one image
         if (images.length > 1 && carouselIndicators) {
             const indicator = createCarouselIndicator(modalId, index, startIndex);
             carouselIndicators.appendChild(indicator);
@@ -398,28 +343,22 @@ function createCarouselIndicator(modalId, index, startIndex) {
  * @param {Array} images - Images array
  */
 function setupCarouselFunctionality(modalId, images) {
-    const carouselElement = getElement(`${modalId}Carousel`);
-    const indexElement = getElement(`${modalId}Index`);
-
-    if (!carouselElement) {
-        console.error('Carousel element not found for functionality setup');
-        return;
-    }
+    const carouselElement = document.getElementById(`${modalId}Carousel`);
+    const indexElement = document.getElementById(`${modalId}Index`);
 
     // Only set up carousel functionality if there's more than one image
     if (images.length > 1) {
         // Ensure carousel starts at the correct index
         setTimeout(() => {
-            const carousel = new bootstrap.Carousel(carouselElement, {
+            new bootstrap.Carousel(carouselElement, {
                 interval: CONFIG.gallery.carouselInterval
             });
         }, 100);
 
-        // Add carousel slide event listener to update index only if index element exists
+        // Add carousel slide event listener to update index
         if (indexElement) {
             carouselElement.addEventListener('slide.bs.carousel', function (event) {
-                const currentIndex = event.to;
-                updateElegantDotPattern(indexElement, images.length, currentIndex);
+                updateElegantDotPattern(indexElement, images.length, event.to);
             });
         }
     }
@@ -430,7 +369,7 @@ function setupCarouselFunctionality(modalId, images) {
 // ============================================================================
 
 /**
- * Creates LINE Design System inspired dot pattern with smart pagination
+ * Creates dot pattern with smart pagination
  * @param {number} totalImages - Total number of images
  * @param {number} currentIndex - Current active index
  * @returns {string} HTML string for dot pattern
@@ -494,7 +433,7 @@ function createSlidingDotPattern(totalImages, currentIndex) {
     // Ensure we have exactly 5 dots
     dots = ensureFiveDots(dots, startIndex, endIndex, currentIndex, totalImages);
 
-    // Add LINE-style numbering
+    // Add numbering
     const numbering = `<div class="carousel-index-number">${currentIndex + 1}/${totalImages}</div>`;
 
     return dots.join('') + numbering;
@@ -572,7 +511,7 @@ function updateElegantDotPattern(indexElement, totalImages, currentIndex) {
  * @param {string} type - Entry type ('experience' or 'project')
  */
 function setupEntryHover(selector, config, type) {
-    const entries = getElements(selector);
+    const entries = document.querySelectorAll(selector);
 
     entries.forEach(entry => {
         const key = entry.getAttribute(`data-${type === 'experience' ? 'company' : 'project'}`);
@@ -581,7 +520,7 @@ function setupEntryHover(selector, config, type) {
         if (entryConfig?.images?.length > 0) {
             setupEntryInteractions(entry, entryConfig, type);
         } else {
-            removeEntryInteractions(entry, type);
+            removeEntryInteractions(entry);
         }
     });
 }
@@ -626,9 +565,8 @@ function setupEntryInteractions(entry, entryConfig, type) {
 /**
  * Removes interactive functionality from an entry
  * @param {HTMLElement} entry - Entry element
- * @param {string} type - Entry type
  */
-function removeEntryInteractions(entry, type) {
+function removeEntryInteractions(entry) {
     entry.style.cursor = 'default';
     entry.removeAttribute('tabindex');
     entry.removeAttribute('role');
@@ -645,12 +583,9 @@ function removeEntryInteractions(entry, type) {
  * @param {string} type - Gallery type ('experience' or 'projects')
  */
 function generateGalleryItems(config, type) {
-    const galleryGrid = getElement(`${type}-gallery-grid`);
+    const galleryGrid = document.getElementById(`${type}-gallery-grid`);
 
-    if (!galleryGrid) {
-        console.error(`Gallery grid not found: ${type}-gallery-grid`);
-        return;
-    }
+    if (!galleryGrid) return;
 
     // Clear existing content
     galleryGrid.innerHTML = '';
@@ -710,23 +645,24 @@ function createGalleryItem(image, entryConfig, type, key, index) {
  * Sets up gallery filtering functionality
  */
 function setupGalleryFiltering() {
-    const filterButtons = getElements('.filter-btn');
-    const galleryItems = getElements('.gallery-item');
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const galleryItems = document.querySelectorAll('.gallery-item');
 
     filterButtons.forEach(button => {
-        button.addEventListener('click', (e) => {
+        button.addEventListener('click', () => {
             const filter = button.getAttribute('data-filter');
             const isActive = button.classList.contains('active');
+
             if (isActive && filter !== 'all') {
                 // Remove active from all, set only All as active
                 filterButtons.forEach(btn => btn.classList.remove('active'));
                 const allBtn = Array.from(filterButtons).find(btn => btn.getAttribute('data-filter') === 'all');
                 if (allBtn) allBtn.classList.add('active');
-                filterGalleryItems('all', filterButtons, galleryItems);
+                filterGalleryItems('all', galleryItems);
             } else {
                 filterButtons.forEach(btn => btn.classList.remove('active'));
                 button.classList.add('active');
-                filterGalleryItems(filter, filterButtons, galleryItems);
+                filterGalleryItems(filter, galleryItems);
             }
         });
     });
@@ -735,10 +671,9 @@ function setupGalleryFiltering() {
 /**
  * Filters gallery items based on selected category
  * @param {string} filter - Filter category
- * @param {NodeList} filterButtons - Filter button elements
  * @param {NodeList} galleryItems - Gallery item elements
  */
-function filterGalleryItems(filter, filterButtons, galleryItems) {
+function filterGalleryItems(filter, galleryItems) {
     // Filter gallery items
     galleryItems.forEach(item => {
         const category = item.getAttribute('data-category');
@@ -794,7 +729,7 @@ function handleSectionHeadersVisibility(filter) {
  * Sets up gallery item click interactions
  */
 function setupGalleryItemInteractions() {
-    const galleryItems = getElements('.gallery-item');
+    const galleryItems = document.querySelectorAll('.gallery-item');
 
     galleryItems.forEach(item => {
         // Add click handler
@@ -845,20 +780,18 @@ function openGalleryModal(clickedItem, allItems) {
  * Sets up scroll to top button functionality
  */
 function setupScrollToTop() {
-    const scrollToTopBtn = getElement('scrollToTopBtn');
+    const scrollToTopBtn = document.getElementById('scrollToTopBtn');
 
     if (!scrollToTopBtn) return;
 
-    // Debounced scroll handler for performance
-    const debouncedScrollHandler = debounce(() => {
+    // Scroll handler
+    window.addEventListener('scroll', () => {
         if (window.pageYOffset > 300) {
             scrollToTopBtn.classList.add('show');
         } else {
             scrollToTopBtn.classList.remove('show');
         }
-    }, 100);
-
-    window.addEventListener('scroll', debouncedScrollHandler);
+    });
 
     scrollToTopBtn.addEventListener('click', () => {
         window.scrollTo({
@@ -899,7 +832,7 @@ function openCertificateModal() {
     `;
 
     // Remove existing modal if any
-    const existingModal = getElement('certificateModal');
+    const existingModal = document.getElementById('certificateModal');
     if (existingModal) {
         existingModal.remove();
     }
@@ -908,11 +841,11 @@ function openCertificateModal() {
     document.body.insertAdjacentHTML('beforeend', modalContent);
 
     // Show modal
-    const modal = new bootstrap.Modal(getElement('certificateModal'));
+    const modal = new bootstrap.Modal(document.getElementById('certificateModal'));
     modal.show();
 
     // Clean up modal after it's hidden
-    getElement('certificateModal').addEventListener('hidden.bs.modal', function () {
+    document.getElementById('certificateModal').addEventListener('hidden.bs.modal', function () {
         this.remove();
     });
 }
