@@ -60,7 +60,7 @@ const EXPERIENCE_CONFIG = {
             {
                 src: 'static/assets/experience/bjd_2.jpg',
                 title: 'Berjaya Dragons',
-                description: 'BJD Training facilities in Taiwan'
+                description: 'BJD training facilities in Taiwan'
             },
             {
                 src: 'static/assets/experience/bjd_3.png',
@@ -266,6 +266,9 @@ function createCarouselModal(modalId, title, images, startIndex = 0) {
  * @returns {string} - Modal HTML
  */
 function createModalHTML(modalId, title, images, startIndex) {
+    // Only show navigation arrows if there's more than one image
+    const showNavigation = images.length > 1;
+    
     return `
         <div class="modal fade" id="${modalId}" tabindex="-1" aria-labelledby="${modalId}Label" aria-hidden="true">
             <div class="modal-dialog modal-lg modal-dialog-centered">
@@ -276,23 +279,23 @@ function createModalHTML(modalId, title, images, startIndex) {
                     </div>
                     <div class="modal-body">
                         <div id="${modalId}Carousel" class="carousel slide" data-bs-ride="${CONFIG.gallery.carouselRide ? 'carousel' : 'false'}" data-bs-interval="${CONFIG.gallery.carouselInterval}">
-                            <div class="carousel-indicators" id="${modalId}Indicators">
+                            ${showNavigation ? `<div class="carousel-indicators" id="${modalId}Indicators">
                                 <!-- Indicators will be dynamically generated -->
-                            </div>
+                            </div>` : ''}
                             <div class="carousel-inner" id="${modalId}Inner">
                                 <!-- Images will be dynamically loaded here -->
                             </div>
-                            <div class="carousel-index" id="${modalId}Index">
+                            ${showNavigation ? `<div class="carousel-index" id="${modalId}Index">
                                 ${createElegantDotPattern(images.length, startIndex)}
-                            </div>
-                            <button class="carousel-control-prev" type="button" data-bs-target="#${modalId}Carousel" data-bs-slide="prev">
+                            </div>` : ''}
+                            ${showNavigation ? `<button class="carousel-control-prev" type="button" data-bs-target="#${modalId}Carousel" data-bs-slide="prev">
                                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                 <span class="visually-hidden">Previous</span>
                             </button>
                             <button class="carousel-control-next" type="button" data-bs-target="#${modalId}Carousel" data-bs-slide="next">
                                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                 <span class="visually-hidden">Next</span>
-                            </button>
+                            </button>` : ''}
                         </div>
                     </div>
                 </div>
@@ -311,8 +314,8 @@ function populateCarousel(modalId, images, startIndex) {
     const carouselInner = getElement(`${modalId}Inner`);
     const carouselIndicators = getElement(`${modalId}Indicators`);
 
-    if (!carouselInner || !carouselIndicators) {
-        console.error('Carousel elements not found');
+    if (!carouselInner) {
+        console.error('Carousel inner element not found');
         return;
     }
 
@@ -321,9 +324,11 @@ function populateCarousel(modalId, images, startIndex) {
         const carouselItem = createCarouselItem(image, index, startIndex);
         carouselInner.appendChild(carouselItem);
 
-        // Create indicator
-        const indicator = createCarouselIndicator(modalId, index, startIndex);
-        carouselIndicators.appendChild(indicator);
+        // Create indicator only if there's more than one image and indicators element exists
+        if (images.length > 1 && carouselIndicators) {
+            const indicator = createCarouselIndicator(modalId, index, startIndex);
+            carouselIndicators.appendChild(indicator);
+        }
     });
 }
 
@@ -396,23 +401,28 @@ function setupCarouselFunctionality(modalId, images) {
     const carouselElement = getElement(`${modalId}Carousel`);
     const indexElement = getElement(`${modalId}Index`);
 
-    if (!carouselElement || !indexElement) {
-        console.error('Carousel elements not found for functionality setup');
+    if (!carouselElement) {
+        console.error('Carousel element not found for functionality setup');
         return;
     }
 
-    // Ensure carousel starts at the correct index
-    setTimeout(() => {
-        const carousel = new bootstrap.Carousel(carouselElement, {
-            interval: CONFIG.gallery.carouselInterval
-        });
-    }, 100);
+    // Only set up carousel functionality if there's more than one image
+    if (images.length > 1) {
+        // Ensure carousel starts at the correct index
+        setTimeout(() => {
+            const carousel = new bootstrap.Carousel(carouselElement, {
+                interval: CONFIG.gallery.carouselInterval
+            });
+        }, 100);
 
-    // Add carousel slide event listener to update index
-    carouselElement.addEventListener('slide.bs.carousel', function (event) {
-        const currentIndex = event.to;
-        updateElegantDotPattern(indexElement, images.length, currentIndex);
-    });
+        // Add carousel slide event listener to update index only if index element exists
+        if (indexElement) {
+            carouselElement.addEventListener('slide.bs.carousel', function (event) {
+                const currentIndex = event.to;
+                updateElegantDotPattern(indexElement, images.length, currentIndex);
+            });
+        }
+    }
 }
 
 // ============================================================================

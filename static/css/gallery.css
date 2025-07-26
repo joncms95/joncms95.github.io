@@ -134,6 +134,18 @@
   }
 }
 
+/* Single Image Carousel Styles */
+.carousel:not(.carousel-indicators):not(.carousel-control-prev):not(.carousel-control-next) {
+  /* When no navigation elements are present, ensure proper spacing */
+  padding: 0;
+}
+
+.carousel .carousel-inner {
+  /* Ensure single images display properly */
+  border-radius: 8px;
+  overflow: hidden;
+}
+
 /* ============================================================================
    RESPONSIVE GALLERY
    ============================================================================ */
