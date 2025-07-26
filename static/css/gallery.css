@@ -2,14 +2,6 @@
    GALLERY STYLES
    ============================================================================ */
 /* Gallery Container */
-.gallery-container {
-  margin-bottom: 30px;
-}
-
-.gallery-section {
-  margin-bottom: 40px;
-}
-
 .gallery-section-title {
   color: #052a5f;
   border-bottom: 2px solid #052a5f;
@@ -103,7 +95,6 @@
   color: #052a5f;
   padding: 8px 20px;
   border-radius: 25px;
-  cursor: pointer;
   transition: all 0.3s ease;
   font-weight: 500;
   font-size: 14px;

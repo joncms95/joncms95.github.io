@@ -14,27 +14,14 @@ const CONFIG = {
     // Gallery settings
     gallery: {
         maxDots: 5,
-        dotPattern: {
-            bigDots: 3,
-            smallDots: 2
-        },
-        transitionDuration: 300,
-        carouselInterval: false,
-        modalSize: 'modal-lg',
-        modalCentered: true
+        carouselInterval: 5000,
+        carouselRide: true,
+        modalSize: 'modal-lg'
     },
 
     // Scroll settings
     scroll: {
-        threshold: 300,
-        duration: 500
-    },
-
-    // Animation settings
-    animation: {
-        fadeIn: 300,
-        fadeOut: 300,
-        hover: 200
+        threshold: 300
     }
 };
 
@@ -213,21 +200,6 @@ function createElement(tag, attributes = {}, content = '') {
 }
 
 /**
- * Safe function execution with error handling
- * @param {Function} func - Function to execute
- * @param {*} defaultValue - Default value if function fails
- * @returns {*} - Function result or default value
- */
-function safeExecute(func, defaultValue = null) {
-    try {
-        return func();
-    } catch (error) {
-        console.error('Function execution failed:', error);
-        return defaultValue;
-    }
-}
-
-/**
  * Debounce function for performance optimization
  * @param {Function} func - Function to debounce
  * @param {number} wait - Wait time in ms
@@ -309,7 +281,7 @@ function createModalHTML(modalId, title, images, startIndex) {
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <div id="${modalId}Carousel" class="carousel slide" data-bs-ride="false" data-bs-interval="${CONFIG.gallery.carouselInterval}">
+                        <div id="${modalId}Carousel" class="carousel slide" data-bs-ride="${CONFIG.gallery.carouselRide ? 'carousel' : 'false'}" data-bs-interval="${CONFIG.gallery.carouselInterval}">
                             <div class="carousel-indicators" id="${modalId}Indicators">
                                 <!-- Indicators will be dynamically generated -->
                             </div>
