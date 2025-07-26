@@ -25,7 +25,7 @@ const CONFIG = {
 
 const EXPERIENCE_CONFIG = {
     'sem9': {
-        name: 'SEM9 Holding Sdn Bhd',
+        name: 'SEM9',
         images: [
             {
                 src: 'static/assets/experience/sem9_1.jpg',
@@ -127,7 +127,7 @@ const PROJECT_CONFIG = {
             },
             {
                 src: 'static/assets/projects/mlbb_ban_pick/draft.png',
-                title: 'Draft Interface',
+                title: 'Draft Page',
                 description: 'Real-time ban pick simulation'
             }
         ]
@@ -137,8 +137,8 @@ const PROJECT_CONFIG = {
         images: [
             {
                 src: 'static/assets/projects/mortgage_calculator/preview.gif',
-                title: 'Streamlit App Preview',
-                description: 'Interactive mortgage calculation interface'
+                title: 'Mortgage Calculator',
+                description: 'Mortgage calculator built with Streamlit'
             }
         ]
     }
@@ -594,7 +594,7 @@ function setupEntryHover(selector, config, type) {
  */
 function setupEntryInteractions(entry, entryConfig, type) {
     const modalId = `${type}CarouselModal`;
-    const title = `${entryConfig.name} - ${type === 'experience' ? 'Experience' : 'Project'} Gallery`;
+    const title = `Gallery - ${entryConfig.name}`;
 
     // Add click handler
     entry.addEventListener('click', () => {
@@ -714,9 +714,20 @@ function setupGalleryFiltering() {
     const galleryItems = getElements('.gallery-item');
 
     filterButtons.forEach(button => {
-        button.addEventListener('click', () => {
+        button.addEventListener('click', (e) => {
             const filter = button.getAttribute('data-filter');
-            filterGalleryItems(filter, filterButtons, galleryItems);
+            const isActive = button.classList.contains('active');
+            if (isActive && filter !== 'all') {
+                // Remove active from all, set only All as active
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                const allBtn = Array.from(filterButtons).find(btn => btn.getAttribute('data-filter') === 'all');
+                if (allBtn) allBtn.classList.add('active');
+                filterGalleryItems('all', filterButtons, galleryItems);
+            } else {
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                filterGalleryItems(filter, filterButtons, galleryItems);
+            }
         });
     });
 }
@@ -728,10 +739,6 @@ function setupGalleryFiltering() {
  * @param {NodeList} galleryItems - Gallery item elements
  */
 function filterGalleryItems(filter, filterButtons, galleryItems) {
-    // Update active button
-    filterButtons.forEach(btn => btn.classList.remove('active'));
-    event.target.classList.add('active');
-
     // Filter gallery items
     galleryItems.forEach(item => {
         const category = item.getAttribute('data-category');
@@ -744,6 +751,43 @@ function filterGalleryItems(filter, filterButtons, galleryItems) {
             item.classList.remove('visible');
         }
     });
+
+    // Handle section headers visibility
+    handleSectionHeadersVisibility(filter);
+}
+
+/**
+ * Handles the visibility of gallery section headers based on filter
+ * @param {string} filter - Current filter
+ */
+function handleSectionHeadersVisibility(filter) {
+    const experienceSection = document.querySelector('#experience-gallery-grid')?.closest('.gallery-section');
+    const projectsSection = document.querySelector('#projects-gallery-grid')?.closest('.gallery-section');
+
+    if (filter === 'all') {
+        // Show all sections when "All" is selected
+        if (experienceSection) experienceSection.style.display = 'block';
+        if (projectsSection) projectsSection.style.display = 'block';
+        return;
+    }
+
+    // Check if experience section has visible items
+    if (experienceSection) {
+        const experienceItems = experienceSection.querySelectorAll('.gallery-item');
+        const hasVisibleExperienceItems = Array.from(experienceItems).some(item => 
+            !item.classList.contains('hidden')
+        );
+        experienceSection.style.display = hasVisibleExperienceItems ? 'block' : 'none';
+    }
+
+    // Check if projects section has visible items
+    if (projectsSection) {
+        const projectsItems = projectsSection.querySelectorAll('.gallery-item');
+        const hasVisibleProjectsItems = Array.from(projectsItems).some(item => 
+            !item.classList.contains('hidden')
+        );
+        projectsSection.style.display = hasVisibleProjectsItems ? 'block' : 'none';
+    }
 }
 
 /**
@@ -837,7 +881,7 @@ function openCertificateModal() {
             <div class="modal-dialog modal-lg modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="certificateModalLabel">CS50 Certificate</h5>
+                        <h5 class="modal-title" id="certificateModalLabel">CS50 Introduction to Computer Science</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body text-center">
