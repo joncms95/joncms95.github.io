@@ -777,6 +777,24 @@ function openGalleryModal(clickedItem, allItems) {
 // ============================================================================
 
 /**
+ * Debounce function to limit the rate at which a function can fire
+ * @param {Function} func - Function to debounce
+ * @param {number} wait - Time to wait in milliseconds
+ * @returns {Function} - Debounced function
+ */
+function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+}
+
+/**
  * Sets up scroll to top button functionality
  */
 function setupScrollToTop() {
@@ -784,14 +802,17 @@ function setupScrollToTop() {
 
     if (!scrollToTopBtn) return;
 
-    // Scroll handler
-    window.addEventListener('scroll', () => {
+    // Debounced scroll handler
+    const debouncedScrollHandler = debounce(() => {
         if (window.pageYOffset > 300) {
             scrollToTopBtn.classList.add('show');
         } else {
             scrollToTopBtn.classList.remove('show');
         }
-    });
+    }, 100); // 100ms debounce delay
+
+    // Scroll handler
+    window.addEventListener('scroll', debouncedScrollHandler);
 
     scrollToTopBtn.addEventListener('click', () => {
         window.scrollTo({
