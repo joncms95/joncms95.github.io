@@ -1,0 +1,278 @@
+/* Experience Entry Hover Effect */
+.experience-entry {
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 8px;
+  padding: 10px;
+  margin: 5px 0;
+}
+
+.experience-entry:hover {
+  background-color: #f8f9fa;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.experience-entry::before {
+  content: "🖼️ Hover to view gallery";
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background-color: #052a5f;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.experience-entry:hover::before {
+  opacity: 1;
+}
+
+/* Project Entry Hover Effect */
+.project-entry {
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 8px;
+  padding: 10px;
+  margin: 5px 0;
+}
+
+.project-entry:hover {
+  background-color: #f8f9fa;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.project-entry::before {
+  content: "🖼️ Hover to view gallery";
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background-color: #052a5f;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.project-entry:hover::before {
+  opacity: 1;
+}
+
+/* ============================================================================
+   CAROUSEL STYLES
+   ============================================================================ */
+
+/* Unified Carousel Modal Styles */
+.modal-content {
+  border-radius: 12px;
+  border: none;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.modal-header {
+  background-color: #052a5f;
+  color: white;
+  border-bottom: none;
+  border-radius: 12px 12px 0 0;
+}
+
+.modal-header .btn-close {
+  filter: invert(1);
+}
+
+/* Carousel Item Styles */
+.carousel-item img {
+  width: 100%;
+  height: 500px;
+  object-fit: contain;
+  border-radius: 8px;
+  background-color: #f8f9fa;
+}
+
+/* Responsive carousel */
+@media (max-width: 768px) {
+  .carousel-item img {
+    height: 400px;
+  }
+}
+
+@media (max-width: 480px) {
+  .carousel-item img {
+    height: 300px;
+  }
+}
+
+/* Carousel Indicators */
+.carousel-indicators {
+  bottom: -40px;
+}
+
+.carousel-indicators button {
+  background-color: #052a5f;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin: 0 4px;
+}
+
+/* Carousel Controls */
+.carousel-control-prev,
+.carousel-control-next {
+  width: 10%;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-color: rgba(5, 42, 95, 0.8);
+  border-radius: 50%;
+  padding: 20px;
+}
+
+/* Carousel Caption */
+.carousel-caption {
+  background: rgba(5, 42, 95, 0.8);
+  border-radius: 8px;
+  padding: 15px;
+  bottom: 20px;
+}
+
+.carousel-caption h5 {
+  margin: 0 0 5px 0;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+}
+
+.carousel-caption p {
+  margin: 0;
+  font-size: 14px;
+  opacity: 0.9;
+  color: white;
+}
+
+/* ============================================================================
+   LINE DESIGN SYSTEM INSPIRED CAROUSEL INDEX INDICATOR
+   ============================================================================ */
+
+.carousel-index {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: rgba(255, 255, 255, 0.95);
+  color: #333;
+  padding: 6px 10px;
+  border-radius: 16px;
+  font-size: 12px;
+  font-weight: 400;
+  z-index: 10;
+  backdrop-filter: blur(8px);
+  display: flex;
+  gap: 3px;
+  align-items: center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+/* Carousel Index Dots */
+.carousel-index-dot {
+  border-radius: 50%;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+
+.carousel-index-dot:hover {
+  transform: scale(1.1);
+}
+
+.carousel-index-dot.active {
+  width: 8px;
+  height: 8px;
+  background: #333;
+  box-shadow: 0 0 0 2px rgba(51, 51, 51, 0.2);
+}
+
+.carousel-index-dot.adjacent {
+  width: 6px;
+  height: 6px;
+  background: #666;
+}
+
+.carousel-index-dot.far {
+  width: 4px;
+  height: 4px;
+  background: #999;
+}
+
+.carousel-index-dot.farthest {
+  width: 3px;
+  height: 3px;
+  background: #ccc;
+}
+
+/* For 5 or fewer images, make all dots same size */
+.carousel-index-dot.same-size {
+  width: 8px;
+  height: 8px;
+  background: #666;
+}
+
+/* LINE-style number indicator */
+.carousel-index-number {
+  font-size: 11px;
+  font-weight: 500;
+  color: #666;
+  margin-left: 6px;
+  padding-left: 6px;
+  border-left: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* ============================================================================
+   CERTIFICATE MODAL STYLES
+   ============================================================================ */
+
+#certificateModal .modal-content {
+  border-radius: 12px;
+  border: none;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+#certificateModal .modal-header {
+  background-color: #052a5f;
+  color: white;
+  border-bottom: none;
+  border-radius: 12px 12px 0 0;
+}
+
+#certificateModal .modal-header .btn-close {
+  filter: invert(1);
+}
+
+#certificateModal .modal-body img {
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+#certificateModal .btn-primary {
+  background-color: #052a5f;
+  border-color: #052a5f;
+  transition: all 0.3s ease;
+}
+
+#certificateModal .btn-primary:hover {
+  background-color: #031a3f;
+  border-color: #031a3f;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(5, 42, 95, 0.3);
+}
