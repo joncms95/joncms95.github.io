@@ -225,7 +225,7 @@ function createModalHTML(modalId, title, images, startIndex) {
 
     return `
         <div class="modal fade" id="${modalId}" tabindex="-1" aria-labelledby="${modalId}Label" aria-hidden="true">
-            <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-dialog modal-xl modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="${modalId}Label">${title}</h5>
@@ -875,8 +875,8 @@ function openCertificateModal() {
                         <h5 class="modal-title" id="certificateModalLabel">CS50 Introduction to Computer Science</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="modal-body text-center">
-                        <img src="static/assets/education/cs50.png" alt="CS50 Certificate" class="img-fluid">
+                    <div class="modal-body text-center carousel-item active">
+                        <img src="static/assets/education/cs50.png" alt="CS50 Certificate" class="d-block w-100">
                         <div class="mt-3">
                             <a href="https://cs50.harvard.edu/certificates/ddcd40ec-a2a7-4c48-b3a5-8fd3ae58a3b4" 
                                target="_blank" class="btn btn-primary">
