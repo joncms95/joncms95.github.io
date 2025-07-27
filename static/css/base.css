@@ -217,7 +217,7 @@ small {
 }
 
 /* Media Compatibility */
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   .rounded-circle {
     width: 128px;
     margin-bottom: 5px;
