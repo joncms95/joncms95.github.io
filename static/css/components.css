@@ -258,7 +258,33 @@ body.modal-open {
 /* Carousel Controls */
 .carousel-control-prev,
 .carousel-control-next {
-  width: 10%;
+  width: 50px;
+  height: 50px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+  border: 2px solid rgba(5, 42, 95, 0.3);
+  top: 50%;
+  transform: translateY(-50%);
+  transition: all 0.3s ease;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 15;
+}
+
+.carousel-control-prev {
+  left: 20px;
+}
+
+.carousel-control-next {
+  right: 20px;
+}
+
+.carousel-control-prev:hover,
+.carousel-control-next:hover {
+  background-color: rgba(255, 255, 255, 0.95);
+  border-color: rgba(5, 42, 95, 0.6);
+  transform: translateY(-50%) scale(1.1);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
 }
 
 .carousel-control-prev-icon,
@@ -266,6 +292,34 @@ body.modal-open {
   background-color: rgba(5, 42, 95, 0.8);
   border-radius: 50%;
   padding: 20px;
+  position: relative;
+  z-index: 20;
+  background-image: none !important;
+}
+
+/* Font Awesome arrow icons */
+.carousel-control-prev-icon::before {
+  content: "\f104";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  color: white;
+  font-size: 24px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.carousel-control-next-icon::before {
+  content: "\f105";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  color: white;
+  font-size: 24px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 /* Carousel Caption */
@@ -419,6 +473,27 @@ body.modal-open {
   .carousel-caption p {
     font-size: 12px;
   }
+
+  /* Responsive carousel controls */
+  .carousel-control-prev,
+  .carousel-control-next {
+    width: 40px;
+    height: 40px;
+  }
+
+  .carousel-control-prev {
+    left: 10px;
+  }
+
+  .carousel-control-next {
+    right: 10px;
+  }
+
+  /* Responsive Font Awesome arrows */
+  .carousel-control-prev-icon::before,
+  .carousel-control-next-icon::before {
+    font-size: 20px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -442,5 +517,26 @@ body.modal-open {
 
   .carousel-caption p {
     font-size: 10px;
+  }
+
+  /* Mobile carousel controls */
+  .carousel-control-prev,
+  .carousel-control-next {
+    width: 35px;
+    height: 35px;
+  }
+
+  .carousel-control-prev {
+    left: 5px;
+  }
+
+  .carousel-control-next {
+    right: 5px;
+  }
+
+  /* Mobile Font Awesome arrows */
+  .carousel-control-prev-icon::before,
+  .carousel-control-next-icon::before {
+    font-size: 18px;
   }
 }
