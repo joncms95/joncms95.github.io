@@ -136,7 +136,7 @@
   flex-wrap: wrap;
 }
 
-/* Filter Buttons - Base Styles */
+/* Filter Buttons */
 .filter-btn,
 .inner-filter-btn {
   border-radius: 25px;
@@ -166,7 +166,7 @@
   color: white;
 }
 
-/* Inner Filter Buttons - Enhanced Colors */
+/* Inner Filter Buttons */
 .inner-filter-btn {
   background-color: #ffffff;
   border-color: #2c3e50;
@@ -297,9 +297,8 @@ body.modal-open {
   background-image: none !important;
 }
 
-/* Font Awesome arrow icons */
-.carousel-control-prev-icon::before {
-  content: "\f104";
+.carousel-control-prev-icon::before,
+.carousel-control-next-icon::before {
   font-family: "Font Awesome 5 Free";
   font-weight: 900;
   color: white;
@@ -310,16 +309,12 @@ body.modal-open {
   transform: translate(-50%, -50%);
 }
 
+.carousel-control-prev-icon::before {
+  content: "\f104";
+}
+
 .carousel-control-next-icon::before {
   content: "\f105";
-  font-family: "Font Awesome 5 Free";
-  font-weight: 900;
-  color: white;
-  font-size: 24px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
 }
 
 /* Carousel Caption */
@@ -474,7 +469,6 @@ body.modal-open {
     font-size: 12px;
   }
 
-  /* Responsive carousel controls */
   .carousel-control-prev,
   .carousel-control-next {
     width: 40px;
@@ -489,7 +483,6 @@ body.modal-open {
     right: 10px;
   }
 
-  /* Responsive Font Awesome arrows */
   .carousel-control-prev-icon::before,
   .carousel-control-next-icon::before {
     font-size: 20px;
@@ -519,7 +512,6 @@ body.modal-open {
     font-size: 10px;
   }
 
-  /* Mobile carousel controls */
   .carousel-control-prev,
   .carousel-control-next {
     width: 35px;
@@ -534,7 +526,6 @@ body.modal-open {
     right: 5px;
   }
 
-  /* Mobile Font Awesome arrows */
   .carousel-control-prev-icon::before,
   .carousel-control-next-icon::before {
     font-size: 18px;
