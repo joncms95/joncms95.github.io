@@ -18,8 +18,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet" />
     <!-- CSS -->
     <link href="static/css/base.css" rel="stylesheet" />
-    <link href="static/css/carousel.css" rel="stylesheet" />
-    <link href="static/css/gallery.css" rel="stylesheet" />
+    <link href="static/css/components.css" rel="stylesheet" />
     <!-- JavaScript -->
     <script src="static/script.js" defer></script>
     <title>Jonathan Chan Mun Shum</title>
@@ -627,12 +626,11 @@
                     <button class="filter-btn" data-filter="projects">Projects</button>
                 </div>
 
-
                 <div class="gallery-container">
                     <!-- Experience Section -->
                     <div class="gallery-section">
                         <h3 class="gallery-section-title"><i class="fa fa-briefcase"></i>Experience</h3>
-                        <!-- Company Filters (always visible) -->
+                        <!-- Company Filters -->
                         <div class="inner-filters" id="company-filters">
                             <button class="inner-filter-btn" data-company="sem9">SEM9</button>
                             <button class="inner-filter-btn" data-company="bjd">Berjaya Dragons</button>
@@ -646,10 +644,13 @@
                     <!-- Projects Section -->
                     <div class="gallery-section">
                         <h3 class="gallery-section-title"><i class="fa fa-code"></i>Projects</h3>
-                        <!-- Project Filters (always visible) -->
+                        <!-- Project Filters -->
                         <div class="inner-filters" id="project-filters">
-                            <button class="inner-filter-btn" data-project="mlbb_ban_pick">Mobile Legends Draft Simulator</button>
-                            <button class="inner-filter-btn" data-project="mortgage_calculator">Mortgage Calculator</button>
+                            <button class="inner-filter-btn" data-project="mlbb_ban_pick">
+                                Mobile Legends Draft Simulator
+                            </button>
+                            <button class="inner-filter-btn" data-project="mortgage_calculator">Mortgage
+                                Calculator</button>
                         </div>
                         <div class="gallery-grid" id="projects-gallery-grid">
                             <!-- Project gallery items will be dynamically generated -->

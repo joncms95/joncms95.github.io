@@ -1,4 +1,8 @@
 /* ============================================================================
+   COMPONENTS CSS - Gallery, Carousel, and Modal Styles
+   ============================================================================ */
+
+/* ============================================================================
    VIEW GALLERY HOVER EFFECT
    ============================================================================ */
 .entry {
@@ -28,6 +32,204 @@
   .entry:hover::before {
     opacity: 0;
   }
+}
+
+/* ============================================================================
+   GALLERY STYLES
+   ============================================================================ */
+/* Gallery Container */
+.gallery-section-title {
+  color: #052a5f;
+  border-bottom: 2px solid #052a5f;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.gallery-section-title i {
+  margin-right: 10px;
+  color: #052a5f;
+}
+
+/* Gallery Grid */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+/* Gallery Items */
+.gallery-item {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  background-color: #fff;
+}
+
+.gallery-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.05);
+}
+
+/* Gallery Item Overlay */
+.gallery-item-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent, rgba(5, 42, 95, 0.9));
+  color: white;
+  padding: 20px 15px 15px;
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+}
+
+.gallery-item:hover .gallery-item-overlay {
+  transform: translateY(0);
+}
+
+.gallery-item-overlay h5 {
+  margin: 0 0 5px 0;
+  font-size: 14px;
+  font-weight: bold;
+  color: white;
+}
+
+.gallery-item-overlay p {
+  margin: 0;
+  font-size: 12px;
+  opacity: 0.9;
+}
+
+/* Gallery Filters */
+.gallery-filters,
+.inner-filters {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.inner-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.filter-btn {
+  background-color: #f8f9fa;
+  border: 2px solid #052a5f;
+  color: #052a5f;
+  padding: 8px 20px;
+  border-radius: 25px;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.filter-btn:hover {
+  background-color: #052a5f;
+  color: white;
+  transform: translateY(-2px);
+}
+
+.filter-btn.active {
+  background-color: #052a5f;
+  color: white;
+}
+
+/* Inner Filter Buttons */
+.inner-filter-btn {
+  background-color: white;
+  border: 2px solid #6c757d;
+  color: #6c757d;
+  padding: 6px 16px;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.inner-filter-btn:hover {
+  background-color: #6c757d;
+  color: white;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(108, 117, 125, 0.3);
+}
+
+.inner-filter-btn.active {
+  background-color: #6c757d;
+  border-color: #6c757d;
+  color: white;
+  box-shadow: 0 2px 8px rgba(108, 117, 125, 0.3);
+}
+
+/* Gallery Item States */
+.gallery-item.hidden {
+  display: none;
+}
+
+.gallery-item.visible {
+  display: block;
+  animation: fadeIn 0.5s ease;
+}
+
+/* Gallery Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Single Image Carousel Styles */
+.carousel:not(.carousel-indicators):not(.carousel-control-prev):not(.carousel-control-next) {
+  /* When no navigation elements are present, ensure proper spacing */
+  padding: 0;
+}
+
+.carousel .carousel-inner {
+  /* Ensure single images display properly */
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Gallery item hover effect for fullscreen preview */
+.gallery-item {
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.gallery-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.gallery-item:active {
+  transform: translateY(-2px);
+  transition: transform 0.1s ease;
 }
 
 /* ============================================================================
@@ -248,3 +450,39 @@ body.modal-open {
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(5, 42, 95, 0.3);
 }
+
+/* ============================================================================
+   RESPONSIVE STYLES
+   ============================================================================ */
+@media (max-width: 768px) {
+  .gallery-grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+  }
+
+  .gallery-item img {
+    height: 150px;
+  }
+
+  .gallery-filters,
+  .inner-filters {
+    gap: 10px;
+  }
+
+  .filter-btn,
+  .inner-filter-btn {
+    padding: 6px 16px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .gallery-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .gallery-item img {
+    height: 200px;
+  }
+} 
