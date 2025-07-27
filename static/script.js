@@ -233,7 +233,6 @@ function createModalHTML(modalId, title, images, startIndex) {
                     </div>
                     <div class="modal-body">
                         <div id="${modalId}Carousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="${CONFIG.gallery.carouselInterval}">
-                            ${showNavigation ? `<div class="carousel-indicators" id="${modalId}Indicators"></div>` : ''}
                             <div class="carousel-inner" id="${modalId}Inner"></div>
                             ${showNavigation ? `<div class="carousel-index" id="${modalId}Index">
                                 ${createElegantDotPattern(images.length, startIndex)}
@@ -255,25 +254,18 @@ function createModalHTML(modalId, title, images, startIndex) {
 }
 
 /**
- * Populates carousel with images and indicators
+ * Populates carousel with images
  * @param {string} modalId - Modal ID
  * @param {Array} images - Images array
  * @param {number} startIndex - Starting index
  */
 function populateCarousel(modalId, images, startIndex) {
     const carouselInner = document.getElementById(`${modalId}Inner`);
-    const carouselIndicators = document.getElementById(`${modalId}Indicators`);
 
     images.forEach((image, index) => {
         // Create carousel item
         const carouselItem = createCarouselItem(image, index, startIndex);
         carouselInner.appendChild(carouselItem);
-
-        // Create indicator only if there's more than one image
-        if (images.length > 1 && carouselIndicators) {
-            const indicator = createCarouselIndicator(modalId, index, startIndex);
-            carouselIndicators.appendChild(indicator);
-        }
     });
 }
 
@@ -314,28 +306,7 @@ function createCarouselItem(image, index, startIndex) {
     return carouselItem;
 }
 
-/**
- * Creates a carousel indicator element
- * @param {string} modalId - Modal ID
- * @param {number} index - Indicator index
- * @param {number} startIndex - Starting index
- * @returns {HTMLElement} - Indicator element
- */
-function createCarouselIndicator(modalId, index, startIndex) {
-    const indicator = createElement('button', {
-        type: 'button',
-        'data-bs-target': `#${modalId}Carousel`,
-        'data-bs-slide-to': index,
-        'aria-label': `Slide ${index + 1}`
-    });
 
-    if (index === startIndex) {
-        indicator.classList.add('active');
-        indicator.setAttribute('aria-current', 'true');
-    }
-
-    return indicator;
-}
 
 /**
  * Sets up carousel functionality and event listeners
@@ -660,6 +631,30 @@ function setupGalleryFiltering() {
     const projectFilterButtons = document.querySelectorAll('#project-filters .inner-filter-btn');
     const galleryItems = document.querySelectorAll('.gallery-item');
 
+    // Setup filter button handlers
+    const setupFilterHandler = (buttons, filterType, attributeName) => {
+        buttons.forEach(button => {
+            button.addEventListener('click', () => {
+                const value = button.getAttribute(attributeName);
+                const isActive = button.classList.contains('active');
+
+                if (isActive) {
+                    // If already active, deselect it (show all)
+                    button.classList.remove('active');
+                    GALLERY_FILTER_STATE[filterType] = 'all';
+                } else {
+                    // Select this filter
+                    buttons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                    GALLERY_FILTER_STATE[filterType] = value;
+                }
+                
+                // Apply all filters
+                applyAllFilters(galleryItems);
+            });
+        });
+    };
+
     // Main filter buttons (All, Experience, Projects)
     filterButtons.forEach(button => {
         button.addEventListener('click', () => {
@@ -683,49 +678,9 @@ function setupGalleryFiltering() {
         });
     });
 
-    // Company filter buttons (always visible, only affects experience items)
-    companyFilterButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            const company = button.getAttribute('data-company');
-            const isActive = button.classList.contains('active');
-
-            if (isActive) {
-                // If already active, deselect it (show all companies)
-                button.classList.remove('active');
-                GALLERY_FILTER_STATE.companyFilter = 'all';
-            } else {
-                // Select this company
-                companyFilterButtons.forEach(btn => btn.classList.remove('active'));
-                button.classList.add('active');
-                GALLERY_FILTER_STATE.companyFilter = company;
-            }
-            
-            // Apply all filters
-            applyAllFilters(galleryItems);
-        });
-    });
-
-    // Project filter buttons (always visible, only affects project items)
-    projectFilterButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            const project = button.getAttribute('data-project');
-            const isActive = button.classList.contains('active');
-
-            if (isActive) {
-                // If already active, deselect it (show all projects)
-                button.classList.remove('active');
-                GALLERY_FILTER_STATE.projectFilter = 'all';
-            } else {
-                // Select this project
-                projectFilterButtons.forEach(btn => btn.classList.remove('active'));
-                button.classList.add('active');
-                GALLERY_FILTER_STATE.projectFilter = project;
-            }
-            
-            // Apply all filters
-            applyAllFilters(galleryItems);
-        });
-    });
+    // Setup inner filter handlers
+    setupFilterHandler(companyFilterButtons, 'companyFilter', 'data-company');
+    setupFilterHandler(projectFilterButtons, 'projectFilter', 'data-project');
 }
 
 /**
@@ -811,7 +766,7 @@ function handleSectionHeadersVisibility(filter) {
 function setupGalleryItemInteractions() {
     const galleryItems = document.querySelectorAll('.gallery-item');
 
-    galleryItems.forEach(item => {
+    const setupItemInteraction = (item) => {
         // Add click handler
         item.addEventListener('click', () => {
             openGalleryModal(item, galleryItems);
@@ -827,7 +782,9 @@ function setupGalleryItemInteractions() {
 
         // Initialize as visible
         item.classList.add('visible');
-    });
+    };
+
+    galleryItems.forEach(setupItemInteraction);
 }
 
 /**
@@ -912,14 +869,14 @@ function setupScrollToTop() {
 function openCertificateModal() {
     const modalContent = `
         <div class="modal fade" id="certificateModal" tabindex="-1" aria-labelledby="certificateModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-dialog modal-xl modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="certificateModalLabel">CS50 Introduction to Computer Science</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body text-center">
-                        <img src="static/assets/education/cs50.png" alt="CS50 Certificate" class="img-fluid" style="max-height: 500px;">
+                        <img src="static/assets/education/cs50.png" alt="CS50 Certificate" class="img-fluid">
                         <div class="mt-3">
                             <a href="https://cs50.harvard.edu/certificates/ddcd40ec-a2a7-4c48-b3a5-8fd3ae58a3b4" 
                                target="_blank" class="btn btn-primary">

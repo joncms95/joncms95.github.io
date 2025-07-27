@@ -213,11 +213,6 @@
   }
 }
 
-/* Single Image Carousel Styles */
-.carousel:not(.carousel-indicators):not(.carousel-control-prev):not(.carousel-control-next) {
-  padding: 0;
-}
-
 .carousel .carousel-inner {
   border-radius: 8px;
   overflow: hidden;
@@ -256,19 +251,6 @@ body.modal-open {
   object-fit: contain;
   border-radius: 8px;
   background-color: #f8f9fa;
-}
-
-/* Carousel Indicators */
-.carousel-indicators {
-  bottom: -40px;
-}
-
-.carousel-indicators button {
-  background-color: #052a5f;
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  margin: 0 4px;
 }
 
 /* Carousel Controls */
@@ -385,6 +367,7 @@ body.modal-open {
 #certificateModal .btn-primary {
   background-color: #052a5f;
   border-color: #052a5f;
+  font-size: 14px;
   transition: all 0.3s ease;
 }
 
