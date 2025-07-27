@@ -640,13 +640,24 @@ function createGalleryItem(image, entryConfig, type, key, index) {
     return galleryItem;
 }
 
+// ============================================================================
+// GALLERY FILTER STATE MANAGEMENT
+// ============================================================================
+
+// Global filter state
+const GALLERY_FILTER_STATE = {
+    mainFilter: 'all',
+    companyFilter: 'all',
+    projectFilter: 'all'
+};
+
 /**
  * Sets up gallery filtering functionality
  */
 function setupGalleryFiltering() {
     const filterButtons = document.querySelectorAll('.filter-btn');
-    const companyFilterButtons = document.querySelectorAll('.company-filter-btn');
-    const projectFilterButtons = document.querySelectorAll('.project-filter-btn');
+    const companyFilterButtons = document.querySelectorAll('#company-filters .inner-filter-btn');
+    const projectFilterButtons = document.querySelectorAll('#project-filters .inner-filter-btn');
     const galleryItems = document.querySelectorAll('.gallery-item');
 
     // Main filter buttons (All, Experience, Projects)
@@ -660,12 +671,15 @@ function setupGalleryFiltering() {
                 filterButtons.forEach(btn => btn.classList.remove('active'));
                 const allBtn = Array.from(filterButtons).find(btn => btn.getAttribute('data-filter') === 'all');
                 if (allBtn) allBtn.classList.add('active');
-                filterGalleryItems('all', galleryItems);
+                GALLERY_FILTER_STATE.mainFilter = 'all';
             } else {
                 filterButtons.forEach(btn => btn.classList.remove('active'));
                 button.classList.add('active');
-                filterGalleryItems(filter, galleryItems);
+                GALLERY_FILTER_STATE.mainFilter = filter;
             }
+            
+            // Apply all filters
+            applyAllFilters(galleryItems);
         });
     });
 
@@ -675,17 +689,19 @@ function setupGalleryFiltering() {
             const company = button.getAttribute('data-company');
             const isActive = button.classList.contains('active');
 
-            if (isActive && company !== 'all') {
-                // Remove active from all, set only All Companies as active
-                companyFilterButtons.forEach(btn => btn.classList.remove('active'));
-                const allCompanyBtn = Array.from(companyFilterButtons).find(btn => btn.getAttribute('data-company') === 'all');
-                if (allCompanyBtn) allCompanyBtn.classList.add('active');
-                filterGalleryItemsByCompany('all', galleryItems);
+            if (isActive) {
+                // If already active, deselect it (show all companies)
+                button.classList.remove('active');
+                GALLERY_FILTER_STATE.companyFilter = 'all';
             } else {
+                // Select this company
                 companyFilterButtons.forEach(btn => btn.classList.remove('active'));
                 button.classList.add('active');
-                filterGalleryItemsByCompany(company, galleryItems);
+                GALLERY_FILTER_STATE.companyFilter = company;
             }
+            
+            // Apply all filters
+            applyAllFilters(galleryItems);
         });
     });
 
@@ -695,32 +711,54 @@ function setupGalleryFiltering() {
             const project = button.getAttribute('data-project');
             const isActive = button.classList.contains('active');
 
-            if (isActive && project !== 'all') {
-                // Remove active from all, set only All Projects as active
-                projectFilterButtons.forEach(btn => btn.classList.remove('active'));
-                const allProjectBtn = Array.from(projectFilterButtons).find(btn => btn.getAttribute('data-project') === 'all');
-                if (allProjectBtn) allProjectBtn.classList.add('active');
-                filterGalleryItemsByProject('all', galleryItems);
+            if (isActive) {
+                // If already active, deselect it (show all projects)
+                button.classList.remove('active');
+                GALLERY_FILTER_STATE.projectFilter = 'all';
             } else {
+                // Select this project
                 projectFilterButtons.forEach(btn => btn.classList.remove('active'));
                 button.classList.add('active');
-                filterGalleryItemsByProject(project, galleryItems);
+                GALLERY_FILTER_STATE.projectFilter = project;
             }
+            
+            // Apply all filters
+            applyAllFilters(galleryItems);
         });
     });
 }
 
 /**
- * Filters gallery items based on selected category
- * @param {string} filter - Filter category
+ * Applies all filters together based on current filter state
  * @param {NodeList} galleryItems - Gallery item elements
  */
-function filterGalleryItems(filter, galleryItems) {
-    // Filter gallery items
+function applyAllFilters(galleryItems) {
+    const { mainFilter, companyFilter, projectFilter } = GALLERY_FILTER_STATE;
+
     galleryItems.forEach(item => {
         const category = item.getAttribute('data-category');
+        const itemCompany = item.getAttribute('data-company');
+        const itemProject = item.getAttribute('data-project');
 
-        if (filter === 'all' || category === filter) {
+        let shouldShow = true;
+
+        // Apply main filter (All, Experience, Projects)
+        if (mainFilter !== 'all' && category !== mainFilter) {
+            shouldShow = false;
+        }
+
+        // Apply company filter (only affects experience items)
+        if (shouldShow && category === 'experience' && companyFilter !== 'all' && itemCompany !== companyFilter) {
+            shouldShow = false;
+        }
+
+        // Apply project filter (only affects project items)
+        if (shouldShow && category === 'projects' && projectFilter !== 'all' && itemProject !== projectFilter) {
+            shouldShow = false;
+        }
+
+        // Update item visibility
+        if (shouldShow) {
             item.classList.remove('hidden');
             item.classList.add('visible');
         } else {
@@ -730,61 +768,7 @@ function filterGalleryItems(filter, galleryItems) {
     });
 
     // Handle section headers visibility
-    handleSectionHeadersVisibility(filter);
-}
-
-/**
- * Filters gallery items by company (only for experience items)
- * @param {string} company - Company filter
- * @param {NodeList} galleryItems - Gallery item elements
- */
-function filterGalleryItemsByCompany(company, galleryItems) {
-    galleryItems.forEach(item => {
-        const category = item.getAttribute('data-category');
-        const itemCompany = item.getAttribute('data-company');
-
-        // Only apply company filter to experience items
-        if (category === 'experience') {
-            if (company === 'all' || itemCompany === company) {
-                item.classList.remove('hidden');
-                item.classList.add('visible');
-            } else {
-                item.classList.add('hidden');
-                item.classList.remove('visible');
-            }
-        }
-        // Project items remain unaffected by company filter
-    });
-
-    // Handle section headers visibility for company filter
-    handleSectionHeadersVisibility('experience');
-}
-
-/**
- * Filters gallery items by project (only for project items)
- * @param {string} project - Project filter
- * @param {NodeList} galleryItems - Gallery item elements
- */
-function filterGalleryItemsByProject(project, galleryItems) {
-    galleryItems.forEach(item => {
-        const category = item.getAttribute('data-category');
-        const itemProject = item.getAttribute('data-project');
-
-        // Only apply project filter to project items
-        if (category === 'projects') {
-            if (project === 'all' || itemProject === project) {
-                item.classList.remove('hidden');
-                item.classList.add('visible');
-            } else {
-                item.classList.add('hidden');
-                item.classList.remove('visible');
-            }
-        }
-        // Experience items remain unaffected by project filter
-    });
-
-    // Handle section headers visibility for project filter
-    handleSectionHeadersVisibility('projects');
+    handleSectionHeadersVisibility(mainFilter);
 }
 
 /**
