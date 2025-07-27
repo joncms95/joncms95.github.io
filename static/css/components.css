@@ -78,6 +78,11 @@
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
 }
 
+.gallery-item:active {
+  transform: translateY(-2px);
+  transition: transform 0.1s ease;
+}
+
 .gallery-item img {
   width: 100%;
   height: 200px;
@@ -127,14 +132,26 @@
   margin-bottom: 20px;
 }
 
-.filter-btn {
-  background-color: #f8f9fa;
-  border: 2px solid #052a5f;
-  color: #052a5f;
-  padding: 8px 20px;
+.inner-filters {
+  flex-wrap: wrap;
+}
+
+/* Filter Buttons - Base Styles */
+.filter-btn,
+.inner-filter-btn {
   border-radius: 25px;
   transition: all 0.3s ease;
   font-weight: 500;
+  cursor: pointer;
+  border: 2px solid;
+}
+
+/* Main Filter Buttons */
+.filter-btn {
+  background-color: #f8f9fa;
+  border-color: #052a5f;
+  color: #052a5f;
+  padding: 8px 20px;
   font-size: 14px;
 }
 
@@ -149,38 +166,29 @@
   color: white;
 }
 
-/* Inner Filter */
-.inner-filters {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 15px;
-  margin-bottom: 20px;
-}
-
+/* Inner Filter Buttons - Enhanced Colors */
 .inner-filter-btn {
-  background-color: white;
-  border: 2px solid #6c757d;
-  color: #6c757d;
+  background-color: #ffffff;
+  border-color: #2c3e50;
+  color: #2c3e50;
   padding: 6px 16px;
-  border-radius: 20px;
-  transition: all 0.3s ease;
-  font-weight: 500;
   font-size: 13px;
-  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .inner-filter-btn:hover {
-  background-color: #6c757d;
+  background-color: #34495e;
+  border-color: #34495e;
   color: white;
   transform: translateY(-1px);
-  box-shadow: 0 2px 8px rgba(108, 117, 125, 0.3);
+  box-shadow: 0 3px 8px rgba(52, 73, 94, 0.3);
 }
 
 .inner-filter-btn.active {
-  background-color: #6c757d;
-  border-color: #6c757d;
+  background-color: #2c3e50;
+  border-color: #2c3e50;
   color: white;
-  box-shadow: 0 2px 8px rgba(108, 117, 125, 0.3);
+  box-shadow: 0 3px 8px rgba(44, 62, 80, 0.4);
 }
 
 /* Gallery Item States */
@@ -199,7 +207,6 @@
     opacity: 0;
     transform: translateY(20px);
   }
-
   to {
     opacity: 1;
     transform: translateY(0);
@@ -208,36 +215,18 @@
 
 /* Single Image Carousel Styles */
 .carousel:not(.carousel-indicators):not(.carousel-control-prev):not(.carousel-control-next) {
-  /* When no navigation elements are present, ensure proper spacing */
   padding: 0;
 }
 
 .carousel .carousel-inner {
-  /* Ensure single images display properly */
   border-radius: 8px;
   overflow: hidden;
-}
-
-/* Gallery item hover effect for fullscreen preview */
-.gallery-item {
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.gallery-item:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-}
-
-.gallery-item:active {
-  transform: translateY(-2px);
-  transition: transform 0.1s ease;
 }
 
 /* ============================================================================
    CAROUSEL STYLES
    ============================================================================ */
-/* Remove modal-open padding */
+/* Modal Styles */
 body.modal-open {
   padding-right: 0 !important;
 }
@@ -267,19 +256,6 @@ body.modal-open {
   object-fit: contain;
   border-radius: 8px;
   background-color: #f8f9fa;
-}
-
-/* Responsive carousel */
-@media (max-width: 768px) {
-  .carousel-item img {
-    height: 400px;
-  }
-}
-
-@media (max-width: 480px) {
-  .carousel-item img {
-    height: 300px;
-  }
 }
 
 /* Carousel Indicators */
@@ -328,39 +304,6 @@ body.modal-open {
   font-size: 14px;
   opacity: 0.9;
   color: white;
-}
-
-/* Responsive carousel caption */
-@media (max-width: 768px) {
-  .carousel-caption {
-    padding: 10px;
-    bottom: 10px;
-  }
-
-  .carousel-caption h5 {
-    font-size: 14px;
-    margin: 0 0 3px 0;
-  }
-
-  .carousel-caption p {
-    font-size: 12px;
-  }
-}
-
-@media (max-width: 480px) {
-  .carousel-caption {
-    padding: 8px;
-    bottom: 5px;
-  }
-
-  .carousel-caption h5 {
-    font-size: 12px;
-    margin: 0 0 2px 0;
-  }
-
-  .carousel-caption p {
-    font-size: 10px;
-  }
 }
 
 /* ============================================================================
@@ -421,14 +364,12 @@ body.modal-open {
   background: #ccc;
 }
 
-/* For 5 or fewer images, make all dots same size */
 .carousel-index-dot.same-size {
   width: 8px;
   height: 8px;
   background: #666;
 }
 
-/* Number indicator */
 .carousel-index-number {
   font-size: 11px;
   font-weight: 500;
@@ -477,6 +418,29 @@ body.modal-open {
     padding: 6px 16px;
     font-size: 13px;
   }
+
+  .modal-header {
+    padding: 7px 15px;
+    text-wrap: nowrap;
+  }
+
+  .carousel-item img {
+    height: 400px;
+  }
+
+  .carousel-caption {
+    padding: 10px;
+    bottom: 10px;
+  }
+
+  .carousel-caption h5 {
+    font-size: 14px;
+    margin: 0 0 3px 0;
+  }
+
+  .carousel-caption p {
+    font-size: 12px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -487,5 +451,23 @@ body.modal-open {
 
   .gallery-item img {
     height: 200px;
+  }
+
+  .carousel-item img {
+    height: 300px;
+  }
+
+  .carousel-caption {
+    padding: 8px;
+    bottom: 5px;
+  }
+
+  .carousel-caption h5 {
+    font-size: 12px;
+    margin: 0 0 2px 0;
+  }
+
+  .carousel-caption p {
+    font-size: 10px;
   }
 }
