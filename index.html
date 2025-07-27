@@ -626,10 +626,20 @@
                     <button class="filter-btn" data-filter="experience">Experience</button>
                     <button class="filter-btn" data-filter="projects">Projects</button>
                 </div>
+
+
                 <div class="gallery-container">
                     <!-- Experience Section -->
                     <div class="gallery-section">
                         <h3 class="gallery-section-title"><i class="fa fa-briefcase"></i>Experience</h3>
+                        <!-- Company Filters (always visible) -->
+                        <div class="company-filters" id="company-filters">
+                            <button class="company-filter-btn active" data-company="all">All</button>
+                            <button class="company-filter-btn" data-company="sem9">SEM9</button>
+                            <button class="company-filter-btn" data-company="bjd">Berjaya Dragons</button>
+                            <button class="company-filter-btn" data-company="fdg">Fire Dragoon</button>
+                            <button class="company-filter-btn" data-company="kpmg">KPMG</button>
+                        </div>
                         <div class="gallery-grid" id="experience-gallery-grid">
                             <!-- Experience gallery items will be dynamically generated -->
                         </div>
@@ -637,6 +647,12 @@
                     <!-- Projects Section -->
                     <div class="gallery-section">
                         <h3 class="gallery-section-title"><i class="fa fa-code"></i>Projects</h3>
+                        <!-- Project Filters (always visible) -->
+                        <div class="project-filters" id="project-filters">
+                            <button class="project-filter-btn active" data-project="all">All</button>
+                            <button class="project-filter-btn" data-project="mlbb_ban_pick">Mobile Legends Draft Simulator</button>
+                            <button class="project-filter-btn" data-project="mortgage_calculator">Mortgage Calculator</button>
+                        </div>
                         <div class="gallery-grid" id="projects-gallery-grid">
                             <!-- Project gallery items will be dynamically generated -->
                         </div>

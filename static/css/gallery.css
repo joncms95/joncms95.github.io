@@ -6,7 +6,6 @@
   color: #052a5f;
   border-bottom: 2px solid #052a5f;
   padding-bottom: 10px;
-  margin-bottom: 20px;
   font-size: 20px;
   font-weight: bold;
 }
@@ -111,6 +110,78 @@
   color: white;
 }
 
+/* Company Filters */
+.company-filters {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  padding: 10px;
+}
+
+.company-filter-btn {
+  background-color: white;
+  border: 2px solid #6c757d;
+  color: #6c757d;
+  padding: 6px 16px;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.company-filter-btn:hover {
+  background-color: #6c757d;
+  color: white;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(108, 117, 125, 0.3);
+}
+
+.company-filter-btn.active {
+  background-color: #8c929b;
+  color: white;
+  box-shadow: 0 2px 8px rgba(5, 42, 95, 0.3);
+}
+
+/* Project Filters */
+.project-filters {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: #f8f9fa;
+  border-radius: 12px;
+  border: 1px solid #e9ecef;
+  margin-top: 15px;
+}
+
+.project-filter-btn {
+  background-color: white;
+  border: 2px solid #6c757d;
+  color: #6c757d;
+  padding: 6px 16px;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.project-filter-btn:hover {
+  background-color: #6c757d;
+  color: white;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(108, 117, 125, 0.3);
+}
+
+.project-filter-btn.active {
+  background-color: #052a5f;
+  border-color: #052a5f;
+  color: white;
+  box-shadow: 0 2px 8px rgba(5, 42, 95, 0.3);
+}
+
 /* Gallery Item States */
 .gallery-item.hidden {
   display: none;
@@ -168,6 +239,26 @@
     padding: 6px 16px;
     font-size: 13px;
   }
+
+  .company-filters {
+    gap: 8px;
+    padding: 12px;
+  }
+
+  .company-filter-btn {
+    padding: 5px 12px;
+    font-size: 12px;
+  }
+
+  .project-filters {
+    gap: 8px;
+    padding: 12px;
+  }
+
+  .project-filter-btn {
+    padding: 5px 12px;
+    font-size: 12px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -178,5 +269,25 @@
 
   .gallery-item img {
     height: 200px;
+  }
+
+  .company-filters {
+    gap: 6px;
+    padding: 10px;
+  }
+
+  .company-filter-btn {
+    padding: 4px 10px;
+    font-size: 11px;
+  }
+
+  .project-filters {
+    gap: 6px;
+    padding: 10px;
+  }
+
+  .project-filter-btn {
+    padding: 4px 10px;
+    font-size: 11px;
   }
 }

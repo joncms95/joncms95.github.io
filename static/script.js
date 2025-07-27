@@ -645,8 +645,11 @@ function createGalleryItem(image, entryConfig, type, key, index) {
  */
 function setupGalleryFiltering() {
     const filterButtons = document.querySelectorAll('.filter-btn');
+    const companyFilterButtons = document.querySelectorAll('.company-filter-btn');
+    const projectFilterButtons = document.querySelectorAll('.project-filter-btn');
     const galleryItems = document.querySelectorAll('.gallery-item');
 
+    // Main filter buttons (All, Experience, Projects)
     filterButtons.forEach(button => {
         button.addEventListener('click', () => {
             const filter = button.getAttribute('data-filter');
@@ -662,6 +665,46 @@ function setupGalleryFiltering() {
                 filterButtons.forEach(btn => btn.classList.remove('active'));
                 button.classList.add('active');
                 filterGalleryItems(filter, galleryItems);
+            }
+        });
+    });
+
+    // Company filter buttons (always visible, only affects experience items)
+    companyFilterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const company = button.getAttribute('data-company');
+            const isActive = button.classList.contains('active');
+
+            if (isActive && company !== 'all') {
+                // Remove active from all, set only All Companies as active
+                companyFilterButtons.forEach(btn => btn.classList.remove('active'));
+                const allCompanyBtn = Array.from(companyFilterButtons).find(btn => btn.getAttribute('data-company') === 'all');
+                if (allCompanyBtn) allCompanyBtn.classList.add('active');
+                filterGalleryItemsByCompany('all', galleryItems);
+            } else {
+                companyFilterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                filterGalleryItemsByCompany(company, galleryItems);
+            }
+        });
+    });
+
+    // Project filter buttons (always visible, only affects project items)
+    projectFilterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const project = button.getAttribute('data-project');
+            const isActive = button.classList.contains('active');
+
+            if (isActive && project !== 'all') {
+                // Remove active from all, set only All Projects as active
+                projectFilterButtons.forEach(btn => btn.classList.remove('active'));
+                const allProjectBtn = Array.from(projectFilterButtons).find(btn => btn.getAttribute('data-project') === 'all');
+                if (allProjectBtn) allProjectBtn.classList.add('active');
+                filterGalleryItemsByProject('all', galleryItems);
+            } else {
+                projectFilterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                filterGalleryItemsByProject(project, galleryItems);
             }
         });
     });
@@ -688,6 +731,60 @@ function filterGalleryItems(filter, galleryItems) {
 
     // Handle section headers visibility
     handleSectionHeadersVisibility(filter);
+}
+
+/**
+ * Filters gallery items by company (only for experience items)
+ * @param {string} company - Company filter
+ * @param {NodeList} galleryItems - Gallery item elements
+ */
+function filterGalleryItemsByCompany(company, galleryItems) {
+    galleryItems.forEach(item => {
+        const category = item.getAttribute('data-category');
+        const itemCompany = item.getAttribute('data-company');
+
+        // Only apply company filter to experience items
+        if (category === 'experience') {
+            if (company === 'all' || itemCompany === company) {
+                item.classList.remove('hidden');
+                item.classList.add('visible');
+            } else {
+                item.classList.add('hidden');
+                item.classList.remove('visible');
+            }
+        }
+        // Project items remain unaffected by company filter
+    });
+
+    // Handle section headers visibility for company filter
+    handleSectionHeadersVisibility('experience');
+}
+
+/**
+ * Filters gallery items by project (only for project items)
+ * @param {string} project - Project filter
+ * @param {NodeList} galleryItems - Gallery item elements
+ */
+function filterGalleryItemsByProject(project, galleryItems) {
+    galleryItems.forEach(item => {
+        const category = item.getAttribute('data-category');
+        const itemProject = item.getAttribute('data-project');
+
+        // Only apply project filter to project items
+        if (category === 'projects') {
+            if (project === 'all' || itemProject === project) {
+                item.classList.remove('hidden');
+                item.classList.add('visible');
+            } else {
+                item.classList.add('hidden');
+                item.classList.remove('visible');
+            }
+        }
+        // Experience items remain unaffected by project filter
+    });
+
+    // Handle section headers visibility for project filter
+    handleSectionHeadersVisibility('projects');
 }
 
 /**
