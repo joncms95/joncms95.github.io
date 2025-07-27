@@ -10,7 +10,9 @@
 }
 
 .entry::before {
-  content: "🖼️ View Gallery";
+  content: "\f03e   View Gallery";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
   position: absolute;
   right: 15px;
   background-color: #114794;
@@ -125,13 +127,6 @@
   margin-bottom: 20px;
 }
 
-.inner-filters {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 15px;
-  margin-bottom: 20px;
-}
-
 .filter-btn {
   background-color: #f8f9fa;
   border: 2px solid #052a5f;
@@ -154,7 +149,14 @@
   color: white;
 }
 
-/* Inner Filter Buttons */
+/* Inner Filter */
+.inner-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
 .inner-filter-btn {
   background-color: white;
   border: 2px solid #6c757d;
@@ -251,6 +253,7 @@ body.modal-open {
   color: white;
   border-bottom: none;
   border-radius: 12px 12px 0 0;
+  padding: 10px 15px;
 }
 
 .modal-header .btn-close {
@@ -485,4 +488,4 @@ body.modal-open {
   .gallery-item img {
     height: 200px;
   }
-} 
+}
