@@ -126,7 +126,13 @@ const PROJECT_CONFIG = {
                 src: 'static/assets/projects/mlbb_ban_pick/draft.png',
                 title: 'Draft Page',
                 description: 'Real-time ban pick simulation'
-            }
+            },
+            {
+                src: 'static/assets/projects/mlbb_ban_pick/preview.mp4',
+                title: 'Preview Video',
+                description: 'Draft simulator preview',
+                type: 'video'
+            },
         ]
     },
     'mortgage_calculator': {
@@ -271,7 +277,7 @@ function populateCarousel(modalId, images, startIndex) {
 
 /**
  * Creates a carousel item element
- * @param {Object} image - Image object
+ * @param {Object} image - Image or video object
  * @param {number} index - Image index
  * @param {number} startIndex - Starting index
  * @returns {HTMLElement} - Carousel item element
@@ -281,13 +287,32 @@ function createCarouselItem(image, index, startIndex) {
         className: `carousel-item ${index === startIndex ? 'active' : ''}`
     });
 
-    const img = createElement('img', {
-        src: image.src,
-        className: 'd-block w-100',
-        alt: image.title || 'Gallery image'
-    });
+    // Check if this is a video
+    if (image.type === 'video' || image.src.endsWith('.mp4') || image.src.endsWith('.webm') || image.src.endsWith('.ogg')) {
+        const video = createElement('video', {
+            className: 'd-block w-100',
+            controls: true,
+            autoplay: true,
+            muted: true,
+        });
 
-    carouselItem.appendChild(img);
+        const source = createElement('source', {
+            src: image.src,
+            type: 'video/mp4'
+        });
+
+        video.appendChild(source);
+        carouselItem.appendChild(video);
+    } else {
+        // Handle as image
+        const img = createElement('img', {
+            src: image.src,
+            className: 'd-block w-100',
+            alt: image.title || 'Gallery image'
+        });
+
+        carouselItem.appendChild(img);
+    }
 
     // Add caption if title or description exists
     if (image.title || image.description) {
@@ -591,10 +616,24 @@ function createGalleryItem(image, entryConfig, type, key, index) {
         role: 'button'
     });
 
-    const img = createElement('img', {
-        src: image.src,
-        alt: image.title || `${entryConfig.name} - ${index + 1}`,
-    });
+    // Check if this is a video
+    if (image.type === 'video' || image.src.endsWith('.mp4') || image.src.endsWith('.webm') || image.src.endsWith('.ogg')) {
+        // Create a video element that uses the same styling as images
+        const video = createElement('video', {
+            src: image.src,
+            alt: image.title || `${entryConfig.name} - ${index + 1}`,
+            muted: true,
+            preload: 'metadata'
+        });
+        galleryItem.appendChild(video);
+    } else {
+        // Handle as image
+        const img = createElement('img', {
+            src: image.src,
+            alt: image.title || `${entryConfig.name} - ${index + 1}`,
+        });
+        galleryItem.appendChild(img);
+    }
 
     const overlay = createElement('div', {
         className: 'gallery-item-overlay'
@@ -605,7 +644,6 @@ function createGalleryItem(image, entryConfig, type, key, index) {
 
     overlay.appendChild(title);
     overlay.appendChild(description);
-    galleryItem.appendChild(img);
     galleryItem.appendChild(overlay);
 
     return galleryItem;
@@ -648,7 +686,7 @@ function setupGalleryFiltering() {
                     button.classList.add('active');
                     GALLERY_FILTER_STATE[filterType] = value;
                 }
-                
+
                 // Apply all filters
                 applyAllFilters(galleryItems);
             });
@@ -672,7 +710,7 @@ function setupGalleryFiltering() {
                 button.classList.add('active');
                 GALLERY_FILTER_STATE.mainFilter = filter;
             }
-            
+
             // Apply all filters
             applyAllFilters(galleryItems);
         });
@@ -800,11 +838,37 @@ function openGalleryModal(clickedItem, allItems) {
     const currentIndex = visibleItems.indexOf(clickedItem);
 
     // Create gallery modal
-    const galleryImages = visibleItems.map(item => ({
-        src: item.querySelector('img').src,
-        title: item.querySelector('.gallery-item-overlay h5').textContent,
-        description: item.querySelector('.gallery-item-overlay p').textContent
-    }));
+    const galleryImages = visibleItems.map(item => {
+        // Check if it's a video or image
+        const img = item.querySelector('img');
+        const video = item.querySelector('video');
+
+        let src, type;
+        if (video) {
+            src = video.src;
+            type = 'video';
+        } else if (img) {
+            src = img.src;
+            type = 'image';
+        } else {
+            // Fallback - try to get from video thumbnail container
+            const videoThumbnail = item.querySelector('.video-thumbnail-container video');
+            if (videoThumbnail) {
+                src = videoThumbnail.src;
+                type = 'video';
+            } else {
+                src = '';
+                type = 'image';
+            }
+        }
+
+        return {
+            src: src,
+            title: item.querySelector('.gallery-item-overlay h5').textContent,
+            description: item.querySelector('.gallery-item-overlay p').textContent,
+            type: type
+        };
+    });
 
     createCarouselModal('galleryImageModal', 'Gallery', galleryImages, currentIndex);
 }
