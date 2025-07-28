@@ -288,12 +288,13 @@ function createCarouselItem(image, index, startIndex) {
     });
 
     // Check if this is a video
-    if (image.type === 'video' || image.src.endsWith('.mp4') || image.src.endsWith('.webm') || image.src.endsWith('.ogg')) {
+    if (image.type === 'video' || image.src.endsWith('.mp4')) {
         const video = createElement('video', {
             className: 'd-block w-100',
             controls: true,
             autoplay: true,
             muted: true,
+            loop: true,
         });
 
         const source = createElement('source', {
@@ -330,8 +331,6 @@ function createCarouselItem(image, index, startIndex) {
 
     return carouselItem;
 }
-
-
 
 /**
  * Sets up carousel functionality and event listeners
@@ -617,7 +616,7 @@ function createGalleryItem(image, entryConfig, type, key, index) {
     });
 
     // Check if this is a video
-    if (image.type === 'video' || image.src.endsWith('.mp4') || image.src.endsWith('.webm') || image.src.endsWith('.ogg')) {
+    if (image.type === 'video' || image.src.endsWith('.mp4')) {
         // Create a video element that uses the same styling as images
         const video = createElement('video', {
             src: image.src,
@@ -851,15 +850,8 @@ function openGalleryModal(clickedItem, allItems) {
             src = img.src;
             type = 'image';
         } else {
-            // Fallback - try to get from video thumbnail container
-            const videoThumbnail = item.querySelector('.video-thumbnail-container video');
-            if (videoThumbnail) {
-                src = videoThumbnail.src;
-                type = 'video';
-            } else {
-                src = '';
-                type = 'image';
-            }
+            src = '';
+            type = 'image';
         }
 
         return {
