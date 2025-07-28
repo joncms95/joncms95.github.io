@@ -346,7 +346,9 @@ function setupCarouselFunctionality(modalId, images) {
         // Ensure carousel starts at the correct index
         setTimeout(() => {
             new bootstrap.Carousel(carouselElement, {
-                interval: CONFIG.gallery.carouselInterval
+                interval: CONFIG.gallery.carouselInterval,
+                keyboard: true,
+                pause: 'hover'
             });
         }, 100);
 
