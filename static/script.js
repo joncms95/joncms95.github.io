@@ -115,12 +115,12 @@ const PROJECT_CONFIG = {
             {
                 src: 'static/assets/projects/mlbb_ban_pick/create.png',
                 title: 'Create Page',
-                description: 'Draft creation interface for team setup'
+                description: 'Landing page for team setup and settings'
             },
             {
                 src: 'static/assets/projects/mlbb_ban_pick/links.png',
                 title: 'Links Page',
-                description: 'Share team and spectator links'
+                description: 'Draft links for both teams and spectator'
             },
             {
                 src: 'static/assets/projects/mlbb_ban_pick/draft.png',
