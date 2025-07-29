@@ -207,11 +207,11 @@ function createCarouselModal(modalId, title, images, startIndex = 0) {
 
     // Get modal element
     const modalElement = document.getElementById(modalId);
-    
+
     // Show modal first
     const modal = new bootstrap.Modal(modalElement);
     modal.show();
-    
+
     // Setup carousel functionality after modal is shown
     modalElement.addEventListener('shown.bs.modal', function () {
         setupCarouselFunctionality(modalId, images);
@@ -296,6 +296,10 @@ function createCarouselItem(image, index, startIndex) {
     if (image.type === 'video' || image.src.endsWith('.mp4')) {
         const video = createElement('video', {
             className: 'd-block w-100',
+            muted: true,
+            preload: 'metadata',
+            loop: true,
+            playsinline: true
         });
 
         const source = createElement('source', {
@@ -310,7 +314,7 @@ function createCarouselItem(image, index, startIndex) {
         const img = createElement('img', {
             src: image.src,
             className: 'd-block w-100',
-            alt: image.title || 'Gallery image'
+            alt: image.title || 'Gallery Image'
         });
 
         carouselItem.appendChild(img);
@@ -344,10 +348,8 @@ function setupCarouselFunctionality(modalId, images) {
 
     if (images.length > 1) {
         new bootstrap.Carousel(carouselElement, {
-            interval: CONFIG.gallery.carouselInterval,
+            interval: false, // Disable auto-advance
             keyboard: true,
-            touch: true,
-            pause: false
         });
 
         if (indexElement) {
@@ -356,17 +358,59 @@ function setupCarouselFunctionality(modalId, images) {
             });
         }
 
-        carouselElement.addEventListener('mouseenter', () => {
-            const carousel = bootstrap.Carousel.getInstance(carouselElement);
-            carousel.pause();
-        });
-        
-        carouselElement.addEventListener('mouseleave', () => {
-            const carousel = bootstrap.Carousel.getInstance(carouselElement);
-            carousel.cycle();
+        // Handle video playback on carousel slide
+        carouselElement.addEventListener('slide.bs.carousel', function (event) {
+            handleVideoPlayback(carouselElement, event.from, event.to);
         });
     }
+
+    // Handle initial video on modal open
+    setTimeout(() => {
+        const activeItem = carouselElement.querySelector('.carousel-item.active');
+        if (activeItem) {
+            const video = activeItem.querySelector('video');
+            if (video) {
+                video.play().catch(error => {
+                    console.log('Initial video autoplay prevented:', error);
+                });
+            }
+        }
+    }, 500);
 }
+
+/**
+ * Handles video playback when carousel slides
+ * @param {HTMLElement} carouselElement - Carousel element
+ * @param {number} fromIndex - Previous slide index
+ * @param {number} toIndex - New slide index
+ */
+function handleVideoPlayback(carouselElement, fromIndex, toIndex) {
+    const carouselItems = carouselElement.querySelectorAll('.carousel-item');
+
+    // Pause all videos when sliding
+    carouselItems.forEach((item, index) => {
+        const video = item.querySelector('video');
+        if (video) {
+            video.pause();
+            video.currentTime = 0;
+        }
+    });
+
+    // Auto-play video on the new active slide if it exists
+    const activeItem = carouselItems[toIndex];
+    if (activeItem) {
+        const video = activeItem.querySelector('video');
+        if (video) {
+            setTimeout(() => {
+                video.play().catch(error => {
+                    console.log('Video autoplay prevented:', error);
+                });
+            }, 300);
+        }
+    }
+}
+
+
 
 // ============================================================================
 // DOT PATTERN NAVIGATION
@@ -543,14 +587,6 @@ function setupEntryInteractions(entry, entryConfig, type) {
     entry.addEventListener('click', () => {
         createCarouselModal(modalId, title, entryConfig.images);
     });
-
-    // // Add keyboard accessibility
-    // entry.addEventListener('keydown', (e) => {
-    //     if (e.key === 'Enter' || e.key === ' ') {
-    //         e.preventDefault();
-    //         createCarouselModal(modalId, title, entryConfig.images);
-    //     }
-    // });
 
     // Make entry focusable
     entry.setAttribute('tabindex', '0');
@@ -816,14 +852,6 @@ function setupGalleryItemInteractions() {
         // Add click handler
         item.addEventListener('click', () => {
             openGalleryModal(item, galleryItems);
-        });
-
-        // Add keyboard accessibility
-        item.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                openGalleryModal(item, galleryItems);
-            }
         });
 
         // Initialize as visible
