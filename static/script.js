@@ -12,7 +12,6 @@
 const CONFIG = {
     gallery: {
         maxDots: 5,
-        carouselInterval: 5000,
     },
 };
 
@@ -178,6 +177,24 @@ function createElement(tag, attributes = {}, content = '') {
     return element;
 }
 
+/**
+ * Debounce function to limit the rate at which a function can fire
+ * @param {Function} func - Function to debounce
+ * @param {number} wait - Time to wait in milliseconds
+ * @returns {Function} - Debounced function
+ */
+function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+}
+
 // ============================================================================
 // CAROUSEL MODAL MANAGEMENT
 // ============================================================================
@@ -205,10 +222,8 @@ function createCarouselModal(modalId, title, images, startIndex = 0) {
     // Populate carousel
     populateCarousel(modalId, images, startIndex);
 
-    // Get modal element
+    // Get modal element and show it
     const modalElement = document.getElementById(modalId);
-
-    // Show modal first
     const modal = new bootstrap.Modal(modalElement);
     modal.show();
 
@@ -246,7 +261,7 @@ function createModalHTML(modalId, title, images, startIndex) {
                         <div id="${modalId}Carousel" class="carousel slide">
                             <div class="carousel-inner" id="${modalId}Inner"></div>
                             ${showNavigation ? `<div class="carousel-index" id="${modalId}Index">
-                                ${createElegantDotPattern(images.length, startIndex)}
+                                ${createDotPattern(images.length, startIndex)}
                             </div>` : ''}
                             ${showNavigation ? `<button class="carousel-control-prev" type="button" data-bs-target="#${modalId}Carousel" data-bs-slide="prev">
                                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -354,7 +369,7 @@ function setupCarouselFunctionality(modalId, images) {
 
         if (indexElement) {
             carouselElement.addEventListener('slide.bs.carousel', function (event) {
-                updateElegantDotPattern(indexElement, images.length, event.to);
+                updateDotPattern(indexElement, images.length, event.to);
             });
         }
 
@@ -370,9 +385,7 @@ function setupCarouselFunctionality(modalId, images) {
         if (activeItem) {
             const video = activeItem.querySelector('video');
             if (video) {
-                video.play().catch(error => {
-                    console.log('Initial video autoplay prevented:', error);
-                });
+                video.play()
             }
         }
     }, 500);
@@ -402,15 +415,11 @@ function handleVideoPlayback(carouselElement, fromIndex, toIndex) {
         const video = activeItem.querySelector('video');
         if (video) {
             setTimeout(() => {
-                video.play().catch(error => {
-                    console.log('Video autoplay prevented:', error);
-                });
+                video.play()
             }, 300);
         }
     }
 }
-
-
 
 // ============================================================================
 // DOT PATTERN NAVIGATION
@@ -422,7 +431,7 @@ function handleVideoPlayback(carouselElement, fromIndex, toIndex) {
  * @param {number} currentIndex - Current active index
  * @returns {string} HTML string for dot pattern
  */
-function createElegantDotPattern(totalImages, currentIndex) {
+function createDotPattern(totalImages, currentIndex) {
     if (totalImages <= CONFIG.gallery.maxDots) {
         return createSimpleDotPattern(totalImages, currentIndex);
     }
@@ -537,15 +546,15 @@ function ensureFiveDots(dots, startIndex, endIndex, currentIndex, totalImages) {
 }
 
 /**
- * Updates the elegant dot pattern when carousel slides
+ * Updates the dot pattern when carousel slides
  * @param {HTMLElement} indexElement - The index container element
  * @param {number} totalImages - Total number of images
  * @param {number} currentIndex - Current active index
  */
-function updateElegantDotPattern(indexElement, totalImages, currentIndex) {
+function updateDotPattern(indexElement, totalImages, currentIndex) {
     if (!indexElement) return;
 
-    indexElement.innerHTML = createElegantDotPattern(totalImages, currentIndex);
+    indexElement.innerHTML = createDotPattern(totalImages, currentIndex);
 }
 
 // ============================================================================
@@ -777,30 +786,24 @@ function applyAllFilters(galleryItems) {
         const itemCompany = item.getAttribute('data-company');
         const itemProject = item.getAttribute('data-project');
 
-        let shouldShow = true;
-
-        // Apply main filter (All, Experience, Projects)
+        // Check main filter first
         if (mainFilter !== 'all' && category !== mainFilter) {
-            shouldShow = false;
-        }
-
-        // Apply company filter (only affects experience items)
-        if (shouldShow && category === 'experience' && companyFilter !== 'all' && itemCompany !== companyFilter) {
-            shouldShow = false;
-        }
-
-        // Apply project filter (only affects project items)
-        if (shouldShow && category === 'projects' && projectFilter !== 'all' && itemProject !== projectFilter) {
-            shouldShow = false;
-        }
-
-        // Update item visibility
-        if (shouldShow) {
-            item.classList.remove('hidden');
-            item.classList.add('visible');
-        } else {
             item.classList.add('hidden');
             item.classList.remove('visible');
+            return;
+        }
+
+        // Check specific filters
+        const shouldHide =
+            (category === 'experience' && companyFilter !== 'all' && itemCompany !== companyFilter) ||
+            (category === 'projects' && projectFilter !== 'all' && itemProject !== projectFilter);
+
+        if (shouldHide) {
+            item.classList.add('hidden');
+            item.classList.remove('visible');
+        } else {
+            item.classList.remove('hidden');
+            item.classList.add('visible');
         }
     });
 
@@ -905,24 +908,6 @@ function openGalleryModal(clickedItem, allItems) {
 // ============================================================================
 // SCROLL TO TOP FUNCTIONALITY
 // ============================================================================
-
-/**
- * Debounce function to limit the rate at which a function can fire
- * @param {Function} func - Function to debounce
- * @param {number} wait - Time to wait in milliseconds
- * @returns {Function} - Debounced function
- */
-function debounce(func, wait) {
-    let timeout;
-    return function executedFunction(...args) {
-        const later = () => {
-            clearTimeout(timeout);
-            func(...args);
-        };
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-    };
-}
 
 /**
  * Sets up scroll to top button functionality
