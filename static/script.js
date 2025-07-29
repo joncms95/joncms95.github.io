@@ -205,15 +205,20 @@ function createCarouselModal(modalId, title, images, startIndex = 0) {
     // Populate carousel
     populateCarousel(modalId, images, startIndex);
 
-    // Show modal
-    const modal = new bootstrap.Modal(document.getElementById(modalId));
+    // Get modal element
+    const modalElement = document.getElementById(modalId);
+    
+    // Show modal first
+    const modal = new bootstrap.Modal(modalElement);
     modal.show();
-
-    // Setup carousel functionality
-    setupCarouselFunctionality(modalId, images);
+    
+    // Setup carousel functionality after modal is shown
+    modalElement.addEventListener('shown.bs.modal', function () {
+        setupCarouselFunctionality(modalId, images);
+    });
 
     // Clean up modal after it's hidden
-    document.getElementById(modalId).addEventListener('hidden.bs.modal', function () {
+    modalElement.addEventListener('hidden.bs.modal', function () {
         this.remove();
     });
 }
@@ -238,7 +243,7 @@ function createModalHTML(modalId, title, images, startIndex) {
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <div id="${modalId}Carousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="${CONFIG.gallery.carouselInterval}">
+                        <div id="${modalId}Carousel" class="carousel slide">
                             <div class="carousel-inner" id="${modalId}Inner"></div>
                             ${showNavigation ? `<div class="carousel-index" id="${modalId}Index">
                                 ${createElegantDotPattern(images.length, startIndex)}
@@ -341,23 +346,29 @@ function setupCarouselFunctionality(modalId, images) {
     const carouselElement = document.getElementById(`${modalId}Carousel`);
     const indexElement = document.getElementById(`${modalId}Index`);
 
-    // Only set up carousel functionality if there's more than one image
     if (images.length > 1) {
-        // Ensure carousel starts at the correct index
-        setTimeout(() => {
-            new bootstrap.Carousel(carouselElement, {
-                interval: CONFIG.gallery.carouselInterval,
-                keyboard: true,
-                pause: 'hover'
-            });
-        }, 100);
+        new bootstrap.Carousel(carouselElement, {
+            interval: CONFIG.gallery.carouselInterval,
+            keyboard: true,
+            touch: true,
+            pause: false
+        });
 
-        // Add carousel slide event listener to update index
         if (indexElement) {
             carouselElement.addEventListener('slide.bs.carousel', function (event) {
                 updateElegantDotPattern(indexElement, images.length, event.to);
             });
         }
+
+        carouselElement.addEventListener('mouseenter', () => {
+            const carousel = bootstrap.Carousel.getInstance(carouselElement);
+            carousel.pause();
+        });
+        
+        carouselElement.addEventListener('mouseleave', () => {
+            const carousel = bootstrap.Carousel.getInstance(carouselElement);
+            carousel.cycle();
+        });
     }
 }
 
@@ -537,13 +548,13 @@ function setupEntryInteractions(entry, entryConfig, type) {
         createCarouselModal(modalId, title, entryConfig.images);
     });
 
-    // Add keyboard accessibility
-    entry.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            createCarouselModal(modalId, title, entryConfig.images);
-        }
-    });
+    // // Add keyboard accessibility
+    // entry.addEventListener('keydown', (e) => {
+    //     if (e.key === 'Enter' || e.key === ' ') {
+    //         e.preventDefault();
+    //         createCarouselModal(modalId, title, entryConfig.images);
+    //     }
+    // });
 
     // Make entry focusable
     entry.setAttribute('tabindex', '0');
