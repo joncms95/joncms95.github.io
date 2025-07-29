@@ -944,9 +944,9 @@ function setupScrollToTop() {
 // ============================================================================
 
 /**
- * Opens the certificate modal
+ * Creates the certificate modal during initialization
  */
-function openCertificateModal() {
+function createCertificateModal() {
     const modalContent = `
         <div class="modal fade" id="certificateModal" tabindex="-1" aria-labelledby="certificateModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-xl modal-dialog-centered">
@@ -969,23 +969,16 @@ function openCertificateModal() {
         </div>
     `;
 
-    // Remove existing modal if any
-    const existingModal = document.getElementById('certificateModal');
-    if (existingModal) {
-        existingModal.remove();
-    }
-
-    // Add new modal to body
+    // Add modal to body
     document.body.insertAdjacentHTML('beforeend', modalContent);
+}
 
-    // Show modal
+/**
+ * Opens the certificate modal
+ */
+function openCertificateModal() {
     const modal = new bootstrap.Modal(document.getElementById('certificateModal'));
     modal.show();
-
-    // Clean up modal after it's hidden
-    document.getElementById('certificateModal').addEventListener('hidden.bs.modal', function () {
-        this.remove();
-    });
 }
 
 // ============================================================================
@@ -1012,10 +1005,10 @@ function initializePortfolio() {
     // Setup gallery functionality
     setupGalleryFiltering();
     setupGalleryItemInteractions();
+
+    // Create certificate modal
+    createCertificateModal();
 }
 
 // Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', initializePortfolio);
-
-// Make functions available globally for HTML onclick handlers
-window.openCertificateModal = openCertificateModal;
