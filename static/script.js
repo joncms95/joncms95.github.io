@@ -296,10 +296,6 @@ function createCarouselItem(image, index, startIndex) {
     if (image.type === 'video' || image.src.endsWith('.mp4')) {
         const video = createElement('video', {
             className: 'd-block w-100',
-            controls: true,
-            autoplay: true,
-            muted: true,
-            loop: true,
         });
 
         const source = createElement('source', {
