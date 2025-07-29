@@ -10,8 +10,9 @@
 // ============================================================================
 
 const CONFIG = {
-    gallery: {
+    carousel: {
         maxDots: 5,
+        interval: 15000,
     },
 };
 
@@ -258,7 +259,7 @@ function createModalHTML(modalId, title, images, startIndex) {
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <div id="${modalId}Carousel" class="carousel slide">
+                        <div id="${modalId}Carousel" class="carousel slide" data-bs-ride="carousel">
                             <div class="carousel-inner" id="${modalId}Inner"></div>
                             ${showNavigation ? `<div class="carousel-index" id="${modalId}Index">
                                 ${createDotPattern(images.length, startIndex)}
@@ -362,9 +363,9 @@ function setupCarouselFunctionality(modalId, images) {
     const indexElement = document.getElementById(`${modalId}Index`);
 
     if (images.length > 1) {
-        new bootstrap.Carousel(carouselElement, {
-            interval: false, // Disable auto-advance
-            keyboard: true,
+        const carousel = new bootstrap.Carousel(carouselElement, {
+            interval: CONFIG.carousel.interval,
+            pause: false
         });
 
         if (indexElement) {
@@ -414,9 +415,10 @@ function handleVideoPlayback(carouselElement, fromIndex, toIndex) {
     if (activeItem) {
         const video = activeItem.querySelector('video');
         if (video) {
-            setTimeout(() => {
+            // Use requestAnimationFrame for smoother timing
+            requestAnimationFrame(() => {
                 video.play()
-            }, 300);
+            });
         }
     }
 }
@@ -432,7 +434,7 @@ function handleVideoPlayback(carouselElement, fromIndex, toIndex) {
  * @returns {string} HTML string for dot pattern
  */
 function createDotPattern(totalImages, currentIndex) {
-    if (totalImages <= CONFIG.gallery.maxDots) {
+    if (totalImages <= CONFIG.carousel.maxDots) {
         return createSimpleDotPattern(totalImages, currentIndex);
     }
 
@@ -526,7 +528,7 @@ function getDotClassName(index, currentIndex) {
  * @returns {Array} - Updated dots array
  */
 function ensureFiveDots(dots, startIndex, endIndex, currentIndex, totalImages) {
-    while (dots.length < CONFIG.gallery.maxDots && totalImages >= CONFIG.gallery.maxDots) {
+    while (dots.length < CONFIG.carousel.maxDots && totalImages >= CONFIG.carousel.maxDots) {
         if (startIndex > 0) {
             // Add dots from the beginning
             startIndex--;
@@ -583,7 +585,7 @@ function setupEntryHover(selector, config, type) {
 }
 
 /**
- * Sets up click and keyboard interactions for an entry
+ * Sets up click interactions for an entry
  * @param {HTMLElement} entry - Entry element
  * @param {Object} entryConfig - Entry configuration
  * @param {string} type - Entry type
