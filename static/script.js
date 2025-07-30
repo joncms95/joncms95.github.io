@@ -677,8 +677,7 @@ function createGalleryItem(image, entryConfig, type, key, index) {
         const video = createElement('video', {
             src: image.src,
             alt: image.title || `${entryConfig.name} - ${index + 1}`,
-            muted: true,
-            preload: 'metadata'
+            muted: true
         });
         galleryItem.appendChild(video);
     } else {
