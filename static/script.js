@@ -318,8 +318,11 @@ function createCarouselItem(image, index, startIndex) {
             playsinline: true
         });
 
+        // Add #t=1 to video source for mobile thumbnail support
+        const videoSrc = image.src.includes('#') ? image.src : `${image.src}#t=1`;
+        
         const source = createElement('source', {
-            src: image.src,
+            src: videoSrc,
             type: 'video/mp4'
         });
 
