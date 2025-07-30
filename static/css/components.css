@@ -178,12 +178,14 @@
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-.inner-filter-btn:hover {
-  background-color: #34495e;
-  border-color: #34495e;
-  color: white;
-  transform: translateY(-1px);
-  box-shadow: 0 3px 8px rgba(52, 73, 94, 0.3);
+@media (hover: hover) {
+  .inner-filter-btn:hover {
+    background-color: #34495e;
+    border-color: #34495e;
+    color: white;
+    transform: translateY(-1px);
+    box-shadow: 0 3px 8px rgba(52, 73, 94, 0.3);
+  }
 }
 
 .inner-filter-btn.active {
