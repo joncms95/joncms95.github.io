@@ -498,7 +498,8 @@ body.modal-open {
     gap: 15px;
   }
 
-  .gallery-item img {
+  .gallery-item img,
+  .gallery-item video {
     height: 200px;
   }
 
