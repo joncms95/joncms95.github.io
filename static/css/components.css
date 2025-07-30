@@ -10,7 +10,7 @@
 }
 
 .entry::before {
-  content: "\f03e   View Gallery";
+  content: "\f03e  View Gallery";
   font-family: "Font Awesome 5 Free";
   font-weight: 900;
   position: absolute;
@@ -31,8 +31,12 @@
 
 /* Responsive gallery button */
 @media (max-width: 768px) {
-  .entry:hover::before {
-    opacity: 0;
+  .entry::before {
+    content: "\f03e  View Gallery";
+    top: -15px;
+    padding: 3px 6px;
+    font-size: 9px;
+    opacity: 1;
   }
 }
 
