@@ -157,10 +157,12 @@
   font-size: 14px;
 }
 
-.filter-btn:hover {
-  background-color: #052a5f;
-  color: white;
-  transform: translateY(-2px);
+@media (hover: hover) {
+  .filter-btn:hover {
+    background-color: #052a5f;
+    color: white;
+    transform: translateY(-2px);
+  }
 }
 
 .filter-btn.active {
