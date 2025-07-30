@@ -129,6 +129,7 @@ const PROJECT_CONFIG = {
             },
             {
                 src: 'static/assets/projects/mlbb_ban_pick/preview.mp4',
+                poster: 'static/assets/projects/mlbb_ban_pick/preview.png',
                 title: 'Preview Video',
                 description: 'Draft simulator preview',
                 type: 'video'
@@ -315,12 +316,13 @@ function createCarouselItem(image, index, startIndex) {
             muted: true,
             preload: 'metadata',
             loop: true,
-            playsinline: true
+            playsinline: true,
+            poster: image.poster
         });
 
         // Add #t=1 to video source for mobile thumbnail support
         const videoSrc = image.src.includes('#') ? image.src : `${image.src}#t=1`;
-        
+
         const source = createElement('source', {
             src: videoSrc,
             type: 'video/mp4'
@@ -680,7 +682,8 @@ function createGalleryItem(image, entryConfig, type, key, index) {
         const video = createElement('video', {
             src: image.src,
             alt: image.title || `${entryConfig.name} - ${index + 1}`,
-            muted: true
+            muted: true,
+            poster: image.poster
         });
         galleryItem.appendChild(video);
     } else {
