@@ -414,8 +414,6 @@ function ensureFiveDots(dots, startIndex, endIndex, currentIndex, totalImages) {
  * @param {number} currentIndex - Current active index
  */
 function updateDotPattern(indexElement, totalImages, currentIndex) {
-    if (!indexElement) return;
-
     indexElement.innerHTML = createDotPattern(totalImages, currentIndex);
 }
 
@@ -427,20 +425,16 @@ function updateDotPattern(indexElement, totalImages, currentIndex) {
  * Sets up hover functionality for entries with images
  * @param {string} selector - CSS selector for entries
  * @param {Object} config - Configuration object (EXPERIENCE_CONFIG or PROJECT_CONFIG)
- * @param {string} type - Entry type ('experience' or 'project')
+ * @param {string} type - Entry type ('company' or 'project')
  */
 function setupEntryHover(selector, config, type) {
     const entries = document.querySelectorAll(selector);
 
     entries.forEach(entry => {
-        const key = entry.getAttribute(`data-${type === 'experience' ? 'company' : 'project'}`);
+        const key = entry.getAttribute(`data-${type}`);
         const entryConfig = config[key];
 
-        if (entryConfig?.images?.length > 0) {
-            setupEntryInteractions(entry, entryConfig, type);
-        } else {
-            removeEntryInteractions(entry);
-        }
+        setupEntryInteractions(entry, entryConfig, type);
     });
 }
 
@@ -465,23 +459,12 @@ function setupEntryInteractions(entry, entryConfig, type) {
     entry.setAttribute('aria-label', `View gallery for ${entryConfig.name}`);
 
     // Prevent carousel trigger on external links and achievement links
-    const externalLinks = entry.querySelectorAll('a[target="_blank"], .achievements a');
+    const externalLinks = entry.querySelectorAll('a[target="_blank"]');
     externalLinks.forEach(link => {
         link.addEventListener('click', (e) => {
             e.stopPropagation();
         });
     });
-}
-
-/**
- * Removes interactive functionality from an entry
- * @param {HTMLElement} entry - Entry element
- */
-function removeEntryInteractions(entry) {
-    entry.style.cursor = 'default';
-    entry.removeAttribute('tabindex');
-    entry.removeAttribute('role');
-    entry.removeAttribute('aria-label');
 }
 
 // ============================================================================
@@ -768,45 +751,13 @@ function openGalleryModal(clickedItem, allItems) {
 }
 
 // ============================================================================
-// SCROLL TO TOP FUNCTIONALITY
-// ============================================================================
-
-/**
- * Sets up scroll to top button functionality
- */
-function setupScrollToTop() {
-    const scrollToTopBtn = document.getElementById('scrollToTopBtn');
-
-    if (!scrollToTopBtn) return;
-
-    // Debounced scroll handler
-    const debouncedScrollHandler = debounce(() => {
-        if (window.pageYOffset > 300) {
-            scrollToTopBtn.classList.add('show');
-        } else {
-            scrollToTopBtn.classList.remove('show');
-        }
-    }, 100); // 100ms debounce delay
-
-    // Scroll handler
-    window.addEventListener('scroll', debouncedScrollHandler);
-
-    scrollToTopBtn.addEventListener('click', () => {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    });
-}
-
-// ============================================================================
 // CERTIFICATE MODAL
 // ============================================================================
 
 /**
- * Creates the certificate modal during initialization
+ * Sets up the certificate modal during initialization
  */
-function createCertificateModal() {
+function setupCertificateModal() {
     const modalContent = `
         <div class="modal fade" id="certificateModal" tabindex="-1" aria-labelledby="certificateModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-xl modal-dialog-centered">
@@ -842,6 +793,36 @@ function openCertificateModal() {
 }
 
 // ============================================================================
+// SCROLL TO TOP FUNCTIONALITY
+// ============================================================================
+
+/**
+ * Sets up scroll to top button functionality
+ */
+function setupScrollToTop() {
+    const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+
+    // Debounced scroll handler
+    const debouncedScrollHandler = debounce(() => {
+        if (window.pageYOffset > 300) {
+            scrollToTopBtn.classList.add('show');
+        } else {
+            scrollToTopBtn.classList.remove('show');
+        }
+    }, 100); // 100ms debounce delay
+
+    // Scroll handler
+    window.addEventListener('scroll', debouncedScrollHandler);
+
+    scrollToTopBtn.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+}
+
+// ============================================================================
 // MAIN INITIALIZATION
 // ============================================================================
 
@@ -849,13 +830,8 @@ function openCertificateModal() {
  * Main initialization function
  */
 function initializePortfolio() {
-    // Setup scroll to top functionality
-    setupScrollToTop();
-
-    // Setup experience entries
-    setupEntryHover('.entry[data-company]', EXPERIENCE_CONFIG, 'experience');
-
-    // Setup project entries
+    // Setup entries
+    setupEntryHover('.entry[data-company]', EXPERIENCE_CONFIG, 'company');
     setupEntryHover('.entry[data-project]', PROJECT_CONFIG, 'project');
 
     // Generate and populate galleries
@@ -866,8 +842,11 @@ function initializePortfolio() {
     setupGalleryFiltering();
     setupGalleryItemInteractions();
 
-    // Create certificate modal
-    createCertificateModal();
+    // Setup certificate modal
+    setupCertificateModal();
+
+    // Setup scroll to top functionality
+    setupScrollToTop();
 }
 
 // Initialize when DOM is loaded
