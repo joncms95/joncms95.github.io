@@ -108,8 +108,8 @@ small {
 }
 
 .nav-link {
-  margin: 1px;
   color: black;
+  margin: 1px;
 }
 
 .nav-tabs .nav-link:hover {
@@ -181,11 +181,11 @@ small {
   color: white;
   display: none;
   position: fixed;
-  font-size: 18px;
   right: 20px;
   bottom: 20px;
   width: 50px;
   height: 50px;
+  font-size: 18px;
   border: none;
   border-radius: 50%;
   cursor: pointer;
