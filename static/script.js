@@ -256,7 +256,7 @@ function createModalHTML(modalId, title, images, startIndex) {
             <div class="modal-dialog modal-xl modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="${modalId}Label">${title}</h5>
+                        <h4 class="modal-title" id="${modalId}Label">${title}</h4>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -348,7 +348,7 @@ function createCarouselItem(image, index, startIndex) {
         });
 
         caption.innerHTML = `
-            ${image.title ? `<h5>${image.title}</h5>` : ''}
+            ${image.title ? `<h4>${image.title}</h4>` : ''}
             ${image.description ? `<p>${image.description}</p>` : ''}
         `;
 
@@ -699,7 +699,7 @@ function createGalleryItem(image, entryConfig, type, key, index) {
         className: 'gallery-item-overlay'
     });
 
-    const title = createElement('h5', {}, entryConfig.name);
+    const title = createElement('h4', {}, entryConfig.name);
     const description = createElement('p', {}, image.description || entryConfig.name);
 
     overlay.appendChild(title);
@@ -903,7 +903,7 @@ function openGalleryModal(clickedItem, allItems) {
 
         return {
             src: src,
-            title: item.querySelector('.gallery-item-overlay h5').textContent,
+            title: item.querySelector('.gallery-item-overlay h4').textContent,
             description: item.querySelector('.gallery-item-overlay p').textContent,
             type: type
         };
@@ -957,7 +957,7 @@ function createCertificateModal() {
             <div class="modal-dialog modal-xl modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="certificateModalLabel">CS50 Introduction to Computer Science</h5>
+                        <h4 class="modal-title" id="certificateModalLabel">CS50 Introduction to Computer Science</h4>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body text-center carousel-item active">
