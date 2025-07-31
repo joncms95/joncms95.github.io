@@ -234,6 +234,7 @@ body.modal-open {
 .modal-header {
   background-color: #052a5f;
   color: white;
+  display: none;
   padding: 10px 15px;
   border-bottom: none;
   border-radius: 12px 12px 0 0;

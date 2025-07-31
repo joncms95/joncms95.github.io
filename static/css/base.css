@@ -115,6 +115,7 @@ small {
 .nav-tabs .nav-link:hover {
   background-color: #eee;
   transition: 0.25s;
+  transform: translateY(-2px);
 }
 
 .tab-pane {
