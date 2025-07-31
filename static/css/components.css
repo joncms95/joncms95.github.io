@@ -29,17 +29,6 @@
   opacity: 1;
 }
 
-/* Responsive gallery button */
-@media (max-width: 768px) {
-  .entry::before {
-    content: "\f03e  View Gallery";
-    top: -15px;
-    font-size: 9px;
-    padding: 3px 6px;
-    opacity: 1;
-  }
-}
-
 /* ============================================================================
    GALLERY STYLES
    ============================================================================ */
@@ -152,7 +141,7 @@
   transition: all 0.3s ease;
 }
 
-/* Main Filter Buttons */
+/* Outer Filter Buttons */
 .filter-btn {
   background-color: #f8f9fa;
   color: #052a5f;
@@ -222,11 +211,6 @@
     opacity: 1;
     transform: translateY(0);
   }
-}
-
-.carousel .carousel-inner {
-  border-radius: 8px;
-  overflow: hidden;
 }
 
 /* ============================================================================
@@ -435,6 +419,14 @@ body.modal-open {
    RESPONSIVE STYLES
    ============================================================================ */
 @media (max-width: 768px) {
+  .entry::before {
+    content: "\f03e  View Gallery";
+    top: -15px;
+    font-size: 9px;
+    padding: 3px 6px;
+    opacity: 1;
+  }
+
   .gallery-grid {
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 15px;
