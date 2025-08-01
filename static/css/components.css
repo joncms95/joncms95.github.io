@@ -244,7 +244,11 @@ body.modal-open {
   filter: invert(1);
 }
 
-/* Carousel Item Styles */
+/* Carousel Styles */
+.carousel {
+  outline: none;
+}
+
 .carousel-item img,
 .carousel-item video {
   height: 65vh;

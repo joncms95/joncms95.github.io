@@ -90,6 +90,12 @@ function createCarouselModal(modalId, title, images, startIndex = 0) {
     // Setup carousel functionality after modal is shown
     modalElement.addEventListener('shown.bs.modal', function () {
         setupCarouselFunctionality(modalId, images);
+
+        // Focus the carousel element for immediate keyboard access
+        const carouselElement = document.getElementById(`${modalId}Carousel`);
+        if (carouselElement) {
+            carouselElement.focus();
+        }
     });
 
     // Clean up modal after it's hidden
@@ -221,6 +227,9 @@ function createCarouselItem(image, index, startIndex) {
 function setupCarouselFunctionality(modalId, images) {
     const carouselElement = document.getElementById(`${modalId}Carousel`);
     const indexElement = document.getElementById(`${modalId}Index`);
+
+    // Make carousel focusable for keyboard navigation
+    carouselElement.setAttribute('tabindex', '0');
 
     if (images.length > 1) {
         const carousel = new bootstrap.Carousel(carouselElement, {
