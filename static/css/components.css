@@ -228,20 +228,11 @@ body.modal-open {
 .modal-content {
   background: transparent;
   border: none;
-  border-radius: 12px;
+  user-select: none;
 }
 
-.modal-header {
-  background: #052a5f;
-  color: white;
-  display: none;
-  padding: 10px 15px;
-  border-bottom: none;
-  border-radius: 12px 12px 0 0;
-}
-
-.modal-header .btn-close {
-  filter: invert(1);
+.modal-body {
+  padding: 0;
 }
 
 /* Carousel Styles */
@@ -347,7 +338,7 @@ body.modal-open {
   color: white;
   display: flex;
   position: absolute;
-  top: 20px;
+  top: 10px;
   left: 50%;
   transform: translateX(-50%);
   font-size: 12px;
@@ -370,26 +361,26 @@ body.modal-open {
 
 .carousel-index-dot.active {
   background: #5482ff;
-  width: 10px;
-  height: 10px;
-}
-
-.carousel-index-dot.adjacent {
-  background: rgba(255, 255, 255, 0.7);
   width: 8px;
   height: 8px;
 }
 
-.carousel-index-dot.far {
-  background: rgba(255, 255, 255, 0.4);
+.carousel-index-dot.adjacent {
+  background: rgba(255, 255, 255, 0.7);
   width: 6px;
   height: 6px;
 }
 
+.carousel-index-dot.far {
+  background: rgba(255, 255, 255, 0.4);
+  width: 4px;
+  height: 4px;
+}
+
 .carousel-index-dot.same-size {
   background: rgba(255, 255, 255, 0.7);
-  width: 10px;
-  height: 10px;
+  width: 8px;
+  height: 8px;
 }
 
 .carousel-index-number {
@@ -452,11 +443,6 @@ body.modal-open {
     padding: 6px 16px;
   }
 
-  .modal-header {
-    padding: 7px 15px;
-    text-wrap: nowrap;
-  }
-
   .carousel-item img,
   .carousel-item video {
     height: 400px;
@@ -499,26 +485,6 @@ body.modal-open {
     top: 15px;
     padding: 6px 12px;
     gap: 4px;
-  }
-
-  .carousel-index-dot.active {
-    width: 8px;
-    height: 8px;
-  }
-
-  .carousel-index-dot.adjacent {
-    width: 6px;
-    height: 6px;
-  }
-
-  .carousel-index-dot.far {
-    width: 5px;
-    height: 5px;
-  }
-
-  .carousel-index-dot.same-size {
-    width: 8px;
-    height: 8px;
   }
 
   .carousel-index-number {
@@ -577,26 +543,6 @@ body.modal-open {
     top: 10px;
     padding: 5px 10px;
     gap: 3px;
-  }
-
-  .carousel-index-dot.active {
-    width: 7px;
-    height: 7px;
-  }
-
-  .carousel-index-dot.adjacent {
-    width: 5px;
-    height: 5px;
-  }
-
-  .carousel-index-dot.far {
-    width: 4px;
-    height: 4px;
-  }
-
-  .carousel-index-dot.same-size {
-    width: 7px;
-    height: 7px;
   }
 
   .carousel-index-number {

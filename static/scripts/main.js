@@ -119,10 +119,6 @@ function createModalHTML(modalId, title, images, startIndex) {
         <div class="modal fade" id="${modalId}" tabindex="-1" aria-labelledby="${modalId}Label" aria-hidden="true">
             <div class="modal-dialog modal-xl modal-dialog-centered">
                 <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title" id="${modalId}Label">${title}</h4>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
                     <div class="modal-body">
                         <div id="${modalId}Carousel" class="carousel slide" data-bs-ride="carousel">
                             <div class="carousel-inner" id="${modalId}Inner"></div>
@@ -769,12 +765,8 @@ function openGalleryModal(clickedItem, allItems) {
 function setupCertificateModal() {
     const modalContent = `
         <div class="modal fade" id="certificateModal" tabindex="-1" aria-labelledby="certificateModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-xl modal-dialog-centered">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
                 <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title" id="certificateModalLabel">CS50 Introduction to Computer Science</h4>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
                     <div class="modal-body text-center carousel-item active">
                         <img src="static/assets/education/cs50.png" alt="CS50 Certificate" class="d-block w-100">
                         <div class="mt-3">
