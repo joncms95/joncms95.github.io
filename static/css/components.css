@@ -226,10 +226,9 @@ body.modal-open {
 }
 
 .modal-content {
-  background: transparent;
+  background: rgba(0, 0, 0, 0.1);
   border: none;
-  /* border-radius: 12px; */
-  /* box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); */
+  border-radius: 12px;
 }
 
 .modal-header {
