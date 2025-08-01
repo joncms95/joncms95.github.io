@@ -62,11 +62,10 @@ function debounce(func, wait) {
 /**
  * Creates a standardized carousel modal
  * @param {string} modalId - Unique ID for the modal
- * @param {string} title - Modal title
  * @param {Array} images - Array of image objects with src, title, description
  * @param {number} startIndex - Starting image index (default: 0)
  */
-function createCarouselModal(modalId, title, images, startIndex = 0) {
+function createCarouselModal(modalId, images, startIndex = 0) {
     // Remove existing modal if any
     const existingModal = document.getElementById(modalId);
     if (existingModal) {
@@ -74,7 +73,7 @@ function createCarouselModal(modalId, title, images, startIndex = 0) {
     }
 
     // Create modal HTML
-    const modalContent = createModalHTML(modalId, title, images, startIndex);
+    const modalContent = createModalHTML(modalId, images, startIndex);
 
     // Add modal to body
     document.body.insertAdjacentHTML('beforeend', modalContent);
@@ -107,12 +106,11 @@ function createCarouselModal(modalId, title, images, startIndex = 0) {
 /**
  * Creates modal HTML structure
  * @param {string} modalId - Modal ID
- * @param {string} title - Modal title
  * @param {Array} images - Images array
  * @param {number} startIndex - Starting index
  * @returns {string} - Modal HTML
  */
-function createModalHTML(modalId, title, images, startIndex) {
+function createModalHTML(modalId, images, startIndex) {
     const showNavigation = images.length > 1;
 
     return `
@@ -451,11 +449,10 @@ function setupEntryHover(selector, config, type) {
  */
 function setupEntryInteractions(entry, entryConfig, type) {
     const modalId = `${type}CarouselModal`;
-    const title = `Gallery - ${entryConfig.name}`;
 
     // Add click handler
     entry.addEventListener('click', () => {
-        createCarouselModal(modalId, title, entryConfig.images);
+        createCarouselModal(modalId, entryConfig.images);
     });
 
     // Make entry focusable
@@ -752,7 +749,7 @@ function openGalleryModal(clickedItem, allItems) {
         };
     });
 
-    createCarouselModal('galleryImageModal', 'Gallery', galleryImages, currentIndex);
+    createCarouselModal('galleryImageModal', galleryImages, currentIndex);
 }
 
 // ============================================================================
