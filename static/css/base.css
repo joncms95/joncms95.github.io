@@ -7,7 +7,7 @@ html {
 }
 
 body {
-  background-color: #dae2e9;
+  background: #dae2e9;
   font-family: Roboto, Sans-Serif;
   font-size: 14px;
   text-align: justify;
@@ -56,7 +56,7 @@ small {
 
 /* Container */
 .container {
-  background-color: #ffffff;
+  background: #ffffff;
   padding-top: 12px;
   padding-bottom: 12px;
 }
@@ -113,7 +113,7 @@ small {
 }
 
 .nav-tabs .nav-link:hover {
-  background-color: #eee;
+  background: #eee;
   transition: 0.25s;
   transform: translateY(-2px);
 }
@@ -178,7 +178,7 @@ small {
 
 /* Scroll to Top Button */
 .scroll-to-top-btn {
-  background-color: #052a5f;
+  background: #052a5f;
   color: white;
   display: none;
   position: fixed;
@@ -198,7 +198,7 @@ small {
 }
 
 .scroll-to-top-btn:hover {
-  background-color: #031a3f;
+  background: #031a3f;
   transform: translateY(-2px);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
 }
