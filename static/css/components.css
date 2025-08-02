@@ -223,6 +223,7 @@ body.modal-open {
 
 .modal {
   --bs-modal-width: 80vw;
+  backdrop-filter: blur(2px);
 }
 
 .modal-content {
@@ -356,31 +357,20 @@ body.modal-open {
 
 /* Carousel Index Dots */
 .carousel-index-dot {
+  background: rgba(255, 255, 255, 0.7);
+  width: 7px;
+  height: 7px;
   border-radius: 50%;
 }
 
 .carousel-index-dot.active {
   background: #5482ff;
-  width: 8px;
-  height: 8px;
-}
-
-.carousel-index-dot.adjacent {
-  background: rgba(255, 255, 255, 0.7);
-  width: 6px;
-  height: 6px;
 }
 
 .carousel-index-dot.far {
   background: rgba(255, 255, 255, 0.4);
-  width: 4px;
-  height: 4px;
-}
-
-.carousel-index-dot.same-size {
-  background: rgba(255, 255, 255, 0.7);
-  width: 8px;
-  height: 8px;
+  width: 5px;
+  height: 5px;
 }
 
 .carousel-index-number {
@@ -485,6 +475,16 @@ body.modal-open {
     top: 15px;
     padding: 6px 12px;
     gap: 4px;
+  }
+
+  .carousel-index-dot {
+    width: 6px;
+    height: 6px;
+  }
+
+  .carousel-index-dot.far {
+    width: 4px;
+    height: 4px;
   }
 
   .carousel-index-number {

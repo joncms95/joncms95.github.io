@@ -312,7 +312,7 @@ function createDotPattern(totalImages, currentIndex) {
  */
 function createSimpleDotPattern(totalImages, currentIndex) {
     const dots = Array.from({ length: totalImages }, (_, i) => {
-        const className = `carousel-index-dot ${i === currentIndex ? 'active' : 'same-size'}`;
+        const className = `carousel-index-dot ${i === currentIndex ? 'active' : ''}`;
         return `<div class="${className}" data-index="${i}"></div>`;
     }).join('');
 
@@ -372,9 +372,7 @@ function getDotClassName(index, currentIndex) {
 
     if (index === currentIndex) {
         className += ' active';
-    } else if (Math.abs(index - currentIndex) === 1) {
-        className += ' adjacent';
-    } else {
+    } else if (Math.abs(index - currentIndex) > 1) {
         className += ' far';
     }
 
