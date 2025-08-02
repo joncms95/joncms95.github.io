@@ -66,12 +66,6 @@ function debounce(func, wait) {
  * @param {number} startIndex - Starting image index (default: 0)
  */
 function createCarouselModal(modalId, images, startIndex = 0) {
-    // Remove existing modal if any
-    const existingModal = document.getElementById(modalId);
-    if (existingModal) {
-        existingModal.remove();
-    }
-
     // Create modal HTML
     const modalContent = createModalHTML(modalId, images, startIndex);
 
@@ -89,12 +83,6 @@ function createCarouselModal(modalId, images, startIndex = 0) {
     // Setup carousel functionality after modal is shown
     modalElement.addEventListener('shown.bs.modal', function () {
         setupCarouselFunctionality(modalId, images);
-
-        // Focus the carousel element for immediate keyboard access
-        const carouselElement = document.getElementById(`${modalId}Carousel`);
-        if (carouselElement) {
-            carouselElement.focus();
-        }
     });
 
     // Clean up modal after it's hidden
@@ -250,6 +238,9 @@ function setupCarouselFunctionality(modalId, images) {
             }
         }
     }, 500);
+
+    // Focus the carousel element for immediate keyboard access
+    carouselElement.focus();
 }
 
 /**
