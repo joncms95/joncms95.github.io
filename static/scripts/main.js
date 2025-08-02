@@ -118,7 +118,7 @@ function createModalHTML(modalId, images, startIndex) {
             <div class="modal-dialog modal-xl modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-body">
-                        <div id="${modalId}Carousel" class="carousel slide" data-bs-ride="carousel">
+                        <div id="${modalId}Carousel" class="carousel slide" tabindex="0" data-bs-ride="carousel">
                             <div class="carousel-inner" id="${modalId}Inner"></div>
                             ${showNavigation ? `<div class="carousel-index" id="${modalId}Index">
                                 ${createDotPattern(images.length, startIndex)}
@@ -221,9 +221,6 @@ function createCarouselItem(image, index, startIndex) {
 function setupCarouselFunctionality(modalId, images) {
     const carouselElement = document.getElementById(`${modalId}Carousel`);
     const indexElement = document.getElementById(`${modalId}Index`);
-
-    // Make carousel focusable for keyboard navigation
-    carouselElement.setAttribute('tabindex', '0');
 
     if (images.length > 1) {
         const carousel = new bootstrap.Carousel(carouselElement, {
@@ -453,9 +450,6 @@ function setupEntryInteractions(entry, entryConfig, type) {
         createCarouselModal(modalId, entryConfig.images);
     });
 
-    // Make entry focusable
-    entry.setAttribute('tabindex', '0');
-
     // Prevent carousel trigger on external links and achievement links
     const externalLinks = entry.querySelectorAll('a[target="_blank"]');
     externalLinks.forEach(link => {
@@ -508,8 +502,6 @@ function createGalleryItem(image, entryConfig, type, key, index) {
         'data-category': type === 'experience' ? 'experience' : 'projects',
         'data-company': type === 'experience' ? key : undefined,
         'data-project': type === 'projects' ? key : undefined,
-        tabindex: '0',
-        role: 'button'
     });
 
     // Check if this is a video
