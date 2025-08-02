@@ -455,8 +455,6 @@ function setupEntryInteractions(entry, entryConfig, type) {
 
     // Make entry focusable
     entry.setAttribute('tabindex', '0');
-    entry.setAttribute('role', 'button');
-    entry.setAttribute('aria-label', `View gallery for ${entryConfig.name}`);
 
     // Prevent carousel trigger on external links and achievement links
     const externalLinks = entry.querySelectorAll('a[target="_blank"]');
