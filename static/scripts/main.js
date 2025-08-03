@@ -209,6 +209,7 @@ function createCarouselItem(image, index, startIndex) {
 function setupCarouselFunctionality(modalId, images) {
     const carouselElement = document.getElementById(`${modalId}Carousel`);
     const indexElement = document.getElementById(`${modalId}Index`);
+    let indexHideTimeout;
 
     if (images.length > 1) {
         const carousel = new bootstrap.Carousel(carouselElement, {
@@ -217,8 +218,36 @@ function setupCarouselFunctionality(modalId, images) {
         });
 
         if (indexElement) {
+            // Function to hide index after 3 seconds
+            const hideIndexAfterDelay = () => {
+                indexHideTimeout = setTimeout(() => {
+                    indexElement.style.opacity = '0';
+                    indexElement.style.pointerEvents = 'none';
+                }, 3000);
+            };
+
+            // Function to show index and reset timer
+            const showIndexAndResetTimer = () => {
+                // Clear existing timeout
+                if (indexHideTimeout) {
+                    clearTimeout(indexHideTimeout);
+                }
+
+                // Show index
+                indexElement.style.opacity = '1';
+                indexElement.style.pointerEvents = 'auto';
+
+                // Start new hide timer
+                hideIndexAfterDelay();
+            };
+
+            // Show index initially and start timer
+            showIndexAndResetTimer();
+
+            // Update dot pattern and reset timer on slide change
             carouselElement.addEventListener('slide.bs.carousel', function (event) {
                 updateDotPattern(indexElement, images.length, event.to);
+                showIndexAndResetTimer();
             });
         }
 

@@ -352,7 +352,8 @@ body.modal-open {
   backdrop-filter: blur(12px);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
   z-index: 10;
-  transition: all 0.3s ease;
+  transition: all 0.3s ease, opacity 0.3s ease;
+  opacity: 1;
 }
 
 /* Carousel Index Dots */
