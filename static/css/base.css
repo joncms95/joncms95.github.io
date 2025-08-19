@@ -107,7 +107,7 @@ small {
 }
 
 .nav-link {
-  color: black;
+  color: #52585e;
   margin: 1px;
 }
 
@@ -115,6 +115,10 @@ small {
   background: #eee;
   transition: 0.25s;
   transform: translateY(-2px);
+}
+
+.nav-tabs .nav-link.active {
+  color: #0a53c0;
 }
 
 .tab-pane {
