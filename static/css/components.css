@@ -402,6 +402,106 @@ body.modal-open {
 }
 
 /* ============================================================================
+   SCRATCH MODAL STYLES
+   ============================================================================ */
+/* Scratch Play Button */
+.scratch-play-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+  display: inline-block;
+}
+
+.scratch-play-btn:hover {
+  transform: scale(1.05);
+  opacity: 0.9;
+}
+
+.scratch-play-btn:active {
+  transform: scale(0.98);
+}
+
+.scratch-play-btn img {
+  max-width: 485px;
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Scratch Modal Styles */
+.scratch-modal-content {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+.scratch-modal-header {
+  background: linear-gradient(135deg, #855CD6 0%, #6B46C1 100%);
+  border-bottom: none;
+  padding: 20px 25px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.scratch-modal-title-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.scratch-modal-icon {
+  font-size: 28px;
+  color: #FF9900;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.scratch-modal-title {
+  color: white;
+  font-weight: 600;
+  font-size: 24px;
+  margin: 0;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  letter-spacing: 0.5px;
+}
+
+.scratch-modal-body {
+  padding: 25px;
+  background: #f8f9fa;
+}
+
+.scratch-modal-body iframe {
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+@media (max-width: 768px) {
+  .scratch-modal-title {
+    font-size: 20px;
+  }
+
+  .scratch-modal-icon {
+    font-size: 24px;
+  }
+
+  .scratch-modal-header {
+    padding: 15px 20px;
+  }
+
+  .scratch-modal-body {
+    padding: 15px;
+  }
+
+  .scratch-play-btn img {
+    max-width: 100%;
+  }
+}
+
+/* ============================================================================
    RESPONSIVE STYLES
    ============================================================================ */
 @media (max-width: 768px) {

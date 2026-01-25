@@ -799,6 +799,64 @@ function openCertificateModal() {
 }
 
 // ============================================================================
+// SCRATCH GAME MODAL
+// ============================================================================
+
+/**
+ * Opens the Scratch game modal with iframe
+ */
+function openScratchModal() {
+    const modalId = 'scratchGameModal';
+
+    // Check if modal already exists and remove it
+    const existingModal = document.getElementById(modalId);
+    if (existingModal) {
+        existingModal.remove();
+    }
+
+    // Create modal HTML
+    const modalContent = `
+        <div class="modal fade" id="${modalId}" tabindex="-1" aria-labelledby="${modalId}Label" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content scratch-modal-content">
+                    <div class="modal-header scratch-modal-header">
+                        <div class="scratch-modal-title-wrapper">
+                            <i class="fas fa-gamepad scratch-modal-icon"></i>
+                            <h4 class="modal-title scratch-modal-title" id="${modalId}Label">Putt-Putt Enters The Race</h4>
+                        </div>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body text-center scratch-modal-body">
+                        <iframe id="scratch-iframe" src="https://scratch.mit.edu/projects/794999078/embed" 
+                            allowtransparency="true" width="485" height="402" frameborder="0" 
+                            scrolling="no" allowfullscreen>
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+
+    // Add modal to body
+    document.body.insertAdjacentHTML('beforeend', modalContent);
+
+    // Get modal element and show it
+    const modalElement = document.getElementById(modalId);
+    const modal = new bootstrap.Modal(modalElement);
+    modal.show();
+
+    // Remove iframe when modal is hidden
+    modalElement.addEventListener('hidden.bs.modal', function () {
+        const iframe = document.getElementById('scratch-iframe');
+        if (iframe) {
+            iframe.remove();
+        }
+        // Remove the entire modal
+        this.remove();
+    });
+}
+
+// ============================================================================
 // SCROLL TO TOP FUNCTIONALITY
 // ============================================================================
 
