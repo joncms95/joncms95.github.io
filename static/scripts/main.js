@@ -818,15 +818,8 @@ function openScratchModal() {
     const modalContent = `
         <div class="modal fade" id="${modalId}" tabindex="-1" aria-labelledby="${modalId}Label" aria-hidden="true">
             <div class="modal-dialog modal-lg modal-dialog-centered">
-                <div class="modal-content scratch-modal-content">
-                    <div class="modal-header scratch-modal-header">
-                        <div class="scratch-modal-title-wrapper">
-                            <i class="fas fa-gamepad scratch-modal-icon"></i>
-                            <h4 class="modal-title scratch-modal-title" id="${modalId}Label">Putt-Putt Enters The Race</h4>
-                        </div>
-                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body text-center scratch-modal-body">
+                <div class="modal-content">
+                    <div class="modal-body">
                         <iframe id="scratch-iframe" src="https://scratch.mit.edu/projects/794999078/embed" 
                             allowtransparency="true" width="485" height="402" frameborder="0" 
                             scrolling="no" allowfullscreen>

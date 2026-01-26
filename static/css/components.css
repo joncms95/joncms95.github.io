@@ -514,69 +514,13 @@ body.modal-open {
 }
 
 /* Scratch Modal Styles */
-.scratch-modal-content {
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-}
-
-.scratch-modal-header {
-  background: linear-gradient(135deg, #855cd6 0%, #6b46c1 100%);
-  border-bottom: none;
-  padding: 20px 25px;
+#scratchGameModal .modal-body {
   display: flex;
+  justify-content: center;
   align-items: center;
-  justify-content: space-between;
-}
-
-.scratch-modal-title-wrapper {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.scratch-modal-icon {
-  font-size: 28px;
-  color: #ff9900;
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
-}
-
-.scratch-modal-title {
-  color: white;
-  font-weight: 600;
-  font-size: 24px;
-  margin: 0;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  letter-spacing: 0.5px;
-}
-
-.scratch-modal-body {
-  padding: 25px;
-  background: #f8f9fa;
-}
-
-.scratch-modal-body iframe {
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 @media (max-width: 768px) {
-  .scratch-modal-title {
-    font-size: 20px;
-  }
-
-  .scratch-modal-icon {
-    font-size: 24px;
-  }
-
-  .scratch-modal-header {
-    padding: 15px 20px;
-  }
-
-  .scratch-modal-body {
-    padding: 15px;
-  }
-
   .scratch-play-btn {
     min-width: 280px;
     max-width: 100%;
