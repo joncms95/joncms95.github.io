@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/emergent-ai/static/css/main.c2e3186c.css",
+    "main.js": "/emergent-ai/static/js/main.d769edc4.js",
+    "index.html": "/emergent-ai/index.html",
+    "main.c2e3186c.css.map": "/emergent-ai/static/css/main.c2e3186c.css.map",
+    "main.d769edc4.js.map": "/emergent-ai/static/js/main.d769edc4.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.c2e3186c.css",
+    "static/js/main.d769edc4.js"
+  ]
+}
