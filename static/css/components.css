@@ -3,6 +3,82 @@
    ============================================================================ */
 
 /* ============================================================================
+   EMERGENT AI LINK
+   ============================================================================ */
+.emergent-ai {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  z-index: 1001;
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 12px;
+  background: #052a5f;
+  color: white !important;
+  text-decoration: none !important;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 50px;
+  box-shadow: 0 4px 12px rgba(5, 42, 95, 0.4);
+  transition: background 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+  white-space: nowrap;
+}
+
+.emergent-ai-text {
+  display: inline-block;
+  max-width: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-width 0.35s ease, opacity 0.25s ease;
+}
+
+.emergent-ai:hover {
+  background: #031a3f;
+  color: white !important;
+  transform: translateX(-2px);
+  box-shadow: 0 6px 16px rgba(5, 42, 95, 0.5);
+}
+
+.emergent-ai-expanded .emergent-ai-text {
+  max-width: 280px;
+  opacity: 1;
+  margin-right: 6px;
+}
+
+.emergent-ai-expanded .emergent-ai-icon {
+  margin-right: 8px;
+}
+
+.emergent-ai-icon {
+  flex-shrink: 0;
+  margin-right: 6px;
+}
+
+.emergent-ai i {
+  flex-shrink: 0;
+  transition: transform 0.25s ease;
+}
+
+.emergent-ai-expanded i:last-of-type {
+  transform: translateX(4px);
+}
+
+@media (max-width: 768px) {
+  .emergent-ai {
+    top: 12px;
+    right: 12px;
+    padding: 10px 14px;
+    font-size: 12px;
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  .emergent-ai-expanded .emergent-ai-text {
+    max-width: 220px;
+  }
+}
+
+/* ============================================================================
    VIEW GALLERY HOVER EFFECT
    ============================================================================ */
 .entry {
@@ -432,12 +508,10 @@ body.modal-open {
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.2),
-    transparent
-  );
+  background: linear-gradient(90deg,
+      transparent,
+      rgba(255, 255, 255, 0.2),
+      transparent);
   transition: left 0.5s ease;
 }
 

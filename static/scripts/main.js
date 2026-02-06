@@ -880,6 +880,33 @@ function setupScrollToTop() {
 }
 
 // ============================================================================
+// EMERGENT AI LINK - TAP TO EXPAND
+// ============================================================================
+
+/**
+ * First click expands the label, second click navigates.
+ * Clicking outside the link closes it.
+ */
+function setupEmergentAiLink() {
+    const link = document.querySelector('.emergent-ai');
+
+    link.addEventListener('click', (e) => {
+        if (link.classList.contains('emergent-ai-expanded')) {
+            return; // Let the link navigate
+        }
+
+        e.preventDefault();
+        link.classList.add('emergent-ai-expanded');
+    });
+
+    document.addEventListener('click', (e) => {
+        if (!link.contains(e.target)) {
+            link.classList.remove('emergent-ai-expanded');
+        }
+    });
+}
+
+// ============================================================================
 // MAIN INITIALIZATION
 // ============================================================================
 
@@ -904,6 +931,9 @@ function initializePortfolio() {
 
     // Setup scroll to top functionality
     setupScrollToTop();
+
+    // Emergent AI link
+    setupEmergentAiLink();
 }
 
 // Initialize when DOM is loaded
