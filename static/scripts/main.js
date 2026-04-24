@@ -894,6 +894,7 @@ function setupScrollToTop() {
  */
 function setupEmergentAiLink() {
     const link = document.querySelector('.emergent-ai');
+    if (!link) return;
 
     link.addEventListener('click', (e) => {
         if (link.classList.contains('emergent-ai-expanded')) {

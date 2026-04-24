@@ -1,13 +1,11 @@
 {
   "files": {
-    "main.css": "/emergent-ai/static/css/main.ab674873.css",
-    "main.js": "/emergent-ai/static/js/main.d52b3b29.js",
-    "index.html": "/emergent-ai/index.html",
-    "main.ab674873.css.map": "/emergent-ai/static/css/main.ab674873.css.map",
-    "main.d52b3b29.js.map": "/emergent-ai/static/js/main.d52b3b29.js.map"
+    "main.css": "/emergent-ai/static/css/main.01a385f2.css",
+    "main.js": "/emergent-ai/static/js/main.302154be.js",
+    "index.html": "/emergent-ai/index.html"
   },
   "entrypoints": [
-    "static/css/main.ab674873.css",
-    "static/js/main.d52b3b29.js"
+    "static/css/main.01a385f2.css",
+    "static/js/main.302154be.js"
   ]
 }
