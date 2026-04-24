@@ -113,6 +113,34 @@ const EXPERIENCE_CONFIG = {
 // ============================================================================
 
 const PROJECT_CONFIG = {
+    'geckolink': {
+        name: 'GeckoLink',
+        images: [
+            {
+                src: 'static/assets/projects/geckolink/home.jpg',
+                title: 'Home Page',
+                description: 'Landing page for GeckoLink'
+            },
+            {
+                src: 'static/assets/projects/geckolink/login.jpg',
+                title: 'Login Page',
+                description: 'Authentication flow for users'
+            },
+            {
+                src: 'static/assets/projects/geckolink/shorten.jpg',
+                title: 'Shorten Link',
+                description: 'Create and manage short links'
+            },
+            {
+                src: 'static/assets/projects/geckolink/preview.mp4',
+                title: 'Preview Video',
+                description: 'GeckoLink product walkthrough',
+                type: 'video',
+                externalUrl: 'static/assets/projects/geckolink/preview.mp4',
+                externalLabel: 'Watch full video in new tab'
+            },
+        ]
+    },
     'mlbb_ban_pick': {
         name: 'Mobile Legends Draft Simulator',
         images: [

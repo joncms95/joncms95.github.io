@@ -407,6 +407,24 @@ body.modal-open {
   opacity: 0.9;
 }
 
+.carousel-external-link {
+  background: rgba(255, 255, 255, 0.95);
+  color: #052a5f !important;
+  text-decoration: none !important;
+  display: inline-block;
+  margin-top: 10px;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 700;
+  border-radius: 20px;
+  transition: all 0.2s ease;
+}
+
+.carousel-external-link:hover {
+  background: white;
+  transform: translateY(-1px);
+}
+
 /* ============================================================================
    CAROUSEL INDEX INDICATOR
    ============================================================================ */
@@ -674,6 +692,12 @@ body.modal-open {
     font-size: 12px;
   }
 
+  .carousel-external-link {
+    margin-top: 8px;
+    padding: 5px 10px;
+    font-size: 11px;
+  }
+
   .carousel-control-prev,
   .carousel-control-next {
     width: 40px;
@@ -739,6 +763,12 @@ body.modal-open {
   }
 
   .carousel-caption p {
+    font-size: 10px;
+  }
+
+  .carousel-external-link {
+    margin-top: 6px;
+    padding: 4px 8px;
     font-size: 10px;
   }
 

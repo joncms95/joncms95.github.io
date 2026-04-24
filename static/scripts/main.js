@@ -184,8 +184,8 @@ function createCarouselItem(image, index, startIndex) {
         carouselItem.appendChild(img);
     }
 
-    // Add caption if title or description exists
-    if (image.title || image.description) {
+    // Add caption if metadata exists
+    if (image.title || image.description || image.externalUrl) {
         const caption = createElement('div', {
             className: 'carousel-caption'
         });
@@ -193,6 +193,7 @@ function createCarouselItem(image, index, startIndex) {
         caption.innerHTML = `
             ${image.title ? `<h4>${image.title}</h4>` : ''}
             ${image.description ? `<p>${image.description}</p>` : ''}
+            ${image.externalUrl ? `<a href="${image.externalUrl}" target="_blank" rel="noopener noreferrer" class="carousel-external-link">${image.externalLabel || 'Open in New Window'}</a>` : ''}
         `;
 
         carouselItem.appendChild(caption);
@@ -522,6 +523,8 @@ function createGalleryItem(image, entryConfig, type, key, index) {
         'data-category': type === 'experience' ? 'experience' : 'projects',
         'data-company': type === 'experience' ? key : undefined,
         'data-project': type === 'projects' ? key : undefined,
+        'data-external-url': image.externalUrl || undefined,
+        'data-external-label': image.externalLabel || undefined,
     });
 
     // Check if this is a video
@@ -753,7 +756,9 @@ function openGalleryModal(clickedItem, allItems) {
             src: src,
             title: item.querySelector('.gallery-item-overlay h4').textContent,
             description: item.querySelector('.gallery-item-overlay p').textContent,
-            type: type
+            type: type,
+            externalUrl: item.getAttribute('data-external-url') || undefined,
+            externalLabel: item.getAttribute('data-external-label') || undefined
         };
     });
 
