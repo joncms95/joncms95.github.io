@@ -23,8 +23,7 @@ jobs:
       - name: Checkout (with submodule)
         uses: actions/checkout@v4
         with:
-          submodules: recursive
-          token: ${{ secrets.GITHUB_TOKEN }}
+          submodules: true
 
       - name: Setup Node
         uses: actions/setup-node@v4
