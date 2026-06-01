@@ -7,7 +7,8 @@ html {
 }
 
 body {
-  background: #dae2e9;
+  background: linear-gradient(180deg, #dae2e9 0%, #eef2f6 100%);
+  background-attachment: fixed;
   font-family: Roboto, Sans-Serif;
   font-size: 14px;
   text-align: justify;
@@ -62,13 +63,27 @@ small {
 
 .card {
   margin: 12px auto;
-  border-radius: 5px;
-  transition: 0.3s;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  border: none;
+  border-radius: 10px;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  box-shadow: 0 6px 18px rgba(5, 42, 95, 0.1);
 }
 
 .card:hover {
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(5, 42, 95, 0.16);
+}
+
+/* Profile image */
+.img-thumbnail.rounded-circle {
+  border: 3px solid #fff;
+  box-shadow: 0 4px 14px rgba(5, 42, 95, 0.25);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.img-thumbnail.rounded-circle:hover {
+  transform: scale(1.03);
+  box-shadow: 0 6px 20px rgba(5, 42, 95, 0.35);
 }
 
 /* Header */
@@ -109,16 +124,22 @@ small {
 .nav-link {
   color: #52585e;
   margin: 1px;
+  font-weight: 500;
+  border: none;
+  border-bottom: 2px solid transparent;
+  transition: color 0.25s ease, background 0.25s ease, transform 0.25s ease;
 }
 
 .nav-tabs .nav-link:hover {
-  background: #eee;
-  transition: 0.25s;
+  background: #eef2f6;
   transform: translateY(-2px);
 }
 
 .nav-tabs .nav-link.active {
   color: #0a53c0;
+  font-weight: 700;
+  background: transparent;
+  border-bottom: 2px solid #0a53c0;
 }
 
 .tab-pane {

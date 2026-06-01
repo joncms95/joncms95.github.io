@@ -79,6 +79,118 @@
 }
 
 /* ============================================================================
+   EXPERIENCE CATEGORY BADGES & FILTERING
+   ============================================================================ */
+/* Category Badge */
+.cat-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.4;
+  margin-bottom: 6px;
+  padding: 3px 11px;
+  border: 1px solid;
+  border-radius: 50px;
+}
+
+.cat-badge i {
+  font-size: 10px;
+}
+
+.cat-tech {
+  color: #0a58ca;
+  background: rgba(10, 88, 202, 0.1);
+  border-color: rgba(10, 88, 202, 0.25);
+}
+
+.cat-esports {
+  color: #0f8a4f;
+  background: rgba(15, 138, 79, 0.1);
+  border-color: rgba(15, 138, 79, 0.25);
+}
+
+.cat-accounting {
+  color: #c2760c;
+  background: rgba(194, 118, 12, 0.12);
+  border-color: rgba(194, 118, 12, 0.28);
+}
+
+/* Filter Bar */
+.exp-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.exp-filter-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #f8f9fa;
+  color: #52585e;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 6px 16px;
+  border: 1.5px solid #d7dde4;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+@media (hover: hover) {
+  .exp-filter-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
+  }
+}
+
+.exp-filter-btn.active {
+  color: #fff;
+}
+
+.exp-filter-btn[data-type="all"].active {
+  background: #052a5f;
+  border-color: #052a5f;
+}
+
+.exp-filter-tech.active {
+  background: #0a58ca;
+  border-color: #0a58ca;
+}
+
+.exp-filter-esports.active {
+  background: #0f8a4f;
+  border-color: #0f8a4f;
+}
+
+.exp-filter-accounting.active {
+  background: #c2760c;
+  border-color: #c2760c;
+}
+
+/* Experience Entries */
+.exp-entry {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #e6ebf1;
+  animation: fadeIn 0.4s ease;
+}
+
+.exp-filters + .exp-entry,
+.exp-entry.exp-first-visible {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: none;
+}
+
+.exp-entry.exp-hidden {
+  display: none;
+}
+
+/* ============================================================================
    VIEW GALLERY HOVER EFFECT
    ============================================================================ */
 .entry {

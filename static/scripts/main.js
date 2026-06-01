@@ -481,6 +481,44 @@ function setupEntryInteractions(entry, entryConfig, type) {
 }
 
 // ============================================================================
+// EXPERIENCE FILTERING
+// ============================================================================
+
+/**
+ * Sets up experience category filtering (All / Tech / Esports / Accounting).
+ * Filtered entries are hidden and the first visible entry is flagged so it
+ * never renders a leading divider.
+ */
+function setupExperienceFiltering() {
+    const buttons = document.querySelectorAll('.exp-filter-btn');
+    const entries = document.querySelectorAll('.exp-entry');
+
+    if (!buttons.length || !entries.length) return;
+
+    const updateFirstVisible = () => {
+        entries.forEach(entry => entry.classList.remove('exp-first-visible'));
+        const firstVisible = Array.from(entries).find(entry => !entry.classList.contains('exp-hidden'));
+        if (firstVisible) firstVisible.classList.add('exp-first-visible');
+    };
+
+    buttons.forEach(button => {
+        button.addEventListener('click', () => {
+            const type = button.getAttribute('data-type');
+
+            buttons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+
+            entries.forEach(entry => {
+                const matches = type === 'all' || entry.getAttribute('data-type') === type;
+                entry.classList.toggle('exp-hidden', !matches);
+            });
+
+            updateFirstVisible();
+        });
+    });
+}
+
+// ============================================================================
 // GALLERY FUNCTIONALITY
 // ============================================================================
 
@@ -923,6 +961,9 @@ function initializePortfolio() {
     // Setup entries
     setupEntryHover('.entry[data-company]', EXPERIENCE_CONFIG, 'company');
     setupEntryHover('.entry[data-project]', PROJECT_CONFIG, 'project');
+
+    // Setup experience category filtering
+    setupExperienceFiltering();
 
     // Generate and populate galleries
     generateGalleryItems(EXPERIENCE_CONFIG, 'experience');
