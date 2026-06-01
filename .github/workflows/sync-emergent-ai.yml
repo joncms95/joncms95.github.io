@@ -55,6 +55,6 @@ jobs:
           if git diff --staged --quiet; then
             echo "No changes under emergent-ai/"
           else
-            git commit -m "chore: sync emergent-ai build from emergent-ai-source submodule"
+            git commit -m "build: sync emergent-ai from source"
             git push
           fi
