@@ -1,11 +1,11 @@
 {
   "files": {
     "main.css": "/emergent-ai/static/css/main.01a385f2.css",
-    "main.js": "/emergent-ai/static/js/main.3bff633c.js",
+    "main.js": "/emergent-ai/static/js/main.cdd7af60.js",
     "index.html": "/emergent-ai/index.html"
   },
   "entrypoints": [
     "static/css/main.01a385f2.css",
-    "static/js/main.3bff633c.js"
+    "static/js/main.cdd7af60.js"
   ]
 }
