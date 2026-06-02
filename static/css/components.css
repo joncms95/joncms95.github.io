@@ -20,7 +20,10 @@
   font-weight: 600;
   border-radius: 50px;
   box-shadow: 0 4px 12px rgba(5, 42, 95, 0.4);
-  transition: background 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+  transition:
+    background 0.25s ease,
+    box-shadow 0.25s ease,
+    transform 0.25s ease;
   white-space: nowrap;
 }
 
@@ -29,7 +32,9 @@
   max-width: 0;
   overflow: hidden;
   opacity: 0;
-  transition: max-width 0.35s ease, opacity 0.25s ease;
+  transition:
+    max-width 0.35s ease,
+    opacity 0.25s ease;
 }
 
 .emergent-ai:hover {
@@ -197,24 +202,42 @@
   position: relative;
 }
 
-.entry::before {
-  content: "\f03e  View Gallery";
+.entry-badge-row {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 6px;
+}
+
+.entry-badge-row .cat-badge {
+  margin-bottom: 0;
+}
+
+.entry-badge-row h2 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.view-gallery-hint {
+  margin-left: auto;
+  white-space: nowrap;
+  flex-shrink: 0;
   background: #114794;
   color: white;
-  position: absolute;
-  right: 15px;
-  font-family: "Font Awesome 5 Free";
   font-size: 11px;
   font-weight: 900;
   padding: 4px 8px;
   border-radius: 15px;
-  opacity: 0;
   transition: opacity 0.3s ease;
-  z-index: 10;
 }
 
-.entry:hover::before {
-  opacity: 1;
+@media (hover: hover) {
+  .view-gallery-hint {
+    opacity: 0;
+  }
+
+  .entry:hover .view-gallery-hint {
+    opacity: 1;
+  }
 }
 
 /* ============================================================================
@@ -638,10 +661,12 @@ body.modal-open {
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg,
-      transparent,
-      rgba(255, 255, 255, 0.2),
-      transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
   transition: left 0.5s ease;
 }
 
@@ -756,14 +781,6 @@ body.modal-open {
    RESPONSIVE STYLES
    ============================================================================ */
 @media (max-width: 768px) {
-  .entry::before {
-    content: "\f03e  View Gallery";
-    top: -15px;
-    font-size: 9px;
-    padding: 3px 6px;
-    opacity: 1;
-  }
-
   .gallery-grid {
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 15px;

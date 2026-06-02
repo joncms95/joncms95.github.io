@@ -65,7 +65,9 @@ small {
   margin: 12px auto;
   border: none;
   border-radius: 10px;
-  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  transition:
+    box-shadow 0.3s ease,
+    transform 0.3s ease;
   box-shadow: 0 6px 18px rgba(5, 42, 95, 0.1);
 }
 
@@ -78,7 +80,9 @@ small {
 .img-thumbnail.rounded-circle {
   border: 3px solid #fff;
   box-shadow: 0 4px 14px rgba(5, 42, 95, 0.25);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 .img-thumbnail.rounded-circle:hover {
@@ -127,7 +131,10 @@ small {
   font-weight: 500;
   border: none;
   border-bottom: 2px solid transparent;
-  transition: color 0.25s ease, background 0.25s ease, transform 0.25s ease;
+  transition:
+    color 0.25s ease,
+    background 0.25s ease,
+    transform 0.25s ease;
 }
 
 .nav-tabs .nav-link:hover {
@@ -245,5 +252,9 @@ small {
   .name {
     font-size: 24px;
     text-align: center;
+  }
+
+  .list-inline.contact-info {
+    text-align: center !important;
   }
 }

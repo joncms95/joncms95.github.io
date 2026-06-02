@@ -981,6 +981,9 @@ function initializePortfolio() {
 
     // Emergent AI link
     setupEmergentAiLink();
+
+    // Setup year in footer
+    document.getElementById('footer-year').textContent = new Date().getFullYear();
 }
 
 // Initialize when DOM is loaded
