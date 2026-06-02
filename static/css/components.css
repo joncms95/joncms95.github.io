@@ -111,9 +111,9 @@
 }
 
 .cat-esports {
-  color: #0f8a4f;
-  background: rgba(15, 138, 79, 0.1);
-  border-color: rgba(15, 138, 79, 0.25);
+  color: #7c3aed;
+  background: rgba(124, 58, 237, 0.1);
+  border-color: rgba(124, 58, 237, 0.25);
 }
 
 .cat-accounting {
@@ -167,8 +167,8 @@
 }
 
 .exp-filter-esports.active {
-  background: #0f8a4f;
-  border-color: #0f8a4f;
+  background: #7c3aed;
+  border-color: #7c3aed;
 }
 
 .exp-filter-accounting.active {
