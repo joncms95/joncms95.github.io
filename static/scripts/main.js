@@ -951,6 +951,64 @@ function setupEmergentAiLink() {
 }
 
 // ============================================================================
+// MOBILE SIDEBAR NAVIGATION
+// ============================================================================
+
+/**
+ * On mobile, the tab nav becomes an off-canvas sidebar opened from a sticky
+ * topbar. Reuses the existing Bootstrap tab buttons so tab switching is
+ * unchanged; this just handles open/close and keeps the topbar title in sync.
+ */
+function setupMobileSidebar() {
+    const sidebar = document.getElementById('navSidebar');
+    const backdrop = document.getElementById('navSidebarBackdrop');
+    const toggleBtn = document.getElementById('sidebarToggle');
+    const closeBtn = document.getElementById('sidebarClose');
+    const title = document.getElementById('mobileTopbarTitle');
+    if (!sidebar || !toggleBtn) return;
+
+    const openSidebar = () => {
+        sidebar.classList.add('open');
+        backdrop.classList.add('show');
+        document.body.classList.add('sidebar-open');
+        toggleBtn.setAttribute('aria-expanded', 'true');
+    };
+
+    const closeSidebar = () => {
+        sidebar.classList.remove('open');
+        backdrop.classList.remove('show');
+        document.body.classList.remove('sidebar-open');
+        toggleBtn.setAttribute('aria-expanded', 'false');
+    };
+
+    toggleBtn.addEventListener('click', () => {
+        sidebar.classList.contains('open') ? closeSidebar() : openSidebar();
+    });
+    closeBtn?.addEventListener('click', closeSidebar);
+    backdrop?.addEventListener('click', closeSidebar);
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeSidebar();
+    });
+
+    // Close on tab selection; keep the topbar title in sync with the active tab.
+    const navCard = document.getElementById('myTab').closest('.card');
+    const topbar = document.querySelector('.mobile-topbar');
+    document.querySelectorAll('#myTab .nav-link').forEach((link) => {
+        link.addEventListener('click', closeSidebar);
+        link.addEventListener('shown.bs.tab', (e) => {
+            if (title) title.textContent = e.target.textContent.trim();
+            // On mobile, bring the freshly selected section into view from its top
+            // (offset for the sticky topbar) so it doesn't feel like nothing changed.
+            if (window.innerWidth <= 768 && navCard) {
+                const offset = topbar ? topbar.offsetHeight : 0;
+                const y = navCard.getBoundingClientRect().top + window.pageYOffset - offset;
+                window.scrollTo({ top: y, behavior: 'smooth' });
+            }
+        });
+    });
+}
+
+// ============================================================================
 // MAIN INITIALIZATION
 // ============================================================================
 
@@ -981,6 +1039,9 @@ function initializePortfolio() {
 
     // Emergent AI link
     setupEmergentAiLink();
+
+    // Mobile sidebar navigation
+    setupMobileSidebar();
 
     // Setup year in footer
     document.getElementById('footer-year').textContent = new Date().getFullYear();

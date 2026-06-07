@@ -72,43 +72,61 @@
         </div>
     </div>
 
+    <!-- Mobile Sticky Topbar -->
+    <div class="mobile-topbar">
+        <button class="sidebar-toggle" id="sidebarToggle" type="button" aria-label="Open menu"
+            aria-controls="navSidebar" aria-expanded="false">
+            <i class="fas fa-bars"></i>
+        </button>
+        <span class="mobile-topbar-title" id="mobileTopbarTitle">Experience</span>
+    </div>
+    <!-- Sidebar Backdrop -->
+    <div class="nav-sidebar-backdrop" id="navSidebarBackdrop"></div>
+
     <!-- Nav Tabs -->
     <div class="card container">
-        <ul class="nav nav-tabs" id="myTab" role="tablist">
-            <li class="nav-item" role="presentation">
-                <button class="nav-link active" id="experience-tab" data-bs-toggle="tab"
-                    data-bs-target="#experience-tab-pane" type="button" role="tab" aria-controls="experience-tab-pane"
-                    aria-selected="false">
-                    <i class="fas fa-briefcase me-2"></i>Experience
-                </button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" id="education-tab" data-bs-toggle="tab" data-bs-target="#education-tab-pane"
-                    type="button" role="tab" aria-controls="education-tab-pane" aria-selected="true">
-                    <i class="fas fa-graduation-cap me-2"></i>Education
-                </button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" id="keyskills-tab" data-bs-toggle="tab" data-bs-target="#keyskills-tab-pane"
-                    type="button" role="tab" aria-controls="keyskills-tab-pane" aria-selected="false">
-                    <i class="fas fa-tools me-2"></i>Key Skills & Strengths
-                </button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" id="project-tab" data-bs-toggle="tab" data-bs-target="#project-tab-pane"
-                    type="button" role="tab" aria-controls="project-tab-pane" aria-selected="false">
-                    <i class="fas fa-code me-2"></i>Projects
-                </button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" id="gallery-tab" data-bs-toggle="tab" data-bs-target="#gallery-tab-pane"
-                    type="button" role="tab" aria-controls="gallery-tab-pane" aria-selected="false">
-                    <i class="fas fa-images me-2"></i>Gallery
-                </button>
-            </li>
-        </ul>
+        <nav class="nav-sidebar" id="navSidebar">
+            <button class="sidebar-close" id="sidebarClose" type="button" aria-label="Close menu">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="experience-tab" data-bs-toggle="tab"
+                        data-bs-target="#experience-tab-pane" type="button" role="tab"
+                        aria-controls="experience-tab-pane" aria-selected="true">
+                        <i class="fas fa-briefcase me-2"></i>Experience
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="education-tab" data-bs-toggle="tab"
+                        data-bs-target="#education-tab-pane" type="button" role="tab" aria-controls="education-tab-pane"
+                        aria-selected="true">
+                        <i class="fas fa-graduation-cap me-2"></i>Education
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="keyskills-tab" data-bs-toggle="tab"
+                        data-bs-target="#keyskills-tab-pane" type="button" role="tab" aria-controls="keyskills-tab-pane"
+                        aria-selected="false">
+                        <i class="fas fa-tools me-2"></i>Key Skills & Strengths
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="project-tab" data-bs-toggle="tab" data-bs-target="#project-tab-pane"
+                        type="button" role="tab" aria-controls="project-tab-pane" aria-selected="false">
+                        <i class="fas fa-code me-2"></i>Projects
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="gallery-tab" data-bs-toggle="tab" data-bs-target="#gallery-tab-pane"
+                        type="button" role="tab" aria-controls="gallery-tab-pane" aria-selected="false">
+                        <i class="fas fa-images me-2"></i>Gallery
+                    </button>
+                </li>
+            </ul>
+        </nav>
 
-        <!-- Nav panes -->
+        <!-- Nav Panes -->
         <div class="tab-content" id="myTabContent">
             <!-- Experience -->
             <div class="tab-pane fade show active" id="experience-tab-pane" role="tabpanel"
@@ -139,6 +157,15 @@
                         </div>
                         <div class="col-sm-12 col-md-3 col-lg-2 col order-md-first col order-lg-first">
                             <h5>May 2026 &ndash; <b>Present</b></h5>
+                        </div>
+                        <div class="col-sm-12 col-md-9 offset-md-3 col-lg-10 offset-lg-2">
+                            <hr />
+                            <p>
+                                Tools and technologies:
+                                <br />
+                                Ruby on Rails, Sidekiq, Tailwind CSS, RSpec, PostgreSQL, Redis, GitHub, Dokku, AWS,
+                                Linear
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -557,14 +584,16 @@
                         <ul>
                             <li>Ruby, Python, Haml, HTML, CSS, JavaScript</li>
                             <li>Ruby on Rails, Sidekiq, Socket.IO, Flask, RESTful API, gRPC, Bootstrap</li>
-                            <li>MongoDB, SQLite, Redis</li>
+                            <li>PostgreSQL, MongoDB, SQLite, Redis</li>
                         </ul>
                         <p>Familiar with various project workflows and software engineering practices</p>
                         <ul>
                             <li>Bash, Git, GitHub, GitLab, Sourcetree, Postman, Jenkins</li>
-                            <li>Docker, Kubernetes, Lens, Rancher, Nginx, Gunicorn, Digital Ocean, Vercel, AWS</li>
-                            <li>ChatGPT, Google Gemini, GitHub Copilot, Cursor</li>
-                            <li>Agile, Jira, Trello, Slack</li>
+                            <li>
+                                Dokku, Docker, Kubernetes, Lens, Rancher, Nginx, Gunicorn, Digital Ocean, Vercel, AWS
+                            </li>
+                            <li>Claude Code, ChatGPT, Google Gemini, GitHub Copilot, Cursor</li>
+                            <li>Agile, Jira, Linear, Slack, Trello</li>
                         </ul>
                     </div>
                 </div>

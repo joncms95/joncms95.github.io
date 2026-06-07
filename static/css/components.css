@@ -1,5 +1,6 @@
 /* ============================================================================
-   COMPONENTS CSS - Gallery, Carousel, and Modal Styles
+   COMPONENTS CSS
+   Emergent AI Link, Mobile Sidebar, Gallery, Carousel, and Modal Styles
    ============================================================================ */
 
 /* ============================================================================
@@ -70,16 +71,184 @@
 
 @media (max-width: 768px) {
   .emergent-ai {
-    top: 12px;
-    right: 12px;
-    padding: 10px 14px;
+    top: 7px;
+    right: 8px;
+    padding: 6px 8px;
     font-size: 12px;
-    min-height: 44px;
-    min-width: 44px;
+    min-height: 32px;
+    min-width: 32px;
+  }
+}
+
+/* ============================================================================
+   MOBILE SIDEBAR
+   ============================================================================ */
+.mobile-topbar,
+.nav-sidebar-backdrop,
+.sidebar-toggle,
+.sidebar-close {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  /* The off-canvas sidebar is position:fixed and lives inside a .card.
+     A transform on an ancestor makes it the containing block for fixed
+     descendants, which would yank the sidebar out of the viewport. Drop the
+     hover lift on touch (where :hover sticks after a tap anyway). */
+  .card:hover {
+    transform: none;
   }
 
-  .emergent-ai-expanded .emergent-ai-text {
-    max-width: 220px;
+  /* Sticky topbar with sidebar toggle */
+  .mobile-topbar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    padding: 6px 8px 6px 8px;
+    background: #ffffff;
+    color: #052a5f;
+    box-shadow: 0 2px 10px rgba(5, 42, 95, 0.12);
+  }
+
+  /* Content card sits flush under the sticky topbar (no background gap) */
+  .card:has(> .nav-sidebar) {
+    margin-top: 0;
+  }
+
+  .sidebar-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    font-size: 16px;
+    color: #052a5f;
+    background: transparent;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+  }
+
+  .sidebar-toggle:hover,
+  .sidebar-toggle:focus-visible {
+    background: #eef2f6;
+  }
+
+  .mobile-topbar-title {
+    font-size: 15px;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* Off-canvas sidebar */
+  .nav-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1050;
+    display: flex;
+    flex-direction: column;
+    width: 270px;
+    max-width: 80vw;
+    height: 100%;
+    background: #ffffff;
+    box-shadow: 2px 0 18px rgba(5, 42, 95, 0.2);
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    overflow-y: auto;
+  }
+
+  .nav-sidebar.open {
+    transform: translateX(0);
+  }
+
+  /* Simple collapse icon at the top of the sidebar */
+  .sidebar-close {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    align-self: flex-start;
+    width: 34px;
+    height: 34px;
+    margin: 6px 4px 2px;
+    font-size: 16px;
+    color: #52585e;
+    background: transparent;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition:
+      background 0.2s ease,
+      color 0.2s ease;
+  }
+
+  .sidebar-close:hover {
+    background: #eef2f6;
+    color: #052a5f;
+  }
+
+  /* Stack the tabs vertically inside the sidebar */
+  .nav-sidebar .nav-tabs {
+    flex-direction: column;
+    flex-wrap: nowrap;
+    border-bottom: none;
+    margin-bottom: 0;
+    padding: 8px;
+  }
+
+  .nav-sidebar .nav-item {
+    width: 100%;
+  }
+
+  .nav-sidebar .nav-tabs .nav-link {
+    width: 100%;
+    margin: 2px 0;
+    padding: 12px 14px;
+    text-align: left;
+    border: none;
+    border-left: 3px solid transparent;
+    border-radius: 8px;
+  }
+
+  .nav-sidebar .nav-tabs .nav-link:hover {
+    background: #eef2f6;
+    transform: none;
+  }
+
+  .nav-sidebar .nav-tabs .nav-link.active {
+    background: #eef2f6;
+    border-bottom: none;
+    border-left: 3px solid #0a53c0;
+  }
+
+  /* Backdrop behind the open sidebar */
+  .nav-sidebar-backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 1040;
+    background: rgba(0, 0, 0, 0.45);
+    opacity: 0;
+    visibility: hidden;
+    transition:
+      opacity 0.3s ease,
+      visibility 0.3s ease;
+  }
+
+  .nav-sidebar-backdrop.show {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  /* Lock background scroll while the sidebar is open */
+  body.sidebar-open {
+    overflow: hidden;
   }
 }
 
