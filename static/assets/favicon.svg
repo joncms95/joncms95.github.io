@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="Chibi person with a laptop">
+  <rect width="64" height="64" rx="14" fill="#0a53c0"/>
+
+  <!-- shoulders (behind the laptop) -->
+  <path d="M19 48 c0-7 6-11 13-11 s13 4 13 11 z" fill="#2bc4a8"/>
+
+  <!-- head -->
+  <circle cx="32" cy="21" r="12" fill="#ffd8b0"/>
+
+  <!-- hair -->
+  <path d="M20 21 a12 12 0 0 1 24 0 q-6 -4.5 -12 -4.5 q-6 0 -12 4.5 z" fill="#46342a"/>
+
+  <!-- eyes -->
+  <circle cx="27.5" cy="22" r="1.9" fill="#33261d"/>
+  <circle cx="36.5" cy="22" r="1.9" fill="#33261d"/>
+
+  <!-- cheeks -->
+  <circle cx="24" cy="25" r="1.7" fill="#ffb0ab"/>
+  <circle cx="40" cy="25" r="1.7" fill="#ffb0ab"/>
+
+  <!-- smile -->
+  <path d="M29.5 25.5 q2.5 2.6 5 0" fill="none" stroke="#33261d" stroke-width="1.5" stroke-linecap="round"/>
+
+  <!-- laptop lid (facing us) -->
+  <rect x="15" y="35" width="34" height="14" rx="2.5" fill="#eef2f8"/>
+  <circle cx="32" cy="42" r="2" fill="#bcc8da"/>
+
+  <!-- laptop base / keyboard -->
+  <path d="M11 56 l4 -7 h34 l4 7 z" fill="#dde4ef"/>
+</svg>

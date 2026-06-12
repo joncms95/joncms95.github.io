@@ -923,34 +923,6 @@ function setupScrollToTop() {
 }
 
 // ============================================================================
-// EMERGENT AI LINK - TAP TO EXPAND
-// ============================================================================
-
-/**
- * First click expands the label, second click navigates.
- * Clicking outside the link closes it.
- */
-function setupEmergentAiLink() {
-    const link = document.querySelector('.emergent-ai');
-    if (!link) return;
-
-    link.addEventListener('click', (e) => {
-        if (link.classList.contains('emergent-ai-expanded')) {
-            return; // Let the link navigate
-        }
-
-        e.preventDefault();
-        link.classList.add('emergent-ai-expanded');
-    });
-
-    document.addEventListener('click', (e) => {
-        if (!link.contains(e.target)) {
-            link.classList.remove('emergent-ai-expanded');
-        }
-    });
-}
-
-// ============================================================================
 // MOBILE SIDEBAR NAVIGATION
 // ============================================================================
 
@@ -965,13 +937,37 @@ function setupMobileSidebar() {
     const toggleBtn = document.getElementById('sidebarToggle');
     const closeBtn = document.getElementById('sidebarClose');
     const title = document.getElementById('mobileTopbarTitle');
+    const counter = document.getElementById('mobileTopbarCounter');
     if (!sidebar || !toggleBtn) return;
+
+    // First-visit hint: briefly pulse the topbar so users notice the menu lives
+    // here. Shown once per browser, and dismissed the moment they open the menu.
+    const markHintSeen = () => {
+        toggleBtn.classList.remove('hint');
+        try {
+            localStorage.setItem('navHintSeen', '1');
+        } catch (e) {
+            /* storage unavailable — fine, just skip persistence */
+        }
+    };
+    try {
+        if (
+            window.matchMedia('(max-width: 768px)').matches &&
+            !localStorage.getItem('navHintSeen')
+        ) {
+            toggleBtn.classList.add('hint');
+            toggleBtn.addEventListener('animationend', markHintSeen, { once: true });
+        }
+    } catch (e) {
+        /* matchMedia/storage unavailable — skip the hint */
+    }
 
     const openSidebar = () => {
         sidebar.classList.add('open');
         backdrop.classList.add('show');
         document.body.classList.add('sidebar-open');
         toggleBtn.setAttribute('aria-expanded', 'true');
+        markHintSeen();
     };
 
     const closeSidebar = () => {
@@ -990,13 +986,18 @@ function setupMobileSidebar() {
         if (e.key === 'Escape') closeSidebar();
     });
 
-    // Close on tab selection; keep the topbar title in sync with the active tab.
+    // Close on tab selection; keep the topbar title + counter in sync.
     const navCard = document.getElementById('myTab').closest('.card');
     const topbar = document.querySelector('.mobile-topbar');
-    document.querySelectorAll('#myTab .nav-link').forEach((link) => {
+    const links = Array.from(document.querySelectorAll('#myTab .nav-link'));
+    links.forEach((link) => {
         link.addEventListener('click', closeSidebar);
         link.addEventListener('shown.bs.tab', (e) => {
             if (title) title.textContent = e.target.textContent.trim();
+            if (counter) {
+                const idx = links.indexOf(e.target) + 1;
+                counter.innerHTML = `${idx}<span class="mtc-sep">/</span>${links.length}`;
+            }
             // On mobile, bring the freshly selected section into view from its top
             // (offset for the sticky topbar) so it doesn't feel like nothing changed.
             if (window.innerWidth <= 768 && navCard) {
@@ -1036,9 +1037,6 @@ function initializePortfolio() {
 
     // Setup scroll to top functionality
     setupScrollToTop();
-
-    // Emergent AI link
-    setupEmergentAiLink();
 
     // Mobile sidebar navigation
     setupMobileSidebar();

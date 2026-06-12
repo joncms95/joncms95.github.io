@@ -1,84 +1,7 @@
 /* ============================================================================
    COMPONENTS CSS
-   Emergent AI Link, Mobile Sidebar, Gallery, Carousel, and Modal Styles
+   Mobile Sidebar, Gallery, Carousel, and Modal Styles
    ============================================================================ */
-
-/* ============================================================================
-   EMERGENT AI LINK
-   ============================================================================ */
-.emergent-ai {
-  position: fixed;
-  top: 16px;
-  right: 16px;
-  z-index: 1001;
-  display: inline-flex;
-  align-items: center;
-  padding: 8px 12px;
-  background: #052a5f;
-  color: white !important;
-  text-decoration: none !important;
-  font-size: 13px;
-  font-weight: 600;
-  border-radius: 50px;
-  box-shadow: 0 4px 12px rgba(5, 42, 95, 0.4);
-  transition:
-    background 0.25s ease,
-    box-shadow 0.25s ease,
-    transform 0.25s ease;
-  white-space: nowrap;
-}
-
-.emergent-ai-text {
-  display: inline-block;
-  max-width: 0;
-  overflow: hidden;
-  opacity: 0;
-  transition:
-    max-width 0.35s ease,
-    opacity 0.25s ease;
-}
-
-.emergent-ai:hover {
-  background: #031a3f;
-  color: white !important;
-  transform: translateX(-2px);
-  box-shadow: 0 6px 16px rgba(5, 42, 95, 0.5);
-}
-
-.emergent-ai-expanded .emergent-ai-text {
-  max-width: 280px;
-  opacity: 1;
-  margin-right: 6px;
-}
-
-.emergent-ai-expanded .emergent-ai-icon {
-  margin-right: 8px;
-}
-
-.emergent-ai-icon {
-  flex-shrink: 0;
-  margin-right: 6px;
-}
-
-.emergent-ai i {
-  flex-shrink: 0;
-  transition: transform 0.25s ease;
-}
-
-.emergent-ai-expanded i:last-of-type {
-  transform: translateX(4px);
-}
-
-@media (max-width: 768px) {
-  .emergent-ai {
-    top: 7px;
-    right: 8px;
-    padding: 6px 8px;
-    font-size: 12px;
-    min-height: 32px;
-    min-width: 32px;
-  }
-}
 
 /* ============================================================================
    MOBILE SIDEBAR
@@ -99,18 +22,35 @@
     transform: none;
   }
 
-  /* Sticky topbar with sidebar toggle */
+  /* Sticky topbar */
   .mobile-topbar {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
+    width: 100%;
     position: sticky;
     top: 0;
     z-index: 1000;
-    padding: 6px 8px 6px 8px;
+    padding: 7px 14px;
     background: #ffffff;
     color: #052a5f;
+    border: none;
+    border-bottom: 1px solid #e6ebf1;
     box-shadow: 0 2px 10px rgba(5, 42, 95, 0.12);
+    cursor: pointer;
+    font-family: inherit;
+    text-align: left;
+    -webkit-tap-highlight-color: transparent;
+    transition: background 0.2s ease;
+  }
+
+  .mobile-topbar:hover {
+    background: #f4f7fa;
+  }
+
+  .mobile-topbar:focus-visible {
+    outline: 2px solid #0a53c0;
+    outline-offset: -2px;
   }
 
   /* Content card sits flush under the sticky topbar (no background gap) */
@@ -118,24 +58,25 @@
     margin-top: 0;
   }
 
-  .sidebar-toggle {
+  .sidebar-toggle-icon {
+    flex: 0 0 auto;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 34px;
-    height: 34px;
-    font-size: 16px;
-    color: #052a5f;
-    background: transparent;
-    border: none;
+    width: 32px;
+    height: 32px;
+    font-size: 15px;
+    color: #ffffff;
+    background: #0a53c0;
     border-radius: 8px;
-    cursor: pointer;
-    transition: background 0.2s ease;
   }
 
-  .sidebar-toggle:hover,
-  .sidebar-toggle:focus-visible {
-    background: #eef2f6;
+  .mobile-topbar-label {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    min-width: 0;
+    line-height: 1.15;
   }
 
   .mobile-topbar-title {
@@ -144,6 +85,71 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+  }
+
+  /* "n / 5" pill signals there are more sections than the one on screen */
+  .mobile-topbar-counter {
+    flex: 0 0 auto;
+    font-size: 12px;
+    font-weight: 600;
+    color: #6b7280;
+    background: #eef2f6;
+    padding: 2px 9px;
+    border-radius: 999px;
+  }
+
+  .mobile-topbar-counter .mtc-sep {
+    margin: 0 1px;
+    opacity: 0.5;
+  }
+
+  .mobile-topbar-caret {
+    flex: 0 0 auto;
+    font-size: 13px;
+    color: #6b7280;
+    transition: transform 0.25s ease;
+  }
+
+  .mobile-topbar[aria-expanded="true"] .mobile-topbar-caret {
+    transform: rotate(180deg);
+  }
+
+  /* One-time attention hint so first-time visitors notice the menu */
+  .mobile-topbar.hint {
+    animation: topbarHint 1.4s ease-in-out 4;
+  }
+
+  .mobile-topbar.hint .sidebar-toggle-icon {
+    animation: togglePulse 1.4s ease-in-out 4;
+  }
+
+  @keyframes topbarHint {
+    0%,
+    100% {
+      background: #ffffff;
+    }
+    50% {
+      background: #eaf1fb;
+    }
+  }
+
+  @keyframes togglePulse {
+    0%,
+    100% {
+      transform: scale(1);
+      box-shadow: 0 0 0 0 rgba(10, 83, 192, 0.5);
+    }
+    50% {
+      transform: scale(1.08);
+      box-shadow: 0 0 0 7px rgba(10, 83, 192, 0);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .mobile-topbar.hint,
+    .mobile-topbar.hint .sidebar-toggle-icon {
+      animation: none;
+    }
   }
 
   /* Off-canvas sidebar */
