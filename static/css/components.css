@@ -27,10 +27,11 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    width: 100%;
+    max-width: 540px;
     position: sticky;
     top: 0;
     z-index: 1000;
+    margin: auto;
     padding: 7px 14px;
     background: #ffffff;
     color: #052a5f;
@@ -56,6 +57,7 @@
   /* Content card sits flush under the sticky topbar (no background gap) */
   .card:has(> .nav-sidebar) {
     margin-top: 0;
+    border-radius: 0 0 10px 10px;
   }
 
   .sidebar-toggle-icon {
